@@ -1,0 +1,293 @@
+<div class="border gray_background rounded-3 p-2" [formGroup]="form">
+  <div class="row mb-4">
+    <div class="col-5">
+      <span class="fs-6 fw-bolder mx-2">
+        {{ "ASSET.FORM.HEADERS.ORIGINAL_INFO" | translate }}
+      </span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row d-flex form-group mt-2">
+        <label
+          class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+        >
+          {{ "ASSET.FORM.ORIGINAL_INFO.NAME" | translate }}
+        </label>
+        <div class="col-md-8">
+          <input type="text" class="form-control" formControlName="name" />
+        </div>
+      </div>
+
+      <div class="row d-flex form-group mt-2">
+        <label
+          class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+        >
+          {{ "ASSET.FORM.ORIGINAL_INFO.CODE" | translate }}
+        </label>
+        <div class="col-md-8">
+          <input type="text" class="form-control" formControlName="code" />
+          <small
+            class="form-text text-danger mt-2"
+            *ngIf="form.get('code')?.hasError('isDuplicate')"
+          >
+            {{ "EMPLACEMENT_LOCATION.MESSAGES.CODE_ALREADY_EXIST" | translate }}
+          </small>
+        </div>
+      </div>
+
+      <div class="row d-flex form-group mt-2">
+        <label class="col-md-4 col-form-label text-dark text-md-end mt-1">
+          {{ "ASSET.FORM.ORIGINAL_INFO.PARENT" | translate }}
+        </label>
+        <div class="col-md-8">
+          <proset-asset-tree-select
+            placeholder="{{ 'GENERAL.ASSET_SELECT' | translate }}"
+            formControlName="parent"
+            [assetId]="form.get('id')?.value"
+          ></proset-asset-tree-select>
+        </div>
+      </div>
+
+      <div class="row d-flex form-group mt-2">
+        <label
+          class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+        >
+          {{ "ASSET.FORM.ORIGINAL_INFO.LEVEL" | translate }}
+        </label>
+        <div class="col-md-8">
+          <ng-select
+            id="levels"
+            formControlName="level"
+            [dropdownPosition]="'auto'"
+            [items]="levels"
+            bindLabel="name"
+            [searchable]="false"
+            #selectLevel
+          >
+            <ng-template ng-header-tmp>
+              <div class="form-group has-feedback">
+                <input
+                  style="width: 100%; line-height: 24px"
+                  type="text"
+                  class="form-control"
+                  id="inputValidation"
+                  placeholder="{{ 'GENERAL.SEARCH' | translate }}"
+                  (input)="onSearch($event, selectLevel)"
+                />
+              </div>
+            </ng-template>
+            <ng-template ng-option-tmp let-item="item">
+              <mat-card>
+                <mat-card-header>
+                  <mat-card-title-group>
+                    <mat-card-title>{{ item.name }}</mat-card-title>
+                    <mat-card-subtitle>
+                      {{ item?.id }}
+                    </mat-card-subtitle>
+                  </mat-card-title-group>
+                </mat-card-header>
+              </mat-card>
+            </ng-template>
+            <ng-template ng-footer-tmp>
+              <div
+                class="d-flex justify-content-end"
+                *prosetHasPermissions="[permissions.LEVEL_CREATE]"
+              >
+                <button
+                  type="button"
+                  class="btn btn-info btn-sm d-flex"
+                  (click)="onNewLevel()"
+                >
+                  <i class="fa-solid fa-plus fs-6"></i>
+                  <span class="mx-1"></span>
+                  {{ "SHARE_COMPONENT.CREATE_NEW_LEVEL" | translate }}
+                </button>
+              </div>
+            </ng-template>
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="row d-flex form-group mt-2">
+        <label
+          class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+        >
+          {{ "ASSET.FORM.ORIGINAL_INFO.GROUP" | translate }}
+        </label>
+        <div class="col-md-8">
+          <ng-select
+            id="groups"
+            formControlName="group"
+            [dropdownPosition]="'auto'"
+            [items]="groups"
+            bindLabel="name"
+            [searchable]="false"
+            #selectGroup
+          >
+            <ng-template ng-header-tmp>
+              <div class="form-group has-feedback">
+                <input
+                  style="width: 100%; line-height: 24px"
+                  type="text"
+                  class="form-control"
+                  id="inputValidation"
+                  placeholder="{{ 'GENERAL.SEARCH' | translate }}"
+                  (input)="onSearch($event, selectGroup)"
+                />
+              </div>
+            </ng-template>
+            <ng-template ng-option-tmp let-item="item">
+              <mat-card>
+                <mat-card-header>
+                  <mat-card-title-group>
+                    <mat-card-title>{{ item.name }}</mat-card-title>
+                    <mat-card-subtitle>
+                      {{ item?.id }}
+                    </mat-card-subtitle>
+                  </mat-card-title-group>
+                </mat-card-header>
+              </mat-card>
+            </ng-template>
+            <ng-template ng-footer-tmp>
+              <div
+                class="d-flex justify-content-end"
+                *prosetHasPermissions="[permissions.GROUP_CREATE]"
+              >
+                <button
+                  type="button"
+                  class="btn btn-info btn-sm d-flex"
+                  (click)="onNewGroup()"
+                >
+                  <i class="fa-solid fa-plus fs-6"></i>
+                  <span class="mx-1"></span>
+                  {{ "SHARE_COMPONENT.CREATE_NEW_GROUP" | translate }}
+                </button>
+              </div>
+            </ng-template>
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="row d-flex form-group mt-2">
+        <label
+          class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+        >
+          {{ "ASSET.FORM.ORIGINAL_INFO.EMPLACEMENT_LOCATION" | translate }}
+        </label>
+        <div class="col-md-8">
+          <proset-emplacement-locations-tree-select
+            formControlName="emplacementLocation"
+          ></proset-emplacement-locations-tree-select>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="row d-flex form-group mt-2">
+        <label
+          class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+        >
+          {{ "ASSET.FORM.ORIGINAL_INFO.UTILIZATION_DATE" | translate }}
+        </label>
+        <div class="col-md-8">
+          <proset-datepicker
+            formControlName="utilizationDate"
+          ></proset-datepicker>
+        </div>
+      </div>
+      <div class="row d-flex form-group mt-2">
+        <label
+          class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+        >
+          {{ "ASSET.FORM.ORIGINAL_INFO.PRIORITY" | translate }}
+        </label>
+        <div class="col-md-8">
+          <ng-select formControlName="priority">
+            <ng-option *ngFor="let item of priorityList" [value]="item">
+              {{ "ASSET.FORM.PRIORITY." + item | translate }}
+            </ng-option>
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="row d-flex form-group mt-2">
+        <label
+          class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+        >
+          {{ "ASSET.FORM.ORIGINAL_INFO.STATUS" | translate }}
+        </label>
+        <div class="col-md-8">
+          <ng-select formControlName="status">
+            <ng-option *ngFor="let item of statusList" [value]="item">
+              {{ "ASSET.FORM.STATUS." + item | translate }}
+            </ng-option>
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="row d-flex form-group mt-1">
+        <label for="" class="col-md-4 col-form-label text-dark text-md-end mt-1"
+          >{{ "ASSET.FORM.ORIGINAL_INFO.DAILY_USAGE_DURATION" | translate }}
+        </label>
+        <div class="col-md-8 position-relative">
+          <div class="row">
+            <div class="d-flex flex-nowrap gap-2">
+              <div class="w-50 position-relative">
+                <input
+                  id="asset-down-time"
+                  class="form-control"
+                  numbersOnly
+                  formControlName="dailyUsageDurationMinute"
+                />
+                <span
+                  class="my-2 mx-1 light_text position-absolute left_align top-0"
+                >
+                  {{ "GENERAL.MINUTE" | translate }}
+                </span>
+                <small
+                  class="form-text text-danger mt-2"
+                  *ngIf="form.get('dailyUsageDurationMinute')?.hasError('max')"
+                >
+                  {{ "WORK_LOG.MESSAGES.TIME_ERROR" | translate }}
+                </small>
+              </div>
+              <div class="w-50 position-relative">
+                <input
+                  id=""
+                  class="form-control"
+                  numbersOnly
+                  formControlName="dailyUsageDurationHour"
+                />
+                <span
+                  class="my-2 mx-1 light_text position-absolute left_align top-0"
+                >
+                  {{ "GENERAL.HOUR" | translate }}
+                </span>
+                <small
+                  class="form-text text-danger mt-2"
+                  *ngIf="form.get('dailyUsageDurationHour')?.hasError('max')"
+                >
+                  {{ "WORK_LOG.MESSAGES.TIME_ERROR" | translate }}
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row d-flex form-group mt-2">
+        <label class="col-md-4 col-form-label text-dark text-md-end mt-1">
+          {{ "ASSET.FORM.ORIGINAL_INFO.DESCRIPTION" | translate }}
+        </label>
+        <div class="col-md-8">
+          <textarea
+            type="text"
+            class="form-control"
+            formControlName="description"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

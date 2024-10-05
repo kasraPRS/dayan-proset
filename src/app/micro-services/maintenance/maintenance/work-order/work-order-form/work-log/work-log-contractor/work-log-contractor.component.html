@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-2">
+    <button
+      [disabled]="
+        workOrder.status !== WorkOrderStatus.UNDER_EXECUTION &&
+        workLog.status === WorkLogStatus.REGISTER
+      "
+      data-cy="dialog-submit"
+      class="btn btn-outline-primary px-3 white_button green_button_hover m-1 btn-sm"
+      type="button"
+      (click)="onOpenContractorDialog()"
+    >
+      {{ "BUTTON.SELECT_CONTRACTOR" | translate }}
+    </button>
+  </div>
+</div>
+<div id="table_id" class="row datatable_container">
+  <ngx-datatable
+    style="width: 100%"
+    class="bootstrap viewOnly"
+    [rows]="contractorList"
+    [loadingIndicator]="false"
+    [columnMode]="'force'"
+    [headerHeight]="40"
+    [footerHeight]="0"
+    [rowHeight]="'auto'"
+    [messages]="messages"
+  >
+    <ngx-datatable-column
+      name="{{ 'CONTRACTOR.NAME' | translate }}"
+      prop="person.name"
+    >
+    </ngx-datatable-column>
+    <ngx-datatable-column
+      name="{{ 'CONTRACTOR.WORK_SHEET' | translate }}"
+      prop="workingHourPresent"
+    >
+    </ngx-datatable-column>
+    <ngx-datatable-column
+      name="{{ 'CONTRACTOR.INVOICE_NUMBER' | translate }}"
+      prop="invoiceNumber"
+    >
+    </ngx-datatable-column>
+    <ngx-datatable-column
+      name="{{ 'CONTRACTOR.INVOICE_FEE' | translate }}"
+      prop="invoiceFee"
+    >
+    </ngx-datatable-column>
+    <ngx-datatable-column
+      name="{{ 'GENERAL.ACTION' | translate }}"
+      *ngIf="
+        workOrder.status === WorkOrderStatus.UNDER_EXECUTION ||
+        workLog.status === WorkLogStatus.REJECT
+      "
+    >
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <a
+          class="mx-1 text-center"
+          role="button"
+          (click)="onDeleteContractor(row)"
+        >
+          <i class="isax isax-trash"></i>
+        </a>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>

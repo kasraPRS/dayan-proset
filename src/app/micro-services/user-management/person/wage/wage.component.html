@@ -1,0 +1,106 @@
+<form [formGroup]="wageFormGroup">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <div class="d-flex mt-4 labels-for-formArray-container">
+        <span class="text-light mt-1 w-25 p-3">
+          {{ "PERSON.WAGE.WORKING_HOUR_COST" | translate }}
+        </span>
+        <span class="text-light mt-1 w-25 p-3">
+          {{ "PERSON.WAGE.OVER_TIME_COST" | translate }}
+        </span>
+        <span class="text-light mt-1 w-25 p-3">
+          {{ "PERSON.WAGE.FROM_DATE" | translate }}
+        </span>
+        <span class="text-light mt-1 w-25 p-3">
+          {{ "PERSON.WAGE.TO_DATE" | translate }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <ng-container formArrayName="entryList">
+    <div
+      class="row py-2"
+      *ngFor="let record of entryList.controls; let i = index"
+      [formGroupName]="i"
+    >
+      <div class="col-1 text-end">
+        <button
+          data-cy="dialog-submit"
+          class="btn btn-sm mt-1"
+          type="button"
+          [hidden]="entryList.length !== i + 1"
+          [disabled]="record.invalid"
+          (click)="onNewRecord(i)"
+        >
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="col-10">
+        <div class="row">
+          <div class="col-3">
+            <div class="w-100">
+              <input
+                class="form-control"
+                formControlName="workingHourCost"
+                inputPrice
+              />
+              <span
+                class="my-2 mx-3 light_text position-absolute left_align top-0"
+              >
+                {{ "CURRENCY.RIAL" | translate }}
+              </span>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="w-100">
+              <input
+                class="form-control"
+                formControlName="overtimeCost"
+                inputPrice
+              />
+              <span
+                class="my-2 mx-3 light_text position-absolute left_align top-0"
+              >
+                {{ "CURRENCY.RIAL" | translate }}
+              </span>
+            </div>
+          </div>
+          <div class="w-25">
+            <proset-datepicker
+              formControlName="fromDate"
+              (dateChange)="onFromDateChange($event, i)"
+            ></proset-datepicker>
+            <small
+              class="form-text text-danger mt-2"
+              *ngIf="record.get('fromDate')?.hasError('invalidFromDate')"
+            >
+              {{ "MESSAGES.END_DATE_IS_BEFORE_START_DATE" | translate }}
+            </small>
+          </div>
+          <div class="w-25">
+            <proset-datepicker
+              formControlName="toDate"
+              (dateChange)="onToDateChange($event, i)"
+            ></proset-datepicker>
+            <small
+              class="form-text text-danger mt-2"
+              *ngIf="record.get('toDate')?.hasError('invalidToDate')"
+            >
+              {{ "MESSAGES.END_DATE_IS_BEFORE_START_DATE" | translate }}
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="col-1 text-start">
+        <button
+          data-cy="dialog-submit"
+          class="btn btn-sm mx-1 mt-1"
+          type="button"
+          (click)="onDeleteRecord(i)"
+        >
+          <i class="fa-solid fa-close"></i>
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</form>

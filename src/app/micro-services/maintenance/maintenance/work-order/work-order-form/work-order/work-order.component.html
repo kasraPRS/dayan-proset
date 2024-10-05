@@ -1,0 +1,520 @@
+<form [formGroup]="form">
+  <div class="d-flex justify-content-end mt-2 mb-2">
+    <ng-container *ngIf="workOrderDto.uuid!">
+      <proset-event
+        [entityUuid]="workOrderDto.uuid!"
+        [titleOfHistory]="'WORK_ORDERS.TITLE'"
+      ></proset-event>
+    </ng-container>
+    <button
+      data-cy="dialog-submit"
+      class="btn btn-sm top_action_button"
+      type="button"
+    >
+      <div class="d-flex justify-content-around align-items-center">
+        {{ "REQUEST.BUTTONS.PRINT" | translate }}
+        <i class="isax isax-printer"></i>
+      </div>
+    </button>
+    <button
+      (click)="goToList()"
+      class="btn btn-sm top_action_button"
+      type="button"
+    >
+      <div class="d-flex justify-content-around align-items-center">
+        {{ "GENERAL.BUTTON.BACK_TO_LIST" | translate }}
+        <i class="isax isax-arrow-left"></i>
+      </div>
+    </button>
+  </div>
+
+  <div class="border gray_background rounded-3 p-2">
+    <div class="row mb-4">
+      <div class="col-5">
+        <span class="fs-6 fw-bolder mx-2">
+          {{ "WORK_ORDERS.FORM.HEADERS.WORK_ORDERS_INFO" | translate }}
+        </span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="row form-group mt-1">
+          <label class="col-md-4 col-form-label text-md-end mt-1 required">{{
+            "WORK_ORDERS.FORM.TITLE" | translate
+          }}</label>
+          <div class="col-md-8">
+            <input
+              type="text"
+              class="form-control"
+              id="mainInfoTitle"
+              formControlName="name"
+            />
+          </div>
+        </div>
+        <!--          WORK_ORDERS_NUMBER-->
+        <div class="row form-group mt-1">
+          <label class="col-md-4 col-form-label text-md-end mt-1 required">{{
+            "WORK_ORDERS.FORM.WORK_ORDERS_NUMBER" | translate
+          }}</label>
+          <fieldset [disabled]="true" class="col-md-8">
+            <input
+              type="text"
+              class="form-control"
+              id="code"
+              formControlName="code"
+              readonly
+            />
+            <small
+              id="duplicate_code"
+              class="form-text text-danger mt-2"
+              *ngIf="isCodeInvalid"
+            >
+              {{ "WORK_ORDERS.MESSAGES.CODE_DUPLICATE" | translate }}
+            </small>
+          </fieldset>
+        </div>
+        <!--         WORK_ORDERS_DATE -->
+        <div class="row form-group mt-1">
+          <label class="col-md-4 col-form-label text-md-end mt-1 required">{{
+            "WORK_ORDERS.FORM.WORK_ORDERS_DATE" | translate
+          }}</label>
+          <div class="col-md-8">
+            <proset-datepicker
+              [dateInitValue]="true"
+              id="date"
+              formControlName="date"
+              [max]="maxWorkOrderDate"
+              [min]="requestDate.value ? requestDate.value : null"
+            ></proset-datepicker>
+          </div>
+        </div>
+
+        <div class="row form-group mt-1">
+          <label class="col-md-4 col-form-label text-md-end mt-1">{{
+            "WORK_ORDERS.FORM.REQUEST_NUMBER" | translate
+          }}</label>
+          <div class="col-md-8">
+            <ng-select
+              id="request"
+              [formControl]="requestCode"
+              #selectRequest
+              bindLabel="requestName"
+              [loading]="requestDtoList?.length == 0"
+              [items]="requestDtoList"
+              (change)="onRequestChange($event)"
+              [clearable]="true"
+              [searchable]="false"
+              [searchFn]="onSearchRequest"
+              [readonly]="
+                viewMode || (!viewMode && workOrderDto.type === workOrderType)
+              "
+            >
+              <ng-template ng-header-tmp>
+                <div class="form-group has-feedback">
+                  <input
+                    style="line-height: 24px"
+                    type="text"
+                    class="w-100 form-control"
+                    id="inputValidation"
+                    placeholder="{{ 'GENERAL.SEARCH' | translate }}"
+                    (input)="onRequestSearch($event)"
+                  />
+                </div>
+              </ng-template>
+              <ng-template ng-option-tmp let-item="item">
+                <mat-card class="example-card">
+                  <mat-card-header>
+                    <mat-card-title-group>
+                      <mat-card-title>{{ item.requestName }}</mat-card-title>
+                      <mat-card-subtitle>
+                        {{ item.code }}
+                      </mat-card-subtitle>
+                    </mat-card-title-group>
+                  </mat-card-header>
+                  <mat-card-content>
+                    <div class="row">
+                      <div class="col-md-6 justify-content-start">
+                        <p>{{ item.name }}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 justify-content-start">
+                        <p>{{ item.asset.name }}</p>
+                      </div>
+                      <div class="col-md-6 d-flex justify-content-end">
+                        <p>{{ item.issueDate }}</p>
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </ng-template>
+            </ng-select>
+          </div>
+        </div>
+        <!--          REQUEST_DATE-->
+        <div class="row form-group mt-1">
+          <label
+            for="requestDate"
+            class="col-md-4 mt-1 col-form-label text-md-end"
+            >{{ "WORK_ORDERS.FORM.REQUEST_DATE" | translate }}</label
+          >
+          <div class="col-md-8">
+            <proset-datepicker
+              [dateInitValue]="false"
+              id="requestDate"
+              [formControl]="requestDate"
+              [disabled]="true"
+            ></proset-datepicker>
+          </div>
+        </div>
+        <!--          RequestName-->
+        <div class="row form-group mt-1">
+          <label class="col-md-4 col-form-label text-md-end mt-1">{{
+            "WORK_ORDERS.FORM.REQUESTER_NAME" | translate
+          }}</label>
+          <div class="col-md-8">
+            <input
+              type="text"
+              class="form-control"
+              id="RequestName"
+              [disabled]="true"
+              [value]="form.controls['workRequest']?.value?.applicant?.name!"
+            />
+          </div>
+        </div>
+        <!--         description -->
+        <div class="row form-group mt-1">
+          <label class="col-md-4 col-form-label text-md-end mt-1">{{
+            "WORK_ORDERS.FORM.REQUEST_DESCRIPTION" | translate
+          }}</label>
+          <div class="col-md-8">
+            <input
+              [disabled]="true"
+              class="form-control"
+              id="description"
+              [value]="form.controls['workRequest']?.value?.description!"
+            />
+          </div>
+        </div>
+
+        <!--        mainInfoTitle  -->
+      </div>
+
+      <div class="col-md-4">
+        <div class="row form-group mt-1">
+          <label class="col-md-4 col-form-label text-md-end mt-1 required">{{
+            "WORK_ORDERS.FORM.ASSET" | translate
+          }}</label>
+          <div class="col-md-8">
+            <proset-asset-tree-select
+              placeholder="{{ 'GENERAL.ASSET_SELECT' | translate }}"
+              formControlName="asset"
+              (assetChange)="assetChange($event)"
+              [disabled]="
+                form.controls['workRequest']?.value ||
+                viewMode ||
+                (!viewMode && workOrderDto.type === workOrderType)
+              "
+            ></proset-asset-tree-select>
+          </div>
+        </div>
+        <div class="row form-group mt-1">
+          <label class="col-md-4 col-form-label required text-md-end mt-1">{{
+            "WORK_ORDERS.FORM.NUMBER_PLATE" | translate
+          }}</label>
+          <div class="col-md-8">
+            <input
+              type="text"
+              class="form-control"
+              [disabled]="true"
+              [value]="form.controls['asset']?.value?.code!"
+            />
+          </div>
+        </div>
+        <div class="row form-group mt-1">
+          <label class="col-md-4 col-form-label required text-md-end mt-1">{{
+            "WORK_ORDERS.FORM.EMPLACEMENT_LOCATION" | translate
+          }}</label>
+          <div class="col-md-8">
+            <input
+              type="text"
+              class="form-control"
+              [disabled]="true"
+              [value]="
+                form.controls['asset']?.value?.emplacementLocationName! ||
+                form.controls['asset']?.value?.emplacementLocation?.name!
+              "
+            />
+          </div>
+        </div>
+        <div class="row form-group mt-1">
+          <label class="col-md-4 col-form-label required text-md-end mt-1">{{
+            "WORK_ORDERS.FORM.ASSET_STATUS" | translate
+          }}</label>
+          <div class="col-md-8">
+            <input
+              type="text"
+              class="form-control"
+              [disabled]="true"
+              [value]="
+                form.controls['asset']?.value?.status! &&
+                ('ASSET.FORM.STATUS.' + form.controls['asset']?.value?.status!
+                  | translate)
+              "
+            />
+          </div>
+        </div>
+
+        <div class="row form-group mt-1">
+          <label class="col-md-4 col-form-label text-md-end mt-1 required">{{
+            "WORK_ORDERS.FORM.ORDER_TYPE" | translate
+          }}</label>
+          <div class="col-md-8">
+            <input
+              *ngIf="workOrderDto.type === workOrderType"
+              disabled
+              class="form-control"
+              value="{{
+                'WORK_ORDERS.WORK_ORDER_TYPE.' + workOrderDto.type | translate
+              }}"
+              type="text"
+            />
+            <ng-select
+              formControlName="type"
+              [class]="{ 'view-mode': viewMode }"
+              *ngIf="workOrderDto.type !== workOrderType"
+            >
+              <ng-option *ngFor="let item of workOrderTypeList" [value]="item">
+                {{ "WORK_ORDERS.WORK_ORDER_TYPE." + item | translate }}
+              </ng-option>
+            </ng-select>
+          </div>
+        </div>
+
+        <div class="row d-flex form-group">
+          <label
+            for
+            class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+            >{{ "REQUEST.FORM.FAILURE_DETECTION" | translate }}</label
+          >
+          <div class="col-md-8">
+            <proset-failure-detection-method-select
+              id="failureDetectionMethod"
+              formControlName="failureDetectionMethod"
+            >
+            </proset-failure-detection-method-select>
+          </div>
+        </div>
+
+        <div class="row form-group mt-1">
+          <label
+            for
+            class="col-md-4 col-form-label text-md-end mt-1"
+            [ngClass]="{
+              required: formStyle('failureModeList', form)
+            }"
+            >{{ "REQUEST.FORM.FAILURE_MODE" | translate }}</label
+          >
+          <div class="col-md-8">
+            <ng-select
+              id="failureModeList"
+              formControlName="failureModeList"
+              #selectFailureMode
+              [multiple]="true"
+              [readonly]="viewMode"
+              bindLabel="name"
+              [selectableGroup]="true"
+              [dropdownPosition]="'auto'"
+              [items]="failureMode"
+              [searchable]="false"
+              appendTo="body"
+            >
+              <ng-template ng-header-tmp>
+                <div class="form-group has-feedback">
+                  <input
+                    style="width: 100%; line-height: 24px"
+                    type="text"
+                    class="form-control"
+                    placeholder="{{ 'GENERAL.SEARCH' | translate }}"
+                  />
+                </div>
+              </ng-template>
+              <ng-template ng-option-tmp let-item="item">
+                <mat-card class="example-card">
+                  <mat-card-header>
+                    <mat-card-title-group>
+                      <mat-card-title>{{ item?.name }} </mat-card-title>
+                      <mat-card-subtitle>
+                        {{ item?.code }}
+                      </mat-card-subtitle>
+                    </mat-card-title-group>
+                  </mat-card-header>
+                </mat-card>
+              </ng-template>
+              <ng-template ng-footer-tmp>
+                <div class="d-flex justify-content-end">
+                  <button
+                    *prosetHasPermissions="[permission.FAILURE_MODE_CREATE]"
+                    class="btn btn-info btn-sm d-flex"
+                    (click)="onOpenFailureMode()"
+                  >
+                    <i class="fa-solid fa-plus fs-6"></i>
+                    <span class="mx-1"></span>
+                    {{ "SHARE_COMPONENT.CREATE_NEW_FAILURE_MODE" | translate }}
+                  </button>
+                </div>
+              </ng-template>
+            </ng-select>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="row form-group mt-1">
+          <label
+            class="col-md-4 col-form-label text-md-end mt-1"
+            [ngClass]="{
+              required: formStyle('priority', form)
+            }"
+            >{{ "WORK_ORDERS.FORM.PRIORITY" | translate }}</label
+          >
+          <div class="col-md-8">
+            <ng-select
+              id="priority"
+              formControlName="priority"
+              [class]="{ 'view-mode': viewMode }"
+            >
+              <ng-option *ngFor="let item of priorityItemList" [value]="item">
+                {{ "WORK_ORDERS.PRIORITY." + item | translate }}
+              </ng-option>
+            </ng-select>
+          </div>
+        </div>
+        <div class="row form-group mt-1">
+          <label class="col-md-4 col-form-label text-md-end mt-1 required">{{
+            "WORK_ORDERS.FORM.EXECUTION_RESPONSIBLE" | translate
+          }}</label>
+          <div class="col-md-8 position-relative">
+            <div class="row">
+              <div class="d-flex flex-nowrap gap-2">
+                <div class="w-75">
+                  <proset-person-select
+                    id="staff"
+                    [userType]="userType.STAFF"
+                    [required]="true"
+                    [disabled]="viewMode"
+                    [value]="
+                      person || form.controls['executionManager']?.value?.name
+                    "
+                    (personChange)="onPersonChange($event)"
+                  ></proset-person-select>
+                </div>
+                <div class="w-25">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="staffCode"
+                    [value]="form.controls['executionManager']?.value?.code!"
+                    [disabled]="true"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row form-group mt-1">
+          <label class="col-md-4 col-form-label text-md-end mt-1 required">{{
+            "WORK_ORDERS.FORM.ASSET_STATUS_WHILE_REPAIRING" | translate
+          }}</label>
+          <div class="col-md-8">
+            <ng-select
+              id="invoice-issue-sale-type"
+              formControlName="assetStatusDuringRepair"
+              [class]="{ 'view-mode': viewMode }"
+            >
+              <ng-option
+                *ngFor="let item of assetStatusDuringRepair"
+                [value]="item"
+              >
+                {{ "WORK_ORDERS.ASSET_CONDITION." + item | translate }}
+              </ng-option>
+            </ng-select>
+          </div>
+        </div>
+
+        <proset-work-order-datepicker
+          [form]="form"
+          [workOrder]="workOrderDto"
+        ></proset-work-order-datepicker>
+
+        <div class="row form-group mt-1">
+          <label class="col-md-4 col-form-label text-md-end mt-1">{{
+            "WORK_ORDERS.FORM.DESCRIPTIONS" | translate
+          }}</label>
+          <div class="col-md-8">
+            <textarea
+              class="form-control"
+              id="descriptionWorkOrder"
+              formControlName="description"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex mt-5 mb-5 flex-row-reverse" [ngSwitch]="true">
+    <button
+      type="submit"
+      class="btn btn-primary mx-1 px-5"
+      *ngSwitchCase="!workOrderDto?.status"
+      [disabled]="form.invalid"
+      (click)="createAction()"
+    >
+      {{ "WORK_ORDERS.BUTTONS.REGISTRATION" | translate }}
+    </button>
+    <ng-container
+      *ngSwitchCase="workOrderDto?.status === status.OPEN && !viewMode"
+    >
+      <button
+        *prosetHasPermissions="[permission.WORK_ORDER_UPDATE]"
+        type="submit"
+        class="btn btn-primary mx-1 px-5"
+        [disabled]="form.invalid"
+        (click)="updateWorkOrderById()"
+      >
+        {{ "WORK_ORDERS.BUTTONS.REGISTRATION" | translate }}
+      </button>
+    </ng-container>
+    <ng-container
+      *ngSwitchCase="workOrderDto?.status === status.OPEN && viewMode"
+    >
+      <button
+        type="button"
+        class="btn btn-primary mx-1 px-5"
+        (click)="actionModalRun()"
+        [disabled]="visibilityRunButton()"
+        *prosetHasPermissions="[permission.WORK_ORDER_EXECUTE]"
+      >
+        {{ "WORK_ORDERS.BUTTONS.RUN" | translate }}
+      </button>
+    </ng-container>
+    <ng-container
+      *ngSwitchCase="
+        workOrderDto?.status === status.UNDER_EXECUTION ||
+        workOrderDto.status === WorkOrderStatus.WORK_LOG
+      "
+    >
+      <button
+        type="button"
+        class="btn btn-primary mx-1 px-5"
+        (click)="actionModalUnderExecution()"
+        *prosetHasPermissions="[permission.WORK_ORDER_RETURN_EXECUTE]"
+        [disabled]="workOrderDto.status === WorkOrderStatus.WORK_LOG"
+      >
+        {{ "WORK_ORDERS.BUTTONS.UNDER_EXECUTION" | translate }}
+      </button>
+    </ng-container>
+  </div>
+</form>

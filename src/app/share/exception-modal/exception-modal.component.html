@@ -1,0 +1,18 @@
+<div class="modal-header alert alert-warning">
+  <span class="modal-title" id="modal-basic-title">{{
+    title | translate
+  }}</span>
+</div>
+<div class="modal-body translated-paragraph">
+  <ng-content></ng-content>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    name="cancelBtn"
+    class="btn btn-info"
+    (click)="onClose()"
+  >
+    {{ "GENERAL.CANCEL" | translate }}
+  </button>
+</div>

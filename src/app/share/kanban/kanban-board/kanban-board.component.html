@@ -1,0 +1,36 @@
+<div class="d-flex gap-2">
+  <div
+    *ngFor="let column of columns; let i = index"
+    id="column-{{ i }}"
+    class="column"
+  >
+    <!-- List Card Starts -->
+    <div class="d-flex flex-column gap-2">
+      <ng-container *ngFor="let task of column.tasks; let i = index">
+        <kanban-card
+          [card]="task"
+          [cardIndex]="i"
+          [cardActions]="cardActions"
+        ></kanban-card>
+      </ng-container>
+    </div>
+    <!-- List Card Ends -->
+
+    <div
+      class="column-title d-flex mb-2 px-4 justify-content-between align-items-center"
+      [style.background]="
+        'linear-gradient(to left, ' + column.color + ' 8px, #D9D9D933 0)'
+      "
+    >
+      <span>
+        {{ column.name | translate }}
+      </span>
+      <div class="task-count-wrapper">
+        <span class="task-count">
+          {{ column.tasks?.length || 0 }}
+        </span>
+        <div class="bg-blur" [style.background]="column.color"></div>
+      </div>
+    </div>
+  </div>
+</div>

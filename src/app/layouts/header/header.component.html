@@ -1,0 +1,64 @@
+<div class="container mw-100 fixed">
+  <div class="row">
+    <div class="col-md-1 col-2 py-3 text-center">
+      <img
+        src="/assets/img/logo.png"
+        class="img-fluid"
+        [alt]="'GENERAL.APPLICATION' | translate"
+      />
+    </div>
+    <div class="col-md-8 col-sm-12">
+      <app-menu></app-menu>
+    </div>
+    <div class="col-md-3 col-sm-12 d-md-flex justify-content-end">
+      <div class="h-100 light_text d-flex align-items-center">
+        <span class="me-2 mx-1">
+          <div class="dropdown">
+            <button
+              class="border-0 p-0 bg-white"
+              type="button"
+              id="dropdownMenuButton"
+              data-mdb-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <img
+                src="/assets/img/profile.png"
+                alt="{{ 'GENERAL.USER_PROFILE' | translate }}"
+              />
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item small_btn" role="button">
+                {{ "GENERAL.USER_PROFILE" | translate }}
+              </a>
+              <a
+                class="dropdown-item small_btn"
+                role="button"
+                (click)="logout()"
+              >
+                {{ "GENERAL.EXIT" | translate }}
+              </a>
+            </div>
+          </div>
+        </span>
+        <span class="me-1">
+          <img src="/assets/img/alarm.png" />
+        </span>
+
+        <span class="mx-1">
+          {{ getPersionWeekDayName() | translate }}
+        </span>
+        <span>
+          {{ date }}
+        </span>
+        <span class="me-1">
+          <img
+            src="/assets/img/guide.png"
+            alt="{{ 'GENERAL.HELP' | translate }}"
+          />
+        </span>
+      </div>
+      <span class="px-md-5"></span>
+    </div>
+  </div>
+</div>

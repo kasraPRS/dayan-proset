@@ -1,0 +1,138 @@
+[
+  {
+    "id": "ACTION",
+    "name": "عملیات",
+    "children": [
+      {
+        "id": "PRE_INVOICE_FORM",
+        "name": "صدور پیش فاکتور"
+      },
+      {
+        "id": "CREAT_ORDER_FORM",
+        "name": "ایجاد سفارش"
+      },
+      {
+        "id": "CONFIRM_PRE_INVOICE_FORM",
+        "name": "تایید پیش فاکتور"
+      },
+      {
+        "id": "CONFIRM_MANAGER_PRE_INVOICE_FORM",
+        "name": "تایید پیش فاکتور"
+      },
+      {
+        "id": "CONFIRM_CUSTOMER_PRE_INVOICE_FORM",
+        "name": "تایید پیش فاکتور"
+      },
+      {
+        "id": "ISSUE_LOADING_LICENCE",
+        "name": "صدور مجوز بارگیری"
+      },
+      {
+        "id": "LOADING",
+        "name": "بارگیری"
+      },
+      {
+        "id": "ISSUE_EXIST_DOCUMENT",
+        "name": "صدور حواله خروج"
+      },
+      {
+        "id": "ISSUE_SALE_DOCUMENT",
+        "name": "صدور فاکتور فروش"
+      },
+      {
+        "id": "ISSUE_RETURN_SALE_DOCUMENT",
+        "name": "صدور فاکتور برگشتی "
+      },
+      {
+        "id": "PRICING_FORMULA",
+        "name": "فرمول قیمت گذاری"
+      },
+      {
+        "id": "CREATE_ORDER_TYPE_FORM",
+        "name": "ایجاد نوع سفارش(طولی-حکمی)"
+      },
+      {
+        "id": "DELIVERY_LOCATION_FORM",
+        "name": "ایجاد محل تحویل"
+      }
+    ]
+  },
+  {
+    "id": "LIST",
+    "name": "فهرست",
+    "children": [
+      {
+        "id": "PRE_INVOICE_LIST",
+        "name": "لیست پیش فاکتورها"
+      },
+      {
+        "id": "ORDER_LIST",
+        "name": "لیست سفارش ها"
+      },
+      {
+        "id": "LOADING_LICENCE_LIST",
+        "name": "لیست مجوزهای بارگیری"
+      },
+      {
+        "id": "LOADING_LIST",
+        "name": "لیست بارگیری ها"
+      },
+      {
+        "id": "EXIST_DOCUMENT_LIST",
+        "name": "لیست حواله های خروج"
+      },
+      {
+        "id": "ORDER_INVOICE_LIST",
+        "name": "لیست فاکتورهای فروش"
+      },
+      {
+        "id": "RETURN_INVOICE_LIST",
+        "name": "لیست فاکتورهای برگشتی"
+      },
+      {
+        "id": "CUSTOMER_LIST",
+        "name": "لیست مشتریان"
+      }
+    ]
+  },
+  {
+    "id": "REPORT",
+    "name": "گزارشات",
+    "children": [
+      {
+        "id": "PRE_INVOICE_REPORT",
+        "name": "مرور پیش فاکتور"
+      },
+      {
+        "id": "ORDER_REPORT",
+        "name": "مرور سفارش"
+      },
+      {
+        "id": "SALE_REPORT",
+        "name": "مرور فروش"
+      },
+      {
+        "id": "KPI_REPORT",
+        "name": "گزارشات KPI"
+      },
+      {
+        "id": "FULL_CUSTOMER_REPORT",
+        "name": "گزارش جامع مشتری"
+      }
+    ]
+  },
+  {
+    "id": "SETTING",
+    "name": "تنظیمات",
+    "children": [
+      {
+        "id": "RELATED_MOEIN_ACCOUNT",
+        "name": "حساب های معین مرتبط"
+      },
+      {
+        "id": "OTHER_SETTING",
+        "name": "سایر تنظیمات"
+      }
+    ]
+  }
+]

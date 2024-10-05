@@ -1,0 +1,12 @@
+<div [class]="['toast-item', toastClass]">
+  <div [class]="['toastWrapp', toastClass]">
+    <label
+      class="close"
+      matSnackBarActions
+      mat-icon-button
+      (click)="snackBarRef.dismissWithAction()"
+    ></label>
+    <h3>{{ data?.title | translate }}</h3>
+    <p>{{ data?.message | translate }}</p>
+  </div>
+</div>

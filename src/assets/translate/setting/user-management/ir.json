@@ -1,0 +1,80 @@
+{
+  "USER_MANAGEMENT": {
+    "PERSON": "تعریف اشخاص",
+    "PERSON_LIST": "لیست اشخاص"
+  },
+  "PERSON": {
+    "TITLE": "اطلاعات اصلی",
+    "USER_TYPE": {
+      "LABEL": "نوع کاربر",
+      "STAFF": "کارمند",
+      "SUPPLIER": "تامین کننده",
+      "CONTRACTOR": "پیمانکار"
+    },
+    "PERSON_TYPE": {
+      "LABEL": "نوع شخصیت",
+      "LEGAL": "حقوقی",
+      "NATURAL": "حقیقی"
+    },
+    "NATIONAL_CODE": "کد ملی",
+    "NATIONAL_ID": "شناسه ملی",
+    "FIRST_NAME": "نام ",
+    "LAST_NAME": "نام خانوادگی",
+    "AGENT_NAME": "نماینده",
+    "NAME": "نام سازمان",
+    "CODE": "کد",
+    "USER_NAME": "نام کاربری",
+    "PASSWORD": "رمز عبور",
+    "MOBILE": "شماره همراه",
+    "TELL": "شماره تماس",
+    "EMAIL": "ایمیل",
+    "POSTAL_CODE": "کد پستی",
+    "ADDRESS": "آدرس",
+    "TAB": {
+      "PERMISSION": "دسترسی ها",
+      "WAGE": "دستمزد",
+      "WORK_ORDER": "دستور کار"
+    },
+    "WAGE": {
+      "WORKING_HOUR_COST": "هزینه هر ساعت کارکرد عادی",
+      "OVER_TIME_COST": "هزینه هر ساعت اضافه کاری",
+      "FROM_DATE": "از تاریخ",
+      "TO_DATE": "تا تاریخ"
+    },
+    "WORK_ORDER": {
+      "NUMBER": "شماره دستور کار",
+      "TYPE": "نوع دستور کار",
+      "STATUS": "وضعیت دستور کار",
+      "CREATE_DATE": "تاریخ ایجاد",
+      "START_DATE": "تاریخ شروع",
+      "END_DATE": "تاریخ اتمام",
+      "WORKING_HOUR": "ساعت کارکرد عادی",
+      "WORKING_COST": "هزینه کار عادی",
+      "OVERTIME_HOUR": "ساعت اضافه کاری",
+      "OVERTIME_COST": "هزینه اضافه کاری"
+    },
+    "MESSAGES": {
+      "IS_THE_LAST_WAGE": " با حذف این رکورد امکان محاسبه هزینه برای این کاربر وجود نخواهد داشت. آیا از حذف اطمینان دارید ؟",
+      "IS_THE_DELETE_WAGE": " با حذف این رکورد امکلن محاسبه هزینه در این بازه زمانی وجود نخواهد داشت . آیا از حذف اطمینان دارید ؟"
+    },
+    "TABLE": {
+      "USER_TYPE": "نوع کاربر",
+      "PERSON_TYPE": "نوع شخصیت",
+      "NAME": "نام سازمان",
+      "FIRST_NAME": "نام ",
+      "LAST_NAME": "نام خانوادگی",
+      "CODE": "کد",
+      "USER_NAME": "نام کاربری",
+      "NATIONAL_CODE": "کد / شناسه ملی",
+      "MOBILE": "شماره همراه",
+      "TELL": "شماره تماس",
+      "EMAIL": "ایمیل",
+      "POSTAL_CODE": "کد پستی",
+      "ADDRESS": "آدرس",
+      "IS_ACTIVE": "فعال"
+    },
+    "FILTER": {
+      "FROM_CODE": "کد از شماره"
+    }
+  }
+}

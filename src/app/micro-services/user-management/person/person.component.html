@@ -1,0 +1,376 @@
+<div
+  class="row"
+  [ngClass]="{
+    'view-mode': viewMode
+  }"
+>
+  <div class="col-md-12">
+    <form [formGroup]="personFormGroup">
+      <div class="d-flex justify-content-start flex-row-reverse">
+        <button class="w-32 btn-toggle-sort icon-btn" (click)="returnToList()">
+          <mat-icon
+            class="pointer"
+            fontSet="fa"
+            fontIcon="fa-arrow-left-long"
+            (click)="returnToList()"
+            matTooltip="Info about the action"
+          ></mat-icon>
+        </button>
+      </div>
+      <div class="row m-0 mb-4">
+        <div class="col-md-8">
+          <div
+            class="border gray_background border-gray rounded-3 bg-light p-2"
+          >
+            <h5 class="mt-2 mb-2">{{ "PERSON.TITLE" | translate }}</h5>
+            <div class="row mt-2">
+              <div class="col-6">
+                <div class="row mt-2">
+                  <label
+                    class="col-md-2 col-form-label text-dark text-md-end mt-1 pr-0 required"
+                    >{{ "PERSON.USER_TYPE.LABEL" | translate }}</label
+                  >
+                  <div class="col-md-10">
+                    <ng-select
+                      [clearable]="false"
+                      formControlName="userType"
+                      (change)="onUserTypeChange($event)"
+                    >
+                      <ng-option
+                        *ngFor="let item of userTypeList"
+                        [value]="item"
+                      >
+                        {{ "PERSON.USER_TYPE." + item | translate }}
+                      </ng-option>
+                    </ng-select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="row mt-2">
+                  <label
+                    *ngIf="person.personType === PersonType.NATURAL"
+                    class="col-md-2 col-form-label text-dark text-md-end mt-1 pr-0"
+                    >{{ "PERSON.NATIONAL_CODE" | translate }}</label
+                  >
+                  <label
+                    *ngIf="person.personType === PersonType.LEGAL"
+                    class="col-md-2 col-form-label text-dark text-md-end mt-1 pr-0"
+                    >{{ "PERSON.NATIONAL_ID" | translate }}</label
+                  >
+                  <div class="col-md-10">
+                    <input
+                      class="form-control"
+                      [prosetNgNationalCodeValidator]="
+                        personFormGroup.get('nationalId')
+                      "
+                      formControlName="nationalId"
+                    />
+                    <small
+                      *ngIf="
+                        personFormGroup.get('nationalId')?.errors?.[
+                          'invalidNationalCode'
+                        ]
+                      "
+                      id="invalid_national_id"
+                      class="text-danger"
+                    >
+                      {{ "MESSAGES.INVALID_NATIONAL_CODE" | translate }}
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2" *ngIf="person.userType != UserType.STAFF">
+              <div class="col-6">
+                <div class="row mt-2">
+                  <label
+                    class="col-md-2 col-form-label text-dark text-md-end mt-1 pr-0"
+                    [ngClass]="{
+                      required: personFormGroup.controls['personType'].validator
+                    }"
+                    >{{ "PERSON.PERSON_TYPE.LABEL" | translate }}</label
+                  >
+                  <div class="col-md-10">
+                    <ng-select
+                      [clearable]="false"
+                      formControlName="personType"
+                      (change)="onPersonTypeChange($event)"
+                    >
+                      <ng-option
+                        *ngFor="let item of personTypeList"
+                        [value]="item"
+                      >
+                        {{ "PERSON.PERSON_TYPE." + item | translate }}
+                      </ng-option>
+                    </ng-select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-6">
+                <div class="row mt-2">
+                  <label
+                    class="col-md-2 col-form-label text-dark text-md-end mt-1 pr-0 required"
+                    >{{ "PERSON.CODE" | translate }}</label
+                  >
+                  <div class="col-md-10">
+                    <input class="form-control" formControlName="code" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="row mt-2">
+                  <label
+                    class="col-md-2 col-form-label text-dark text-md-end mt-1 pr-0"
+                    >{{ "PERSON.EMAIL" | translate }}</label
+                  >
+                  <div class="col-md-10">
+                    <input class="form-control" formControlName="email" />
+                    <small
+                      *ngIf="
+                        personFormGroup.get('email')?.invalid &&
+                        (personFormGroup.get('email')?.dirty ||
+                          personFormGroup.get('email')?.touched)
+                      "
+                      id="invalid_email_id"
+                      class="text-danger"
+                    >
+                      {{ "MESSAGES.EMAIL_INVALID" | translate }}
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-6">
+                <div
+                  class="row mt-2"
+                  *ngIf="person.personType === PersonType.NATURAL"
+                >
+                  <label
+                    class="col-md-2 col-form-label text-dark text-md-end mt-1 pr-0"
+                    [ngClass]="{
+                      required: personFormGroup.controls['firstname'].validator
+                    }"
+                    >{{ "PERSON.FIRST_NAME" | translate }}</label
+                  >
+                  <div class="col-md-10">
+                    <input class="form-control" formControlName="firstname" />
+                  </div>
+                </div>
+                <div
+                  class="row mt-2"
+                  *ngIf="
+                    person.userType != UserType.STAFF &&
+                    person.personType === PersonType.LEGAL
+                  "
+                >
+                  <label
+                    class="col-md-2 col-form-label text-dark text-md-end mt-1 pr-0"
+                    [ngClass]="{
+                      required: personFormGroup.controls['name'].validator
+                    }"
+                    >{{ "PERSON.NAME" | translate }}</label
+                  >
+                  <div class="col-md-10">
+                    <input class="form-control" formControlName="name" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="row mt-2">
+                  <label
+                    class="col-md-2 col-form-label text-dark text-md-end mt-1 pr-0"
+                    >{{ "PERSON.POSTAL_CODE" | translate }}</label
+                  >
+                  <div class="col-md-10">
+                    <input class="form-control" formControlName="postalCode" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-6">
+                <div
+                  class="row mt-2"
+                  *ngIf="person.personType === PersonType.NATURAL"
+                >
+                  <label
+                    class="col-md-2 col-form-label text-dark text-md-end mt-1 pr-0"
+                    [ngClass]="{
+                      required: personFormGroup.controls['lastname'].validator
+                    }"
+                    >{{ "PERSON.LAST_NAME" | translate }}</label
+                  >
+                  <div class="col-md-10">
+                    <input class="form-control" formControlName="lastname" />
+                  </div>
+                </div>
+                <div
+                  class="row mt-2"
+                  *ngIf="
+                    person.userType != UserType.STAFF &&
+                    person.personType === PersonType.LEGAL
+                  "
+                >
+                  <label
+                    class="col-md-2 col-form-label text-dark text-md-end mt-1 pr-0"
+                    >{{ "PERSON.AGENT_NAME" | translate }}</label
+                  >
+                  <div class="col-md-10">
+                    <input class="form-control" formControlName="agentName" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="row mt-2">
+                  <label
+                    class="col-md-2 col-form-label text-dark text-md-end mt-1 pr-0"
+                    [ngClass]="{
+                      required: personFormGroup.controls['mobile'].validator
+                    }"
+                    >{{ "PERSON.MOBILE" | translate }}</label
+                  >
+                  <div class="col-md-10">
+                    <input
+                      class="form-control"
+                      formControlName="mobile"
+                      type="text"
+                      pattern="[0-9]+"
+                      prosetNgPhoneNumberValidator
+                    />
+                    <small
+                      *ngIf="
+                        personFormGroup.get('mobile')?.errors?.[
+                          'invalidPhoneNumber'
+                        ]
+                      "
+                      id="invalid_mobile"
+                      class="text-danger"
+                    >
+                      {{ "MESSAGES.INVALID_MOBILE" | translate }}
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-6">
+                <div class="row mt-2">
+                  <label
+                    class="col-md-2 col-form-label text-dark text-md-end mt-1 pr-0"
+                    >{{ "PERSON.ADDRESS" | translate }}</label
+                  >
+                  <div class="col-md-10">
+                    <input class="form-control" formControlName="address" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="row mt-2">
+                  <label
+                    class="col-md-2 col-form-label text-dark text-md-end mt-1 pr-0"
+                    >{{ "PERSON.TELL" | translate }}</label
+                  >
+                  <div class="col-md-10">
+                    <input
+                      class="form-control"
+                      formControlName="tell"
+                      numbersOnly
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2" *ngIf="person.userType === UserType.STAFF">
+              <div class="col-6">
+                <div class="row mt-2">
+                  <label
+                    class="col-md-2 col-form-label text-dark text-md-end mt-1 pr-0"
+                    [ngClass]="{
+                      required: personFormGroup.controls['mobile'].validator
+                    }"
+                    >{{ "PERSON.USER_NAME" | translate }}</label
+                  >
+                  <div class="col-md-10">
+                    <input class="form-control" formControlName="username" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="row mt-2">
+                  <label
+                    class="col-md-2 col-form-label text-dark text-md-end mt-1 pr-0"
+                    [ngClass]="{
+                      required: personFormGroup.controls['mobile'].validator
+                    }"
+                    >{{ "PERSON.PASSWORD" | translate }}</label
+                  >
+                  <div class="col-md-10">
+                    <input
+                      class="form-control"
+                      formControlName="password"
+                      type="password"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <proset-uploader></proset-uploader>
+        </div>
+      </div>
+      <div
+        class="row"
+        *ngIf="
+          person.userType === UserType.STAFF ||
+          person.userType === UserType.CONTRACTOR
+        "
+      >
+        <div class="col-12 mt-2">
+          <div class="row">
+            <mat-tab-group
+              dynamicHeight
+              [color]="'primary'"
+              mat-stretch-tabs="false"
+            >
+              <mat-tab
+                label="{{ 'PERSON.TAB.PERMISSION' | translate }}"
+                *ngIf="person.userType === UserType.STAFF"
+              >
+                <proset-permission></proset-permission>
+              </mat-tab>
+              <mat-tab
+                label="{{ 'PERSON.TAB.WAGE' | translate }}"
+                *ngIf="person.userType === UserType.STAFF"
+              >
+                <proset-wage></proset-wage>
+              </mat-tab>
+              <mat-tab label="{{ 'PERSON.TAB.WORK_ORDER' | translate }}">
+                <proset-work-order-list></proset-work-order-list>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+      </div>
+
+      <div class="row fa-pull-left px-4 sticky-submit" *ngIf="!viewMode">
+        <button
+          *prosetHasPermissions="[
+            permission.USER_MANAGEMENT_CREATE,
+            permission.USER_MANAGEMENT_UPDATE
+          ]"
+          class="btn btn-primary px-5 btn-sm mt-3"
+          (click)="onSave()"
+          [disabled]="personFormGroup.invalid"
+        >
+          <span>{{ "GENERAL.SAVE" | translate }}</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

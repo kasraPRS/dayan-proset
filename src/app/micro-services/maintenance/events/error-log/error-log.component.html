@@ -1,0 +1,20 @@
+<input
+  type="text"
+  class="form-control"
+  placeholder="{{ 'EVENTS.TABLE.PLACE_HOLDER' | translate }}"
+  (keyup)="updateFilter($event)"
+/>
+<div class="mt-3">
+  <app-datatable
+    *ngIf="tableRow.length > 0"
+    id="personList"
+    [config]="config"
+    [tableRow]="tableRow"
+    [viewOnly]="true"
+    [showIndex]="false"
+    [scrollbarV]="false"
+    [scrollbarH]="true"
+    [showFilter]="false"
+    [showToolbar]="false"
+  ></app-datatable>
+</div>

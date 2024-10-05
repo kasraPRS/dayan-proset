@@ -1,0 +1,128 @@
+<div [class]="{ 'view-mode': viewMode }">
+  <form class="form-group" [formGroup]="formGroup" (ngSubmit)="onSave()">
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <div class="d-flex justify-content-end mb-4">
+          <button
+            *prosetHasPermissions="[permission.PART]"
+            (click)="goToList()"
+            class="border-less bg-transparent label-tooltip"
+            attr.aria-label="{{ 'GENERAL.BUTTON.BACK_TO_LIST' | translate }}"
+            type="button"
+          >
+            <i class="isax isax-arrow-left"></i>
+          </button>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="row input-row mt-2">
+              <label
+                for="code"
+                class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+                >{{ "PART.FORM.CODE" | translate }}</label
+              >
+              <div class="col-md-8 position-relative">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="code"
+                  formControlName="code"
+                />
+                <small
+                  id="code_error_duplicated"
+                  class="form-text text-danger mt-2"
+                  *ngIf="formGroup.get('code')?.hasError('isDuplicate')"
+                >
+                  {{ "PART.MESSAGES.CODE_ALREADY_EXIST" | translate }}
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="row input-row mt-2">
+              <label
+                for="name"
+                class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+                >{{ "PART.FORM.NAME" | translate }}</label
+              >
+              <div class="col-md-8 d-flex position-relative">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  formControlName="name"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="row input-row mt-2">
+              <label
+                for="description"
+                class="col-md-4 col-form-label text-dark text-md-end mt-1"
+                >{{ "PART.FORM.DESCRIPTION" | translate }}</label
+              >
+              <div class="col-md-8 d-flex position-relative">
+                <textarea
+                  type="text"
+                  class="form-control"
+                  id="description"
+                  formControlName="description"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row actions" *ngIf="!viewMode">
+          <div class="col-md-4">
+            <div class="d-flex gap-2 justify-content-end">
+              <ng-container *ngIf="partDto.id">
+                <button
+                  *prosetHasPermissions="[permission.PART_PRICE_CREATE]"
+                  class="icon-btn link-btn-blue-color-dark"
+                  type="button"
+                  (click)="openPartPriceForm({ part: partDto }, true)"
+                >
+                  {{ "PART.CREATE_COST" | translate }}
+                </button>
+              </ng-container>
+              <button
+                *prosetHasPermissions="[
+                  permission.PART_CREATE,
+                  permission.PART_UPDATE
+                ]"
+                class="btn btn-primary"
+                type="submit"
+                [disabled]="formGroup.invalid || viewMode"
+              >
+                {{ "PART.SUBMIT" | translate }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="row justify-content-center">
+    <div class="col-8 mt-3">
+      <app-datatable
+        [limit]="10"
+        [config]="config"
+        [tableRow]="partPrices"
+        [newEntryFormTemplate]="PartPriceFormComponent"
+        (onDoubleClickRow)="showFormInViewMode($event)"
+        [showFilter]="false"
+        [viewOnly]="true"
+        [showIndex]="true"
+        [scrollbarV]="false"
+        [scrollbarH]="true"
+        [showToolbar]="false"
+        [showNewBtn]="false"
+      ></app-datatable>
+    </div>
+  </div>
+</div>

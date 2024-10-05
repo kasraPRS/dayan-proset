@@ -1,0 +1,58 @@
+<div class="datatable-pager mt-3">
+  <ul class="pagination">
+    <li [class.disabled]="!canPrevious()">
+      <a
+        href="javascript:void(0)"
+        (click)="selectPage(1)"
+        data-toggle="tooltip"
+      >
+        <fa-icon [icon]="faAnglesRight"></fa-icon>
+        <!--        {{'DATATABLE.FIRST_PAGE' | translate}}-->
+      </a>
+    </li>
+    <li [class.disabled]="!canPrevious()">
+      <a
+        role="button"
+        aria-label="go to previous page"
+        href="javascript:void(0)"
+        (click)="prevPage()"
+      >
+        <fa-icon [icon]="faChevronRight"></fa-icon>
+        <!--        {{'DATATABLE.PREVIOUS_PAGE' | translate}}-->
+      </a>
+    </li>
+    <li
+      role="button"
+      [attr.aria-label]="'page ' + pg.number"
+      class="pages"
+      *ngFor="let pg of pages"
+      [class.active]="pg.number === page"
+    >
+      <a href="javascript:void(0)" (click)="selectPage(pg.number)">
+        {{ pg.text }}-1
+      </a>
+    </li>
+    <li [class.disabled]="!canNext()">
+      <a
+        role="button"
+        aria-label="go to next page"
+        href="javascript:void(0)"
+        (click)="nextPage()"
+      >
+        <fa-icon [icon]="faChevronLeft"></fa-icon>
+        <!--          {{'DATATABLE.NEXT_PAGE' | translate}}-->
+      </a>
+    </li>
+    <li [class.disabled]="!canNext()">
+      <a
+        role="button"
+        aria-label="go to last page"
+        href="javascript:void(0)"
+        (click)="selectPage(totalPages)"
+      >
+        <fa-icon [icon]="faAnglesLeft"></fa-icon>
+        <!--          {{'DATATABLE.LAST_PAGE' | translate}}-->
+      </a>
+    </li>
+  </ul>
+</div>

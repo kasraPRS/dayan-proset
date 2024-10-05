@@ -1,0 +1,20 @@
+<form [formGroup]="form">
+  <div class="input-wrraper">
+    <input
+      type="text"
+      class="form-control"
+      [formControlName]="'emplacementLocationInput'"
+      [placeholder]="placeholder"
+      (click)="openEmplacementLocationDialog()"
+      readonly
+    />
+
+    <span
+      class="clear"
+      *ngIf="form.get('emplacementLocationInput')?.value && !disabled"
+      (click)="clear()"
+    >
+      <span aria-hidden="true">×</span>
+    </span>
+  </div>
+</form>

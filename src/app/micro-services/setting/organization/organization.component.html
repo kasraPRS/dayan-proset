@@ -1,0 +1,131 @@
+<div class="mb-8">
+  <form
+    name="organizationForm"
+    [formGroup]="form"
+    (ngSubmit)="saveOrganization()"
+  >
+    <div class="row m-0 mb-4">
+      <div class="col-md-8">
+        <div class="border gray_background rounded-3 p-2 h-100">
+          <div class="row mb-4">
+            <div class="col-5">
+              <span class="fs-6 fw-bolder mx-2">
+                {{ "ASSET.FORM.HEADERS.ORIGINAL_INFO" | translate }}
+              </span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="row d-flex form-group mt-2">
+                <label
+                  class="col-md-4 col-form-label text-dark text-md-end mt-1"
+                >
+                  {{ "ORGANIZATION.FORM.NAME" | translate }}
+                </label>
+                <div class="col-md-8">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="name"
+                  />
+                </div>
+              </div>
+
+              <div class="row d-flex form-group mt-2">
+                <label
+                  class="col-md-4 col-form-label text-dark text-md-end mt-1"
+                >
+                  {{ "ORGANIZATION.FORM.INDUSTRY" | translate }}
+                </label>
+                <div class="col-md-8">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="industry"
+                  />
+                </div>
+              </div>
+
+              <div class="row d-flex form-group mt-2">
+                <label
+                  class="col-md-4 col-form-label text-dark text-md-end mt-1"
+                >
+                  {{ "ORGANIZATION.FORM.NATIONAL_ID" | translate }}
+                </label>
+                <div class="col-md-8">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="nationalId"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="row d-flex form-group mt-2">
+                <label
+                  class="col-md-4 col-form-label text-dark text-md-end mt-1"
+                >
+                  {{ "ORGANIZATION.FORM.PHONE" | translate }}
+                </label>
+                <div class="col-md-8">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="phone"
+                  />
+                </div>
+              </div>
+
+              <div class="row d-flex form-group mt-2">
+                <label
+                  class="col-md-4 col-form-label text-dark text-md-end mt-1"
+                >
+                  {{ "ORGANIZATION.FORM.POSTAL_CODE" | translate }}
+                </label>
+                <div class="col-md-8">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="postalCode"
+                  />
+                </div>
+              </div>
+
+              <div class="row d-flex form-group mt-2">
+                <label
+                  class="col-md-4 col-form-label text-dark text-md-end mt-1"
+                >
+                  {{ "ORGANIZATION.FORM.ADDRESS" | translate }}
+                </label>
+                <div class="col-md-8">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="address"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <proset-uploader></proset-uploader>
+      </div>
+    </div>
+
+    <div class="row text-end mt-4">
+      <span>
+        <button
+          *prosetHasPermissions="[permission.ORGANIZATION_UPDATE]"
+          type="submit"
+          class="btn btn-primary saveBtn"
+        >
+          {{ "ORGANIZATION.FORM.SAVE" | translate }}
+        </button>
+      </span>
+    </div>
+  </form>
+</div>

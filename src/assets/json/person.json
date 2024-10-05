@@ -1,0 +1,16 @@
+[
+  {
+    "id": "ACTION",
+    "name": "عملیات",
+    "children": [
+      {
+        "id": "PERSON_REGISTRATION_FORM",
+        "name": "ثبت و ویرایش اشخاص"
+      },
+      {
+        "id": "GROUP_REGISTRATION_FORM",
+        "name": "ثبت و ویرایش گروه های کاربری"
+      }
+    ]
+  }
+]

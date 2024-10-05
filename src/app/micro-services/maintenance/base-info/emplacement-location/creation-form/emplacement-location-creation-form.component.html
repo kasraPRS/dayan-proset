@@ -1,0 +1,170 @@
+<div class="card mt-5 card-shadow-less">
+  <div class="card-body">
+    <div class="col" *ngIf="emplacementLocationObject?.id">
+      <div class="d-flex justify-content-start flex-row-reverse">
+        <button
+          class="icon-btn"
+          matTooltip="{{ 'GENERAL.BUTTON.DELETE' | translate }}"
+          matTooltipPosition="above"
+          *prosetHasPermissions="[permission.EMPLACEMENT_LOCATION_DELETE]"
+          [disabled]="submitType === FORM_MODE.CREATE"
+          (click)="deletEmplacementLocationById(emplacementLocationObject?.id)"
+        >
+          <i class="isax isax-trash"></i>
+        </button>
+
+        <button
+          matTooltip="{{ 'GENERAL.BUTTON.EDIT' | translate }}"
+          matTooltipPosition="above"
+          *prosetHasPermissions="[permission.EMPLACEMENT_LOCATION_UPDATE]"
+          class="icon-btn"
+          [disabled]="submitType === FORM_MODE.CREATE"
+          (click)="onEdit()"
+        >
+          <i class="isax isax-edit mr-1" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="col">
+      <form [formGroup]="emplacementLocationFormData">
+        <fieldset>
+          <div class="col">
+            <div
+              class="row d-flex form-group mt-2"
+              *ngIf="emplacementLocationObject?.parent?.code"
+            >
+              <label
+                for="code"
+                class="col-md-4 col-form-label text-dark text-md-end mt-1"
+                >{{ "EMPLACEMENT_LOCATION.FORM.PARENT" | translate }}</label
+              >
+              <div class="col-md-8">
+                <div class="d-flex gap-2">
+                  <div class="w-75">
+                    <input
+                      id="parentName"
+                      type="text"
+                      class="form-control"
+                      [value]="emplacementLocationObject.parent?.name"
+                      disabled
+                    />
+                  </div>
+                  <div class="w-25">
+                    <input
+                      id="parentCode"
+                      type="text"
+                      class="form-control"
+                      [value]="emplacementLocationObject.parent?.code"
+                      disabled
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row d-flex form-group mt-2">
+              <label
+                for="code"
+                class="col-md-4 col-form-label text-dark text-md-end mt-1"
+                [ngClass]="{
+                  required:
+                    emplacementLocationFormData.controls['code'].validator
+                }"
+                >{{ "EMPLACEMENT_LOCATION.FORM.CODE" | translate }}</label
+              >
+              <div class="col-md-8">
+                <input
+                  id="code"
+                  type="text"
+                  pattern="[0-9]+"
+                  class="form-control"
+                  formControlName="code"
+                />
+                <small
+                  id="code_error_duplicated"
+                  class="form-text text-danger mt-2"
+                  *ngIf="isDuplicatedCode"
+                >
+                  {{
+                    "EMPLACEMENT_LOCATION.MESSAGES.CODE_ALREADY_EXIST"
+                      | translate
+                  }}
+                </small>
+                <small
+                  id="code_error_invalid"
+                  class="form-text text-danger mt-2"
+                  *ngIf="
+                    emplacementLocationFormData
+                      .get('code')
+                      ?.hasError('minlength') ||
+                    emplacementLocationFormData
+                      .get('code')
+                      ?.hasError('maxlength') ||
+                    emplacementLocationFormData.get('code')?.hasError('min')
+                  "
+                >
+                  {{
+                    "MESSAGES.EMPLACEMENT_CODE_INVALID_EXCEPTION" | translate
+                  }}
+                </small>
+              </div>
+            </div>
+            <div class="row d-flex form-group mt-2">
+              <label
+                for="name"
+                class="col-md-4 col-form-label text-dark text-md-end mt-1"
+                [ngClass]="{
+                  required:
+                    emplacementLocationFormData.controls['name'].validator
+                }"
+                >{{ "EMPLACEMENT_LOCATION.FORM.TITLE" | translate }}</label
+              >
+              <div class="col-md-8">
+                <input
+                  id="name"
+                  type="text"
+                  class="form-control"
+                  formControlName="name"
+                />
+              </div>
+            </div>
+            <div class="row d-flex form-group mt-2">
+              <label
+                for="depreciationSubsidiaryCode"
+                class="col-md-4 col-form-label text-dark text-md-end mt-1"
+                >{{ "EMPLACEMENT_LOCATION.FORM.ADDRESS" | translate }}</label
+              >
+              <div class="col-md-8">
+                <textarea
+                  id="address"
+                  type="text"
+                  class="form-control"
+                  formControlName="address"
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="row d-flex form-group mt-2">
+              <label
+                for="description"
+                class="col-md-4 col-form-label text-dark text-md-end mt-1"
+                >{{
+                  "EMPLACEMENT_LOCATION.FORM.DESCRIPTION" | translate
+                }}</label
+              >
+              <div class="col-md-8">
+                <textarea
+                  id="description"
+                  type="text"
+                  class="form-control"
+                  formControlName="description"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

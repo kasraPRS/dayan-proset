@@ -1,0 +1,53 @@
+<div class="modal-body translated-paragraph position-relative">
+  <div class="text-center pb-5">
+    <img src="{{ imageSrc }}" alt="image" />
+  </div>
+  <div class="row pb-3 text-center">
+    <div class="col-12">
+      <span class="text-start px-0 fs-6 fw-bold">
+        {{ title | translate }}
+      </span>
+    </div>
+  </div>
+  <ng-content></ng-content>
+</div>
+<div class="modal-footer border-top-0">
+  <button
+    *ngIf="showExtraButton()"
+    data-cy="dialog-submit"
+    class="btn btn-danger py-2 px-4"
+    [disabled]="submitDisabled"
+    type="button"
+    (click)="clickExtraButton()"
+  >
+    {{ extraButtonText | translate }}
+  </button>
+  <button
+    *ngIf="closeButtonText"
+    type="button"
+    name="cancelBtn"
+    class="btn btn-danger py-2 px-3"
+    (click)="onClose()"
+  >
+    <span class="px-1">
+      {{ closeButtonText | translate }}
+    </span>
+  </button>
+  <button
+    *ngIf="!submitHidden"
+    data-cy="dialog-submit"
+    class="btn btn-primary py-2 px-4"
+    [disabled]="submitDisabled"
+    type="button"
+    (click)="submit()"
+  >
+    {{ submitButtonText | translate }}
+  </button>
+  <div
+    class="close_modal_icon pt-2 position-absolute top-0 left-0"
+    (click)="onClose()"
+    role="button"
+  >
+    <i class="fa fa-times fs-4" aria-hidden="true"></i>
+  </div>
+</div>

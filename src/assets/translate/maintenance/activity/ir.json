@@ -1,0 +1,31 @@
+{
+  "ACTIVITY": {
+    "ACTIVITY": "فعالیت",
+    "TITLE": "تعریف فعالیت",
+    "FORM": {
+      "ASSET": "دارایی",
+      "NUMBER_PLATE": "کد دارایی",
+      "NAME": "عنوان فعالیت",
+      "CODE": "کد",
+      "INSTRUCTIONS": "دستورالعمل",
+      "TYPE": "نوع",
+      "COUNT": "تعداد"
+    },
+    "TABLE": {
+      "ASSET": "عنوان دارایی",
+      "NUMBER_PLATE": "کد دارایی",
+      "NAME": "عنوان فعالیت",
+      "CODE": "کد",
+      "DESCRIPTION": "توضیحات"
+    },
+    "MESSAGES": {
+      "CODE_INVALID": ".کد نامعتبر است",
+      "CODE_ALREADY_EXIST": "کد وارد شده تکراری است",
+      "ACTIVITY_DELETE": "  فعالیت با موفقیت حذف شد."
+    },
+    "MODAL": {
+      "SELECT": "انتخاب فعالیت ها",
+      "RETURN": "بازگشت به صفحه اصلی"
+    }
+  }
+}

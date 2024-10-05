@@ -1,0 +1,16 @@
+{
+  "FAIL_DETECTION": {
+    "TITLE": "روش کشف خرابی",
+    "LIST": "لیست روش کشف خرابی",
+    "TABLE": {
+      "CODE": "کد",
+      "NAME": "عنوان",
+      "DESCRIPTION": "توضیحات"
+    },
+    "FORM": {
+      "CODE": "کد",
+      "NAME": "عنوان",
+      "DESCRIPTION": "توضیحات"
+    }
+  }
+}

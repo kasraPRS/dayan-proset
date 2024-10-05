@@ -1,0 +1,267 @@
+<mat-dialog-content
+  class="mat-typography"
+  *ngIf="workOrderDto"
+  style="width: 1000px !important"
+>
+  <div class="row">
+    <div
+      class="d-flex justify-content-between align-items-center justify-content-end w-100"
+    >
+      <div class="w-50">
+        <h2 mat-dialog-title>
+          {{ "REPAIR_PLANNING.HEADER.BASIC_INFORMATION" | translate }}
+        </h2>
+      </div>
+      <div class="w-50 d-flex justify-content-end align-items-center">
+        <button type="button" [mat-dialog-close] class="dialog_close">
+          <i class="fa-solid fa-close"></i>
+        </button>
+      </div>
+    </div>
+    <hr />
+    <div class="col-md-6">
+      <div class="row d-flex form-group mt-2">
+        <p>
+          <b
+            >{{
+              "REPAIR_PLANNING.FORM.BASIC_INFORMATION.REPAIR_PLANNING_NUMBER"
+                | translate
+            }}
+            :</b
+          >
+          <span>
+            {{ repairPlanning.code }}
+          </span>
+        </p>
+      </div>
+      <div class="row d-flex form-group mt-2">
+        <p>
+          <b>{{ "WORK_ORDERS.FORM.REQUEST_NUMBER" | translate }} :</b>
+          <span>
+            {{ workOrderDto.workRequest?.code! }}
+          </span>
+        </p>
+      </div>
+      <div class="row d-flex form-group mt-2">
+        <p>
+          <b>{{ "WORK_ORDERS.FORM.DATE" | translate }} :</b>
+          <span>
+            {{ workOrderDto.date! }}
+          </span>
+        </p>
+      </div>
+      <div class="row d-flex form-group mt-2">
+        <p>
+          <b>{{ "WORK_ORDERS.FORM.TITLE" | translate }} :</b>
+          <span>
+            {{ workOrderDto?.name! }}
+          </span>
+        </p>
+      </div>
+      <div class="row d-flex form-group mt-2">
+        <p>
+          <b>{{ "WORK_ORDERS.FORM.ASSET" | translate }} :</b>
+          <span>
+            {{ workOrderDto?.asset?.name! }}
+          </span>
+        </p>
+      </div>
+      <div class="row d-flex form-group mt-2">
+        <p>
+          <b>{{ "WORK_ORDERS.FORM.NUMBER_PLATE" | translate }} :</b>
+          <span>
+            {{ workOrderDto?.asset?.code! }}
+          </span>
+        </p>
+      </div>
+      <div class="row d-flex form-group mt-2">
+        <p>
+          <b
+            >{{
+              "REPAIR_PLANNING.FORM.BASIC_INFORMATION.EMPLACEMENT_LOCATION"
+                | translate
+            }}
+            :</b
+          >
+
+          <span>
+            {{ workOrderDto?.asset?.emplacementLocationName! }}
+          </span>
+        </p>
+      </div>
+      <div class="row d-flex form-group mt-2">
+        <p>
+          <b>
+            {{
+              "REPAIR_PLANNING.FORM.BASIC_INFORMATION.ASSET_STATUS" | translate
+            }}
+            :
+          </b>
+
+          <span>
+            {{
+              "REPAIR_PLANNING.ASSET_STATUS." + workOrderDto?.asset?.status!
+                | translate
+            }}
+          </span>
+        </p>
+      </div>
+      <div class="d-flex flex-row justify-content-start align-items-start mt-2">
+        <div class="col-md-4">
+          <b>
+            {{
+              "REPAIR_PLANNING.FORM.BASIC_INFORMATION.CHECKLIST_TITLE"
+                | translate
+            }}
+            :
+          </b>
+        </div>
+        <div class="col-md-8">
+          <span
+            *ngFor="let checkList of repairPlanning?.checkLists; let i = index"
+          >
+            {{ checkList?.name! }}
+            <span *ngIf="i < repairPlanning?.checkLists?.length! - 1">
+              ,
+            </span></span
+          >
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row d-flex form-group mt-2">
+        <p>
+          <b>
+            {{
+              "REPAIR_PLANNING.FORM.BASIC_INFORMATION.EXECUTION_PRIORITY"
+                | translate
+            }}
+            :
+          </b>
+
+          <span>
+            {{
+              "REPAIR_PLANNING.PRIORITY." + workOrderDto?.priority! | translate
+            }}
+          </span>
+        </p>
+      </div>
+      <div class="row d-flex form-group mt-2">
+        <p>
+          <b>
+            {{
+              "REPAIR_PLANNING.FORM.BASIC_INFORMATION.EXECUTION_RESPONSIBLE"
+                | translate
+            }}
+            :
+          </b>
+
+          <span>
+            {{ workOrderDto.executionManager?.name! }}
+          </span>
+        </p>
+      </div>
+      <div class="row d-flex form-group mt-2">
+        <p>
+          <b>
+            {{
+              "REPAIR_PLANNING.FORM.BASIC_INFORMATION.CONDITION_OF_EQUIPMENT_AT_THE_TIME_OF_REPAIR"
+                | translate
+            }}
+            :
+          </b>
+
+          <span>
+            {{
+              "REPAIR_PLANNING.MAINTENANCE_ASSET_CONDITION." +
+                workOrderDto?.assetStatusDuringRepair! | translate
+            }}
+          </span>
+        </p>
+      </div>
+      <div class="row d-flex form-group mt-2">
+        <p>
+          <b>
+            {{
+              "REPAIR_PLANNING.FORM.BASIC_INFORMATION.DESCRIPTION" | translate
+            }}
+            :
+          </b>
+
+          <span>
+            {{ repairPlanning.description }}
+          </span>
+        </p>
+      </div>
+      <div class="row d-flex form-group mt-2">
+        <p>
+          <b>
+            {{ "REPAIR_PLANNING.FORM.PLANNING.PLANNING_TYPE" | translate }}
+            :
+          </b>
+
+          <span>
+            {{
+              "REPAIR_PLANNING.TIMEBASE_ITERATION_TYPE." +
+                repairPlanning?.schedule?.iterationType! | translate
+            }}
+          </span>
+        </p>
+      </div>
+      <div class="row d-flex form-group mt-2">
+        <p>
+          <b>
+            {{ "REPAIR_PLANNING.FORM.PLANNING.EACH" | translate }}
+            :
+          </b>
+
+          <span>
+            {{ repairPlanning?.schedule?.iterator! }}
+            {{
+              "REPAIR_PLANNING.TIMEBASE_ITERATION_VALUE." +
+                onIterationTypeCheck(repairPlanning?.schedule?.iterationType!)
+                | translate
+            }}
+          </span>
+        </p>
+      </div>
+      <div class="row d-flex form-group mt-2">
+        <p>
+          <b>
+            {{ "REPAIR_PLANNING.FORM.PLANNING.DUE_DATE" | translate }}
+            :
+          </b>
+
+          <span>
+            {{ repairPlanning?.schedule?.startDate! | jalaliDatetime }}
+          </span>
+        </p>
+      </div>
+      <div class="row d-flex form-group mt-2">
+        <p>
+          <b>
+            {{
+              "REPAIR_PLANNING.FORM.PLANNING.REPEAT_PATTERN_END_DATE"
+                | translate
+            }}
+            :
+          </b>
+
+          <span>
+            {{ repairPlanning?.schedule?.endDate! | jalaliDate }}
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="mt-2">
+  <button
+    type="button"
+    class="btn btn-danger mx-1 px-5"
+    (click)="deleteWorkOrderById()"
+    *prosetHasPermissions="[permission.REPAIR_PLANNING_DELETE_WORK_ORDERS]"
+  >
+    {{ "WORK_ORDERS.BUTTONS.DELETE" | translate }}
+  </button>
+</mat-dialog-actions>

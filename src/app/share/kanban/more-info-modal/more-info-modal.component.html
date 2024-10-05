@@ -1,0 +1,16 @@
+<div class="modal-body translated-paragraph position-relative">
+  <ng-container
+    [ngTemplateOutlet]="scopeVars.referenceContent"
+    [ngTemplateOutletContext]="{ $implicit: scopeVars.data }"
+  ></ng-container>
+</div>
+
+<div class="modal-footer border-top-0">
+  <div
+    class="close_modal_icon pt-2 position-absolute top-0 left-0"
+    (click)="closeDialog()"
+    role="button"
+  >
+    <i class="fa fa-times fs-4" aria-hidden="true"></i>
+  </div>
+</div>

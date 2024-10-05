@@ -1,0 +1,133 @@
+<div class="form-continer">
+  <form class="form-group mt-2" [formGroup]="personnelFormGroup">
+    <div class="row">
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="personnel"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+          >
+            {{ "PERSONNEL.FORM.PERSONNEL" | translate }}
+          </label>
+          <div class="col-md-8 position-relative">
+            <proset-person-select
+              id="personnel"
+              [userType]="UserType.STAFF"
+              (personChange)="onPersonChange($event)"
+            >
+            </proset-person-select>
+            <small
+              id="code_error_duplicated"
+              class="form-text text-danger mt-2"
+              *ngIf="isPersonSelected"
+            >
+              {{ "WORK_LOG.MESSAGES.WORK_LOG_PERSON_IS_SELECTED" | translate }}
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="personnel"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+          >
+            {{ "PERSONNEL.FORM.HOUR" | translate }}
+          </label>
+          <div class="col-md-8 position-relative">
+            <div class="d-flex flex-nowrap gap-2">
+              <div class="w-100 position-relative">
+                <input
+                  type="text"
+                  class="form-control mx-1"
+                  formControlName="workingMinute"
+                  numbersOnly
+                />
+                <span
+                  class="my-2 mx-1 light_text position-absolute left_align top-0"
+                >
+                  {{ "GENERAL.MINUTE" | translate }}
+                </span>
+                <small
+                  class="form-text text-danger mt-2"
+                  *ngIf="
+                    personnelFormGroup.controls['workingMinute'].hasError('max')
+                  "
+                >
+                  {{ "WORK_LOG.MESSAGES.TIME_ERROR" | translate }}
+                </small>
+              </div>
+              <div class="w-100 position-relative">
+                <input
+                  type="text"
+                  class="form-control mx-1"
+                  formControlName="workingHour"
+                  numbersOnly
+                />
+                <span
+                  class="my-2 mx-1 light_text position-absolute left_align top-0"
+                >
+                  {{ "GENERAL.HOUR" | translate }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="personnel"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1"
+          >
+            {{ "PERSONNEL.FORM.OVER_TIME" | translate }}
+          </label>
+          <div class="col-md-8 position-relative">
+            <div class="d-flex flex-nowrap gap-2">
+              <div class="w-100 position-relative">
+                <input
+                  type="text"
+                  class="form-control mx-1"
+                  formControlName="overTimeMinute"
+                  numbersOnly
+                />
+                <span
+                  class="my-2 mx-1 light_text position-absolute left_align top-0"
+                >
+                  {{ "GENERAL.MINUTE" | translate }}
+                </span>
+                <small
+                  class="form-text text-danger mt-2"
+                  *ngIf="
+                    personnelFormGroup.controls['overTimeMinute'].hasError(
+                      'max'
+                    )
+                  "
+                >
+                  {{ "WORK_LOG.MESSAGES.TIME_ERROR" | translate }}
+                </small>
+              </div>
+              <div class="w-100 position-relative">
+                <input
+                  type="text"
+                  class="form-control mx-1"
+                  formControlName="overTimeHour"
+                  numbersOnly
+                />
+                <span
+                  class="my-2 mx-1 light_text position-absolute left_align top-0"
+                >
+                  {{ "GENERAL.HOUR" | translate }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

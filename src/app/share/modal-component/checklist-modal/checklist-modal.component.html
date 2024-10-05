@@ -1,0 +1,52 @@
+<button (click)="onClose()" class="dialog_close">
+  <i class="fa-solid fa-close"></i>
+</button>
+<div class="container-fluid frame-size">
+  <div class="row d-flex justify-content-end"></div>
+  <mat-dialog-content class="dialog_content">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>{{ "GENERAL.SEARCH" | translate }}</mat-label>
+      <input matInput [formControl]="search" />
+    </mat-form-field>
+    <div class="row checklist-header">
+      <div class="col-md-4 d-flex justify-content-center align-items-center">
+        <div class="col-md-6"></div>
+        <div class="col-md-6 d-flex justify-content-center">
+          <span>{{ "CHECKLIST.FORM.CODE" | translate }}</span>
+        </div>
+      </div>
+      <div class="col-md-4 d-flex justify-content-center align-items-center">
+        <span>{{ "CHECKLIST.FORM.NAME" | translate }}</span>
+      </div>
+      <div class="col-md-4 d-flex justify-content-center align-items-center">
+        <span>{{ "CHECKLIST.FORM.COUNT" | translate }}</span>
+      </div>
+    </div>
+    <mat-selection-list (selectionChange)="selectionChange($event.options)">
+      <mat-list-option
+        *ngFor="let item of $search | async; let i = index"
+        [value]="item"
+        [selected]="
+          checkListControl.value && checkListControl.value?.indexOf(item) >= 0
+        "
+      >
+        <div class="row" dir="rtl">
+          <div class="col-md-4 d-flex justify-content-center">
+            {{ item?.code }}
+          </div>
+          <div class="col-md-4 d-flex justify-content-center">
+            {{ item?.name }}
+          </div>
+          <div class="col-md-4 d-flex justify-content-center">
+            {{ item?.taskList?.length }}
+          </div>
+        </div>
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-dialog-content>
+  <mat-dialog-actions class="dialog_action">
+    <button mat-flat-button color="primary" (click)="onSubmitClick()">
+      {{ "CHECKLIST.MODAL.SELECT" | translate }}
+    </button>
+  </mat-dialog-actions>
+</div>

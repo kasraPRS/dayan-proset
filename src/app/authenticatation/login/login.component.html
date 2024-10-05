@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row max-height">
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+      <div class="login-card">
+        <img src="assets/img/login/dayan-logo.png" />
+      </div>
+    </div>
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+      <div class="login-card">
+        <div class="w-100 d-flex align-items-center justify-content-center">
+          <img src="assets/img/login/Group.png" />
+        </div>
+        <div
+          class="w-100 d-flex align-items-center justify-content-center mt-4"
+        >
+          <span>{{ "GENERAL.APPLICATION" | translate }}</span>
+        </div>
+        <form class="mt-3" [formGroup]="userForm">
+          <mat-form-field appearance="outline">
+            <mat-label>{{ "LOGIN.USERNAME" | translate }}</mat-label>
+            <input
+              matInput
+              placeholder="{{ 'LOGIN.PASSWORD' | translate }}"
+              formControlName="username"
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>{{ "LOGIN.PASSWORD" | translate }}</mat-label>
+            <input
+              [type]="hide ? 'password' : 'text'"
+              type="password"
+              matInput
+              placeholder="{{ 'LOGIN.PASSWORD' | translate }}"
+              formControlName="password"
+            />
+            <button
+              type="button"
+              mat-icon-button
+              matSuffix
+              (click)="onLogin()"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <img src="assets/img/login/visibility.png" />
+            </button>
+          </mat-form-field>
+          <div class="row d-flex justify-content-end" id="btn-row">
+            <button
+              class="btn btn-primary w-25"
+              type="submit"
+              [disabled]="userForm.invalid"
+              (click)="onLogin()"
+            >
+              {{ "LOGIN.SUBMIT" | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

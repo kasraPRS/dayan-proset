@@ -1,0 +1,55 @@
+<ng-container [ngSwitch]="type">
+  <ng-container *ngSwitchCase="fieldType.text">
+    <span
+      ngbTooltip="{{ tooltip }}"
+      container="body"
+      tooltipClass="tooltip tooltip-no-max-width"
+      [placement]="'bottom'"
+      >{{ getValue() }}</span
+    >
+  </ng-container>
+  <ng-container *ngSwitchCase="fieldType.status">
+    <i *ngIf="getValue()" class="">{{ "GENERAL.YES" | translate }}</i>
+    <i *ngIf="!getValue()" class="">{{ "GENERAL.NO" | translate }}</i>
+  </ng-container>
+  <ng-container *ngSwitchCase="fieldType.hasStatus">
+    <i *ngIf="getValue()" class="">{{ "GENERAL.HAS" | translate }}</i>
+    <i *ngIf="!getValue()" class="">{{ "GENERAL.HAS_NOT" | translate }}</i>
+  </ng-container>
+  <ng-container *ngSwitchCase="fieldType.price">
+    @if (getValue()) {
+      <span>{{ getValue() | number }}</span>
+      <span>{{ "CURRENCY.RIAL" | translate }}</span>
+    } @else {
+      <span>-</span>
+    }
+  </ng-container>
+  <ng-container *ngSwitchCase="fieldType.checkbox">
+    <input
+      *ngIf="getValue()"
+      class="form-check-input"
+      type="checkbox"
+      id="checked"
+      [checked]="true"
+      [disabled]="true"
+    />
+    <input
+      *ngIf="!getValue()"
+      class="form-check-input"
+      type="checkbox"
+      id="un_checked"
+      [disabled]="true"
+    />
+  </ng-container>
+  <ng-container *ngSwitchCase="fieldType.date">
+    <span>{{ getDateValue() }}</span>
+  </ng-container>
+  <ng-container *ngSwitchCase="fieldType.url">
+    <a
+      (click)="redirectToLink()"
+      target="_blank"
+      class="url_pointer datatable-field-link"
+      >{{ getValue() }}</a
+    >
+  </ng-container>
+</ng-container>

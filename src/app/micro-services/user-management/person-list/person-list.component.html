@@ -1,0 +1,116 @@
+<proset-sidebar-filter (onFilterForm)="onFilterForm($event)">
+  <ng-container header *ngTemplateOutlet="filterTemplate"></ng-container>
+</proset-sidebar-filter>
+<div class="mt-3">
+  <app-datatable
+    *ngIf="tableRow.length > 0"
+    id="personList"
+    [filterNumber]="filterNumber"
+    [config]="config"
+    [tableRow]="tableRow"
+    [viewOnly]="true"
+    [showIndex]="true"
+    [scrollbarV]="false"
+    [scrollbarH]="true"
+    (onDoubleClickRow)="showFormInViewMode($event)"
+    [newWindowUrl]="'setting/user-management/person/form'"
+    [newEntryPermission]="[permission.USER_MANAGEMENT_CREATE]"
+  ></app-datatable>
+</div>
+
+<ng-template #filterTemplate>
+  <form [formGroup]="filterForm">
+    <div class="row mb-2">
+      <div class="col-3 text-end">
+        <label class="col-form-label"
+          ><b>{{ "PERSON.USER_TYPE.LABEL" | translate }}</b></label
+        >
+      </div>
+      <div class="col-9">
+        <ng-select
+          [clearable]="false"
+          formControlName="userType"
+          (change)="onUserTypeChange($event)"
+        >
+          <ng-option *ngFor="let item of userTypeList" [value]="item">
+            {{ "PERSON.USER_TYPE." + item | translate }}
+          </ng-option>
+        </ng-select>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-3 text-end">
+        <label class="col-form-label"
+          ><b>{{ "PERSON.PERSON_TYPE.LABEL" | translate }}</b></label
+        >
+      </div>
+      <div class="col-9">
+        <ng-select
+          [clearable]="false"
+          formControlName="personType"
+          (change)="onPersonTypeChange($event)"
+        >
+          <ng-option *ngFor="let item of personTypeList" [value]="item">
+            {{ "PERSON.PERSON_TYPE." + item | translate }}
+          </ng-option>
+        </ng-select>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-3 text-end">
+        <label class="col-form-label"
+          ><b>{{ "PERSON.FILTER.FROM_CODE" | translate }}</b></label
+        >
+      </div>
+      <div class="col-9">
+        <div class="d-flex justify-content-between w-100 align-items-center">
+          <input class="form-control" />
+          <div class="px-2">
+            <b>{{ "FILTER.TO" | translate }}</b>
+          </div>
+          <input class="form-control" formControlName="fromCode" />
+        </div>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-3 text-end">
+        <label class="col-form-label"
+          ><b>{{ "PERSON.NAME" | translate }}</b></label
+        >
+      </div>
+      <div class="col-9">
+        <input class="form-control" formControlName="name" />
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-3 text-end">
+        <label class="col-form-label"
+          ><b>{{ "PERSON.FIRST_NAME" | translate }}</b></label
+        >
+      </div>
+      <div class="col-9">
+        <input class="form-control" formControlName="firstname" />
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-3 text-end">
+        <label class="col-form-label"
+          ><b>{{ "PERSON.LAST_NAME" | translate }}</b></label
+        >
+      </div>
+      <div class="col-9">
+        <input class="form-control" formControlName="lastname" />
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-3 text-end">
+        <label class="col-form-label"
+          ><b>{{ "PERSON.USER_NAME" | translate }}</b></label
+        >
+      </div>
+      <div class="col-9">
+        <input class="form-control" formControlName="username" />
+      </div>
+    </div>
+  </form>
+</ng-template>

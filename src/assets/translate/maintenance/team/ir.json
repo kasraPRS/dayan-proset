@@ -1,0 +1,23 @@
+{
+  "TEAM": {
+    "TITLE": "تعریف تیم",
+    "FORM": {
+      "NAME": "عنوان تیم",
+      "CODE": "کد",
+      "DESCRIPTION": "توضیحات",
+      "PERSONS": "کارمندان"
+    },
+    "TABLE": {
+      "NAME": "عنوان تیم",
+      "CODE": "کد",
+      "DESCRIPTION": "توضیحات",
+      "PERSONS": "کارمندان",
+      "PERSON": "کارمند"
+    },
+    "MESSAGES": {
+      "CODE_INVALID": ".کد نامعتبر است",
+      "CODE_ALREADY_EXIST": "کد وارد شده تکراری است",
+      "TEAM_DELETE": "تیم با موفقیت حذف شد."
+    }
+  }
+}

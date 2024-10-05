@@ -1,0 +1,146 @@
+<div clickOutsideSidebar (clickOutside)="sidebarView($event)">
+  <div class="sidebar_container">
+    <div class="sidenav_box">
+      <div id="sidebar" class="sidebar" [class]="isOpen ? 'show' : 'hide'">
+        <div
+          class="d-flex flex-column h-100 align-items-between justify-content-start"
+        >
+          <div class="d-flex justify-content-end my-3">
+            <button
+              class="btn p-0 text-center btn-whit-color square-btn-2 shadow-none"
+              type="button"
+              (click)="sidebarView(false)"
+            >
+              <div class="text-center">
+                <img src="/assets/img/close-blue.png" />
+              </div>
+            </button>
+          </div>
+          <div class="d-flex justify-content-between mb-4">
+            <div class="text-center">
+              <img src="/assets/img/filter-blue.png" />
+              <span class="px-2"
+                ><b>{{ "FILTER.FILTER" | translate }}</b></span
+              >
+            </div>
+            <button
+              type="button"
+              name="cancelBtn"
+              class="btn-whit-color"
+              (click)="resetForm()"
+            >
+              <span class="px-1 color-red-light">
+                <b>{{ "FILTER.DELETE_ALL_FILTER" | translate }}</b>
+              </span>
+            </button>
+          </div>
+          <div class="sidebar-content">
+            <ng-content select="[header]"></ng-content>
+            <ng-container *ngTemplateOutlet="filterTemplate"></ng-container>
+            <ng-content select="[footer]"></ng-content>
+          </div>
+          <ng-content class="mt-5" select="[topFooter]"></ng-content>
+          <div class="d-flex justify-content-end mt-1">
+            <button
+              data-cy="dialog-submit"
+              class="btn btn-blue-color-light p-0 square-btn-2"
+              type="button"
+              (click)="submit()"
+            >
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #filterTemplate>
+    <form [formGroup]="form">
+      <div class="row mb-2">
+        <div class="col-3 text-end">
+          <label class="col-form-label"
+            ><b>{{ "FILTER.CREATOR" | translate }}</b></label
+          >
+        </div>
+        <div class="col-9">
+          <proset-person-select
+            [userType]="userType.STAFF"
+            [multiple]="true"
+            id="creator"
+            [value]="form.get('createdBy')?.value"
+            (personChange)="onChangePerson($event, 'createdBy')"
+          ></proset-person-select>
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <div class="col-3 text-end">
+          <label for="create_from" class="col-form-label"
+            ><b>{{ "FILTER.DATE_OF_CREATE" | translate }}</b></label
+          >
+        </div>
+        <div class="col-9">
+          <div class="d-flex justify-content-between w-100 align-items-center">
+            <proset-datepicker
+              [dateInitValue]="false"
+              id="create_from"
+              formControlName="createdFrom"
+              [max]="form.get('createdTo')?.value!"
+            ></proset-datepicker>
+            <div class="px-2">
+              <b>{{ "FILTER.TO" | translate }}</b>
+            </div>
+            <proset-datepicker
+              [dateInitValue]="false"
+              id="createdTo"
+              formControlName="createdTo"
+              [min]="form.get('createdFrom')?.value!"
+            ></proset-datepicker>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-3 text-end">
+          <label for="updated-by" class="col-form-label"
+            ><b>{{ "FILTER.EDITOR" | translate }}</b></label
+          >
+        </div>
+        <div class="col-9">
+          <proset-person-select
+            [value]="form.get('updatedBy')?.value"
+            id="updated-by"
+            [multiple]="true"
+            [userType]="userType.STAFF"
+            (personChange)="onChangePerson($event, 'updatedBy')"
+          ></proset-person-select>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-3 text-end">
+          <label for="update_from" class="col-form-label"
+            ><b>{{ "FILTER.DATE_OF_EDIT" | translate }}</b></label
+          >
+        </div>
+        <div class="col-9">
+          <div class="d-flex justify-content-between w-100 align-items-center">
+            <proset-datepicker
+              [dateInitValue]="false"
+              id="update_from"
+              formControlName="updatedFrom"
+              [max]="form.get('updatedTo')?.value!"
+            ></proset-datepicker>
+            <div class="px-2">
+              <b>{{ "FILTER.TO" | translate }}</b>
+            </div>
+            <proset-datepicker
+              [dateInitValue]="false"
+              id="update_to"
+              formControlName="updatedTo"
+              [min]="form.get('updatedFrom')?.value!"
+            ></proset-datepicker>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+</div>

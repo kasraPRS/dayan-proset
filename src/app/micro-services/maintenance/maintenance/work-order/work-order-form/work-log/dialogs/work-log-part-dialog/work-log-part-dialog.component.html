@@ -1,0 +1,70 @@
+<div class="form-continer" style="width: 400px">
+  <form class="form-group mt-2" [formGroup]="partFormGroup">
+    <div class="row">
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="part"
+            class="col-md-3 col-form-label text-dark text-md-end mt-1 required"
+          >
+            {{ "PART.NAME" | translate }}
+          </label>
+          <div class="col-md-9 position-relative">
+            <ng-select
+              id="part"
+              [items]="partList"
+              formControlName="part"
+              bindLabel="name"
+              appendTo="body"
+              (change)="onPartChange($event)"
+            >
+            </ng-select>
+            <small
+              id="code_error_duplicated"
+              class="form-text text-danger mt-2"
+              *ngIf="isPartSelected"
+            >
+              {{ "WORK_LOG.MESSAGES.WORK_LOG_PART_IS_SELECTED" | translate }}
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="code"
+            class="col-md-3 col-form-label text-dark text-md-end mt-1 required"
+          >
+            {{ "PART.CODE" | translate }}
+          </label>
+          <div class="col-md-9 position-relative">
+            <input
+              id="code"
+              class="form-control"
+              value="{{ workLogPart.partCode }}"
+              [disabled]="true"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="count"
+            class="col-md-3 col-form-label text-dark text-md-end mt-1 required"
+          >
+            {{ "PART.COUNT" | translate }}
+          </label>
+          <div class="col-md-9 position-relative">
+            <input
+              id="count"
+              class="form-control"
+              formControlName="count"
+              numbersOnly
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

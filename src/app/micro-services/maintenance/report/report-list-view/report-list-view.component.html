@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-title">
+    {{ listTitle! | translate }}
+  </div>
+  <div class="card-content">
+    <mat-spinner *ngIf="loading" class="loading"></mat-spinner>
+
+    <app-datatable
+      [limit]="10"
+      [config]="config"
+      [tableRow]="list"
+      [showFilter]="false"
+      [showToolbar]="false"
+      [showNewBtn]="false"
+      [viewOnly]="true"
+      [showIndex]="false"
+      [scrollbarV]="false"
+      [scrollbarH]="true"
+      [loading]="loading!"
+    ></app-datatable>
+  </div>
+</div>

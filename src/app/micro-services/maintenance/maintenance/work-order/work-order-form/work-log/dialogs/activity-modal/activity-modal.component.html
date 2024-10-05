@@ -1,0 +1,61 @@
+<button (click)="onClose()" class="dialog_close">
+  <i class="fa-solid fa-close"></i>
+</button>
+<div class="container-fluid mt-5">
+  <div class="row d-flex justify-content-end"></div>
+  <mat-dialog-content class="dialog_content">
+    <div class="row mb-3 selectionPanel">
+      <div class="col-10 mt-3">
+        <span>
+          {{ selectedActivityList.length || 0 }}
+          {{ "ACTIVITY.MODAL.SELECTED_ACTIVITY" | translate }}
+        </span>
+      </div>
+      <div class="col-2">
+        <button
+          class="icon-btn link-btn-blue-color-dark mt-3"
+          type="button"
+          (click)="onSubmitClick()"
+        >
+          {{ "ACTIVITY.MODAL.SELECT_ACTIVITY" | translate }}
+        </button>
+      </div>
+    </div>
+    <ngx-datatable
+      class="bootstrap viewOnly"
+      [rows]="activityList"
+      [loadingIndicator]="false"
+      [columnMode]="'force'"
+      [headerHeight]="40"
+      [footerHeight]="0"
+      [rowHeight]="'auto'"
+      [messages]="messages"
+    >
+      <ngx-datatable-column [minWidth]="50">
+        <ng-template
+          ngx-datatable-cell-template
+          let-row="row"
+          let-value="value"
+        >
+          <input
+            type="checkbox"
+            (change)="toggleRowCheckbox(row, $event)"
+            [checked]="isChecked(row)"
+          />
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column
+        name="{{ 'ACTIVITY.CODE' | translate }}"
+        prop="activityCode"
+        [minWidth]="50"
+      >
+      </ngx-datatable-column>
+      <ngx-datatable-column
+        name="{{ 'ACTIVITY.NAME' | translate }}"
+        prop="activityName"
+        [minWidth]="500"
+      >
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </mat-dialog-content>
+</div>

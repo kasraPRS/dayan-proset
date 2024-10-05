@@ -1,0 +1,39 @@
+<app-modal-component
+  [submitButtonText]="'GENERAL.UPLOAD'"
+  [closeButtonText]="'GENERAL.CANCEL'"
+  (onSubmit)="onUploadDocument()"
+  [imageSrc]="'../../../../../assets/img/attachment.png'"
+  [title]="'ATTACHMENT.UPLOAD_TITLE'"
+>
+  <div class="dark_color px-1">
+    <div class="text-center pb-5"></div>
+    <div class="row pb-3">
+      <ngx-awesome-uploader
+        [fileMaxCount]="10"
+        [fileMaxSize]="10"
+        [uploadType]="'multi'"
+        (validationError)="onValidationError($event)"
+        [fileExtensions]="[
+          'pdf',
+          'jpg',
+          'jpeg',
+          'png',
+          'doc',
+          'docx',
+          'svg',
+          'csv',
+          'xls',
+          'xlsx'
+        ]"
+        (uploadSuccess)="onUploadSuccess($event)"
+        (removeSuccess)="onRemoveSuccess($event)"
+        (fileAdded)="onFileAdded($event)"
+        [customValidator]="validator"
+        [captions]="captions"
+        [accept]="'.pdf, .jpg, .jpeg, .png, .doc,.docx, .svg ,.csv,.xls,.xlsx'"
+        [totalMaxSize]="50"
+      >
+      </ngx-awesome-uploader>
+    </div>
+  </div>
+</app-modal-component>

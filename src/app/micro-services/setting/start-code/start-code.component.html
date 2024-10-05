@@ -1,0 +1,62 @@
+<div class="container mb-8">
+  <form name="startCodeForm" [formGroup]="form" (ngSubmit)="saveStartCode()">
+    <div class="row">
+      <div class="col-md-4 col-12">
+        <div class="row d-flex form-group mt-2">
+          <label class="col-md-4 col-form-label text-dark text-md-end mt-1">
+            {{ "START_CODE.FORM.WORK_REQUEST_START_CODE" | translate }}
+          </label>
+          <div class="col-md-8">
+            <input
+              numbersOnly
+              type="text"
+              class="form-control"
+              formControlName="workRequestStartCode"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-12">
+        <div class="row d-flex form-group mt-2">
+          <label class="col-md-4 col-form-label text-dark text-md-end mt-1">
+            {{ "START_CODE.FORM.WORK_ORDER_START_CODE" | translate }}
+          </label>
+          <div class="col-md-8">
+            <input
+              numbersOnly
+              type="text"
+              class="form-control"
+              formControlName="WorkOrderStartCode"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-12">
+        <div class="row d-flex form-group mt-2">
+          <label class="col-md-4 col-form-label text-dark text-md-end mt-1">
+            {{ "START_CODE.FORM.PLANING_START_CODE" | translate }}
+          </label>
+          <div class="col-md-8">
+            <input
+              numbersOnly
+              type="text"
+              class="form-control"
+              formControlName="repairPlaningStartCode"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row text-end mt-4">
+      <span>
+        <button
+          *prosetHasPermissions="[permission.START_CODE_UPDATE]"
+          type="submit"
+          class="btn btn-primary saveBtn"
+        >
+          {{ "START_CODE.FORM.SAVE" | translate }}
+        </button>
+      </span>
+    </div>
+  </form>
+</div>

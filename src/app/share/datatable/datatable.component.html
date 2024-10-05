@@ -1,0 +1,237 @@
+<div class="row mb-3">
+  <div class="col-md-6 align-items-center d-flex" *ngIf="showToolbar">
+    <a
+      type="button"
+      class="d-flex align-items-center"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+      [matMenuTriggerFor]="action"
+    >
+      <i class="fa-solid fa-ellipsis-vertical fa-2xl"></i>
+      <mat-menu #action="matMenu">
+        <button mat-menu-item (click)="onColumnToggle()">
+          <i class="fa fa-bars column_icon fs-6"></i>
+          <span class="me-1"></span>
+          {{ "GENERAL.BUTTON.COLUMN_SELECTOR" | translate }}
+        </button>
+        <button mat-menu-item (click)="onCheckboxAble()">
+          <i class="fa fa-bars fs-6"></i>
+          <span class="me-1"></span>
+          {{ "GENERAL.BUTTON.ROW_SELECTOR" | translate }}
+        </button>
+        <button mat-menu-item (click)="onExportExcel()">
+          <i class="fa fa-arrow-left excel_icon fs-6"></i>
+          <span class="me-1"></span>
+          {{ "GENERAL.BUTTON.SEND_TO_EXCEL" | translate }}
+        </button>
+        <button mat-menu-item>
+          <i class="fa fa-print fs-6"></i>
+          <span class="me-1"></span>
+          {{ "GENERAL.BUTTON.PRINT" | translate }}
+        </button>
+      </mat-menu>
+    </a>
+
+    <mat-divider class="mx-2 divider" [vertical]="true"></mat-divider>
+    <ng-container *prosetHasPermissions="newEntryPermission">
+      <button
+        class="new-button px-2"
+        *ngIf="showNewBtn || newEntryFormTemplate || newWindowUrl"
+        (click)="onNewEntry()"
+      >
+        <div class="d-flex">
+          <span>{{ "GENERAL.NEW" | translate }}</span>
+        </div>
+      </button>
+    </ng-container>
+    <ng-container *ngIf="showFilter">
+      <mat-divider class="mx-2 divider" [vertical]="true"></mat-divider>
+      <a
+        (click)="[onFilter(), $event.stopPropagation()]"
+        class="pointer open-drawer-btn position-relative"
+      >
+        <span class="badge-filter text-center" *ngIf="filterNumber">
+          {{ filterNumber }}</span
+        >
+        <img src="/assets/img/filter.png" />
+      </a>
+    </ng-container>
+  </div>
+  <div class="col-6">
+    <ng-container [ngTemplateOutlet]="actionTemplate"></ng-container>
+  </div>
+</div>
+<div
+  id="table_id"
+  class="datatable_container"
+  [ngClass]="{ blue_scroll_box: viewOnly }"
+  [ngStyle]="{ height: tableHeight ? tableHeight + 'px' : 'auto' }"
+>
+  <ngx-datatable
+    class="bootstrap viewOnly"
+    [rows]="tableRow"
+    [limit]="limit"
+    [loadingIndicator]="false"
+    [columnMode]="'force'"
+    [headerHeight]="40"
+    [footerHeight]="60"
+    [rowHeight]="'auto'"
+    [scrollbarH]="scrollbarH"
+    [scrollbarV]="scrollbarV"
+    [selected]="selected"
+    (select)="onSelect($event)"
+    (activate)="onActivate($event)"
+    [messages]="messages"
+    (prosetDatatableDblClick)="onDoubleClick($event)"
+    [selectionType]="
+      singleRowClick ? selectionType.single : selectionType.checkbox
+    "
+    #datatable
+  >
+    <ngx-datatable-column
+      *ngIf="checkBoxable"
+      [width]="30"
+      [sortable]="false"
+      [canAutoResize]="false"
+      [draggable]="false"
+      [resizeable]="false"
+      [frozenLeft]="true"
+    >
+      <ng-template
+        ngx-datatable-header-template
+        let-value="value"
+        let-allRowsSelected="allRowsSelected"
+        let-selectFn="selectFn"
+      >
+        <input
+          *ngIf="displaySelectAllCheckbox"
+          type="checkbox"
+          [checked]="isAllEntriesSelected"
+        />
+      </ng-template>
+      <ng-template
+        ngx-datatable-cell-template
+        let-row="row"
+        let-value="value"
+        let-isSelected="isSelected"
+        let-onCheckboxChangeFn="onCheckboxChangeFn"
+      >
+        <input type="checkbox" (change)="toggleRowCheckbox($event, row)" />
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column
+      name="{{ 'DATATABLE.ROW_NUMBER' | translate }}"
+      *ngIf="showIndex"
+      [width]="50"
+      [sortable]="!config.actions"
+      [canAutoResize]="true"
+    >
+      <ng-template
+        let-rowIndex="rowIndex"
+        let-row="row"
+        ngx-datatable-cell-template
+      >
+        <strong>{{ rowIndex + 1 }}</strong>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column
+      class="dang"
+      *ngFor="let col of config.list"
+      name="{{ col.label | translate }}"
+      prop="{{ col.field != null ? col.field : ' - ' }}"
+      [width]="col.width ? col.width : 50"
+      [draggable]="col.draggable || true"
+      [minWidth]="col.minWidth ? col.minWidth : 50"
+    >
+      <ng-container>
+        <ng-template
+          let-value="value"
+          let-row="row"
+          let-toolTip="toolTip"
+          ngx-datatable-cell-template
+        >
+          <app-datatable-field
+            [value]="value"
+            [entry]="row"
+            [column]="col"
+            [type]="col.type ? col.type : 'text'"
+            [commaSeperatedToolTipFieldName]="
+              col.commaSeperatedToolTipFiledName!
+            "
+            [url]="col.url!"
+          ></app-datatable-field>
+        </ng-template>
+      </ng-container>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column
+      *ngIf="config.actions?.length"
+      [flexGrow]="0.25"
+      [sortable]="false"
+    >
+      <ng-template
+        let-column="column"
+        ngx-datatable-header-template
+      ></ng-template>
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+          aria-label="Example icon-button with a menu"
+        >
+          <i class="fa-solid fa-list"></i>
+        </button>
+        <mat-menu #menu="matMenu">
+          <ng-container *ngFor="let action of config.actions">
+            <ng-container *ngIf="!action.hidden">
+              <app-datatable-action
+                class="float-left"
+                [id]="action.id"
+                [row]="row"
+                [icon]="action.icon"
+                [button]="action.label!"
+                [tooltip]="action.tooltip"
+                [tooltipParams]="
+                  action.tooltipParams ? action.tooltipParams(row) : undefined
+                "
+                [action]="action.action"
+                *prosetHasPermissions="action.permission!"
+              ></app-datatable-action>
+            </ng-container>
+          </ng-container>
+        </mat-menu>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-footer>
+      <ng-template
+        ngx-datatable-footer-template
+        let-rowCount="rowCount"
+        let-pageSize="pageSize"
+        let-curPage="curPage"
+      >
+        <div>
+          <div class="row">
+            <div class="col-md-12 d-flex align-items-center">
+              <span>
+                {{ "GENERAL.ROW" | translate }}: {{ rowCount }} |
+                {{ "GENERAL.SIZE" | translate }}: {{ pageSize }} |
+                {{ "GENERAL.CURRENT" | translate }}: {{ curPage }}
+              </span>
+              <datatable-pager
+                [page]="curPage"
+                [size]="pageSize"
+                [count]="rowCount"
+                [hidden]="false"
+                (change)="datatable.onFooterPage($event)"
+                [class]="'page-color'"
+              >
+              </datatable-pager>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngx-datatable-footer>
+  </ngx-datatable>
+</div>

@@ -1,0 +1,57 @@
+<form [formGroup]="formGroup" class="w-100">
+  <ng-select
+    #selectFailureDetectionMethod
+    appendTo="body"
+    [loading]="failureDetectionMethodDtoList.length == 0"
+    formControlName="failureDetectionMethod"
+    bindLabel="name"
+    [readonly]="disabled"
+    [items]="failureDetectionMethodDtoList"
+    (change)="
+      onFailureDetectionMethodChange($event, selectFailureDetectionMethod)
+    "
+    [clearable]="true"
+    [searchable]="false"
+    [multiple]="multiple"
+    [selectableGroup]="true"
+    [searchFn]="searchFailureDetectionMethod"
+  >
+    <ng-template ng-header-tmp>
+      <div class="form-group has-feedback">
+        <input
+          style="width: 100%; line-height: 24px"
+          type="text"
+          class="form-control"
+          id="inputValidation"
+          placeholder="{{ 'GENERAL.SEARCH' | translate }}"
+          (input)="onFailureDetectionMethodSearch($event)"
+        />
+      </div>
+    </ng-template>
+    <ng-template ng-option-tmp let-item="item">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>{{ item.name }}</mat-card-title>
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+          {{ item.code }}
+        </mat-card-content>
+      </mat-card>
+    </ng-template>
+    <ng-template ng-footer-tmp>
+      <div class="d-flex justify-content-end">
+        <button
+          *prosetHasPermissions="[permission.FAILURE_DETECTION_METHOD]"
+          class="btn btn-info btn-sm d-flex"
+          (click)="goToNewFailureDetectionMethod()"
+        >
+          <i class="fa-solid fa-plus fs-6"></i>
+          <span class="mx-1"></span>
+          {{ "SHARE_COMPONENT.CREATE_NEW_FAILURE_DETECTION" | translate }}
+        </button>
+      </div>
+    </ng-template>
+  </ng-select>
+</form>

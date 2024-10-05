@@ -1,0 +1,84 @@
+.card {
+  border-radius: 8px;
+  border: 1px solid #d9d9d9;
+  // max-height: 305px;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: #4c4b4b;
+  text-align: right;
+  margin-top: 4px;
+  margin-bottom: 0 !important;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+.chip-view {
+  border-radius: 8px;
+  background-color: #d9d9d933;
+  height: 24px;
+  min-width: 52px;
+  padding: 0 10px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.label {
+    border-radius: 12px !important;
+    color: #282828;
+  }
+
+  .color-dot {
+    margin-left: 5px;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+  }
+}
+
+.dotMenu {
+  width: 10px;
+  text-align: center;
+}
+
+.bottomSection {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1.5px solid #9c9c9c;
+
+  i {
+    font-size: 20px !important;
+    color: #9c9c9c !important;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

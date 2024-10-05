@@ -1,0 +1,77 @@
+<div
+  class="form-continer"
+  [ngClass]="{
+    'view-mode': viewMode
+  }"
+>
+  <form class="form-partPrice mt-5" [formGroup]="formGroup">
+    <div class="row">
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="fromDate"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+            >{{ "PART.FORM.START_DATE" | translate }}</label
+          >
+          <div class="col-md-8 position-relative">
+            <proset-datepicker
+              [dateInitValue]="false"
+              id="fromDate"
+              formControlName="fromDate"
+            ></proset-datepicker>
+          </div>
+        </div>
+      </div>
+      <div></div>
+
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="toDate"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+            >{{ "PART.FORM.END_DATE" | translate }}</label
+          >
+          <div class="col-md-8 position-relative">
+            <proset-datepicker
+              [dateInitValue]="false"
+              id="toDate"
+              formControlName="toDate"
+              [min]="formGroup.get('fromDate')?.value!"
+            ></proset-datepicker>
+            <small
+              class="form-text text-danger mt-2"
+              *ngIf="formGroup.get('toDate')?.hasError('dateRangeInvalid')"
+            >
+              {{ "PART.MESSAGES.END_DATE_BEFORE_START_DATE" | translate }}
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="price"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+            >{{ "PART.FORM.PRICE" | translate }}</label
+          >
+          <div class="col-md-8 d-flex position-relative">
+            <input
+              type="text"
+              class="form-control"
+              id="price"
+              numbersOnly
+              inputPrice
+              formControlName="price"
+            />
+            <span
+              class="my-2 mx-3 light_text position-absolute left_align top-0"
+            >
+              {{ "CURRENCY.RIAL" | translate }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,211 @@
+<div class="p-2" [formGroup]="form">
+  <div class="row m-0 mt-4">
+    <div class="col-4">
+      <div class="row d-flex form-group mt-2">
+        <label
+          for="manufacturer"
+          class="col-md-4 col-form-label text-dark text-md-end mt-1"
+          >{{
+            "ASSET.FORM.TECHNICAL_SPECIFICATION.MANUFACTURER" | translate
+          }}</label
+        >
+        <div class="col-md-8">
+          <input
+            type="text"
+            class="form-control"
+            id="manufacturer"
+            formControlName="manufacturer"
+          />
+        </div>
+      </div>
+      <div class="row d-flex form-group mt-2">
+        <label
+          for="model"
+          class="col-md-4 col-form-label text-dark text-md-end mt-1"
+          >{{ "ASSET.FORM.TECHNICAL_SPECIFICATION.MODEL" | translate }}</label
+        >
+        <div class="col-md-8">
+          <input
+            type="text"
+            class="form-control"
+            id="model"
+            formControlName="model"
+          />
+        </div>
+      </div>
+      <div class="row d-flex form-group mt-2">
+        <label
+          for="serialNumber"
+          class="col-md-4 col-form-label text-dark text-md-end mt-1"
+          >{{
+            "ASSET.FORM.TECHNICAL_SPECIFICATION.SERIALNUMBER" | translate
+          }}</label
+        >
+        <div class="col-md-8">
+          <input
+            type="text"
+            class="form-control"
+            id="serialNumber"
+            formControlName="serialNumber"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="row d-flex form-group mt-2">
+        <label class="col-md-4 col-form-label text-dark text-md-end mt-1">{{
+          "ASSET.FORM.TECHNICAL_SPECIFICATION.WEIGHT" | translate
+        }}</label>
+        <div class="col-md-8 position-relative">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="weight"
+            numbersOnly
+            [allowFloat]="true"
+          />
+        </div>
+      </div>
+
+      <div class="row d-flex form-group mt-2">
+        <label
+          for="fuelType"
+          class="col-md-4 col-form-label text-dark text-md-end mt-1"
+          >{{
+            "ASSET.FORM.TECHNICAL_SPECIFICATION.FUEL_TYPE" | translate
+          }}</label
+        >
+        <div class="col-md-8">
+          <ng-select formControlName="fuelType" appendTo="body">
+            <ng-option *ngFor="let item of fuelList" [value]="item">
+              {{ "ASSET.FORM.TECHNICAL_SPECIFICATION." + item | translate }}
+            </ng-option>
+          </ng-select>
+        </div>
+      </div>
+      <div class="row d-flex form-group mt-2">
+        <label
+          for="length"
+          class="col-md-4 col-form-label text-dark text-md-end mt-1"
+          >{{
+            "ASSET.FORM.TECHNICAL_SPECIFICATION.DIMENTION" | translate
+          }}</label
+        >
+        <div class="col-md-8 position-relative">
+          <div class="d-flex gap-2">
+            <div>
+              <input
+                id="length"
+                type="text"
+                class="form-control"
+                formControlName="length"
+                numbersOnly
+                [allowFloat]="true"
+                placeholder="{{
+                  'ASSET.FORM.PLACEHOLDER.DIMENTION.LENGTH' | translate
+                }}"
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="width"
+                numbersOnly
+                [allowFloat]="true"
+                placeholder="{{
+                  'ASSET.FORM.PLACEHOLDER.DIMENTION.WIDTH' | translate
+                }}"
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="height"
+                numbersOnly
+                [allowFloat]="true"
+                placeholder="{{
+                  'ASSET.FORM.PLACEHOLDER.DIMENTION.HIGHT' | translate
+                }}"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="row d-flex form-group mt-2">
+        <label class="col-md-4 col-form-label text-dark text-md-end mt-1">{{
+          "ASSET.FORM.TECHNICAL_SPECIFICATION.VOLTAGE" | translate
+        }}</label>
+        <div class="col-md-8">
+          <input
+            type="number"
+            class="form-control"
+            formControlName="voltage"
+            numbersOnly
+          />
+        </div>
+      </div>
+      <div class="row d-flex form-group mt-2">
+        <label class="col-md-4 col-form-label text-dark text-md-end mt-1">{{
+          "ASSET.FORM.TECHNICAL_SPECIFICATION.POWER" | translate
+        }}</label>
+        <div class="col-md-8">
+          <input
+            type="number"
+            class="form-control"
+            formControlName="power"
+            numbersOnly
+          />
+        </div>
+      </div>
+
+      <div class="row d-flex form-group mt-2">
+        <label class="col-md-4 col-form-label text-dark text-md-end mt-1">{{
+          "ASSET.FORM.TECHNICAL_SPECIFICATION.DEVICE_SPEED" | translate
+        }}</label>
+        <div class="col-md-8 position-relative">
+          <div class="row">
+            <div class="d-flex flex-nowrap gap-2">
+              <div class="w-30">
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="speed"
+                  numbersOnly
+                  placeholder="{{
+                    'ASSET.FORM.PLACEHOLDER.DEVICE_SPEED.NORMAL' | translate
+                  }}"
+                />
+              </div>
+              <div class="w-30">
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="maxSpeed"
+                  numbersOnly
+                  placeholder="{{
+                    'ASSET.FORM.PLACEHOLDER.DEVICE_SPEED.MAXIMUM' | translate
+                  }}"
+                />
+              </div>
+              <div class="w-50">
+                <ng-select
+                  [items]="measurementUnitList"
+                  bindLabel="name"
+                  formControlName="speedMeasurement"
+                  appendTo="body"
+                  placeholder="{{
+                    'ASSET.FORM.PLACEHOLDER.DEVICE_SPEED.UNIT' | translate
+                  }}"
+                ></ng-select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

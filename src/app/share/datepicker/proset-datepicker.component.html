@@ -1,0 +1,52 @@
+<label *ngIf="label" class="col-form-label d-md-flex text-nowrap">
+  <span class="light_text">
+    {{ label }}
+  </span>
+</label>
+<div class="position-relative">
+  <input
+    [placeholder]="placeholder || ''"
+    class="form-control"
+    (dateChange)="dateChangeHandler($event.value)"
+    (keydown.arrowdown)="openDatepicker(picker)"
+    (keydown.enter)="openDatepicker(picker)"
+    (keydown)="removeKeyDown($event)"
+    (click)="openDatepicker(picker)"
+    [matDatepicker]="picker"
+    [max]="_max"
+    [min]="_min"
+    [attr.disabled]="disabled"
+    [disabled]="disabled"
+    (blur)="(onTouched)"
+    [formControl]="date"
+  />
+  <mat-datepicker-toggle
+    matIconSuffix
+    [disabled]="disabled"
+    [for]="picker"
+    class="toggleIcon"
+  ></mat-datepicker-toggle>
+</div>
+<mat-datepicker
+  [disabled]="disabled"
+  #picker
+  (closed)="_takeFocusAway(picker)"
+  [touchUi]="touchUi"
+>
+  <mat-datepicker-actions *ngIf="showTime">
+    <div class="time-section">
+      <div class="time-picker">
+        <ngb-timepicker size="small" [(ngModel)]="time"></ngb-timepicker>
+      </div>
+
+      <div class="picker-actions">
+        <button mat-button color="warn" matDatepickerCancel>
+          {{ "GENERAL.CANCEL" | translate }}
+        </button>
+        <button mat-raised-button color="primary" matDatepickerApply>
+          {{ "GENERAL.CONFIRM" | translate }}
+        </button>
+      </div>
+    </div>
+  </mat-datepicker-actions>
+</mat-datepicker>

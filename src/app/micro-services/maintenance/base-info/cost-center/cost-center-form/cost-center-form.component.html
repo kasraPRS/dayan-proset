@@ -1,0 +1,93 @@
+<div
+  class="form-continer"
+  [ngClass]="{
+    'view-mode': viewMode
+  }"
+>
+  <form class="form-group" [formGroup]="formGroup">
+    <div class="row">
+      <div class="row input-row mt-2">
+        <label
+          for="code"
+          class="col-md-4 col-form-label text-dark text-md-end mt-1"
+          [ngClass]="{
+            required: formGroup.controls['code'].validator
+          }"
+          >{{ "COST_CENTER.FORM.CODE" | translate }}</label
+        >
+        <div class="col-md-8 position-relative">
+          <input
+            type="text"
+            class="form-control"
+            id="code"
+            formControlName="code"
+          />
+          <small
+            id="code_error_duplicated"
+            class="form-text text-danger mt-2"
+            *ngIf="formGroup.get('code')?.hasError('isDuplicate')"
+          >
+            {{ "COST_CENTER.MESSAGES.CODE_ALREADY_EXIST" | translate }}
+          </small>
+        </div>
+      </div>
+
+      <div class="row input-row mt-2">
+        <label
+          for="name"
+          class="col-md-4 col-form-label text-dark text-md-end mt-1"
+          [ngClass]="{
+            required: formGroup.controls['name'].validator
+          }"
+          >{{ "COST_CENTER.FORM.NAME" | translate }}</label
+        >
+        <div class="col-md-8 d-flex position-relative">
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            formControlName="name"
+          />
+        </div>
+      </div>
+
+      <div class="row input-row mt-2">
+        <label
+          for="costCenterTypes"
+          class="col-md-4 col-form-label text-dark text-md-end mt-1"
+          [ngClass]="{
+            required: formGroup.controls['type'].validator
+          }"
+          >{{ "COST_CENTER.FORM.TYPE" | translate }}</label
+        >
+        <div class="col-md-8">
+          <ng-select
+            id="costCenterTypes"
+            formControlName="type"
+            appendTo="body"
+          >
+            <ng-option *ngFor="let type of costCenterTypes" [value]="type">{{
+              "COST_CENTER.TYPES." + type | translate
+            }}</ng-option>
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="row input-row mt-2">
+        <label
+          for="description"
+          class="col-md-4 col-form-label text-dark text-md-end mt-1"
+          >{{ "COST_CENTER.FORM.DESCRIPTION" | translate }}</label
+        >
+        <div class="col-md-8 d-flex position-relative">
+          <textarea
+            type="text"
+            class="form-control"
+            id="description"
+            formControlName="description"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

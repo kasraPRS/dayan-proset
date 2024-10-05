@@ -1,0 +1,26 @@
+{
+  "MEASUREMENT": {
+    "TITLE": "تعریف واحد",
+    "FORM": {
+      "ACTIVE": "فعال سازی واحد",
+      "MEASUREMENT_TYPE": "نوع واحد اندازه گیری",
+      "CODE": "کد",
+      "TITLE": "عنوان واحد",
+      "DESCRIPTION": "توضیحات"
+    },
+    "TABLE": {
+      "STATUS": "وضعیت",
+      "MEASUREMENT_TYPE": "نوع واحد اندازه گیری",
+      "CODE": "کد",
+      "TITLE": "عنوان واحد",
+      "DESCRIPTION": "توضیحات"
+    },
+    "MEASUREMENT_TYPES": {
+      "SCHEDULE_FUNCTION": "کارکرد‌برنامه‌ریزی",
+      "SPEED": "سرعت دستگاه"
+    },
+    "MESSAGES": {
+      "MEASUREMENT_DELETE": "واحد با موفقیت حذف شد."
+    }
+  }
+}

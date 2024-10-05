@@ -1,0 +1,24 @@
+<!-- status-card.component.html -->
+<div class="report-card">
+  <button
+    *prosetHasPermissions="[permission.WORK_ORDER]"
+    class="border-less bg-transparent kanban-btn"
+    routerLink="/maintenance/work-order/list"
+  >
+    <mat-icon svgIcon="kanban" class="small"></mat-icon>
+  </button>
+  <div class="status-card">
+    <h2 class="title">{{ cardTitle }}</h2>
+    <div *ngIf="!loading" class="task-count-wrapper">
+      <span class="task-count">
+        {{ value }}
+      </span>
+      <div class="bg-blur" [style.background]="color"></div>
+      <mat-spinner
+        *ngIf="loading"
+        class="loading"
+        [diameter]="48"
+      ></mat-spinner>
+    </div>
+  </div>
+</div>

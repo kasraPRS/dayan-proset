@@ -1,0 +1,261 @@
+:host,
+:root {
+  --fc-event-text-color: #282828;
+}
+
+:host ::ng-deep .fc-button {
+  background: transparent !important;
+  width: 60px !important;
+  border: 1px solid #1f3b8e !important;
+  color: #1f3b8e !important;
+}
+
+:host ::ng-deep .fc-today-button {
+  background: transparent !important;
+  border: 1px solid #1f3b8e !important;
+  color: #1f3b8e !important;
+  margin-right: 24px !important;
+}
+
+:host ::ng-deep .fc-dayGridMonth-button {
+  margin-left: 5% !important;
+  width: 64px !important;
+}
+
+:host ::ng-deep .fc-timeGridWeek-button {
+  margin-left: 5% !important;
+  width: 64px !important;
+}
+
+:host ::ng-deep .fc-timeGridDay-button {
+  margin-left: 5% !important;
+  width: 64px !important;
+}
+
+:host ::ng-deep .fc-prev-button {
+  margin-left: 5% !important;
+}
+
+:host ::ng-deep .fc-event {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+:host ::ng-deep .fc-prev-button,
+:host ::ng-deep .fc-next-button {
+  border: none;
+  display: contents;
+}
+
+:host ::ng-deep .fc-toolbar-chunk > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+:host ::ng-deep .fc-toolbar-chunk * {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 25px;
+  text-align: right;
+  text-wrap: nowrap;
+  text-align: center;
+}
+
+:host ::ng-deep .fc-toolbar-chunk .fc-toolbar-title {
+  direction: ltr;
+}
+
+:host ::ng-deep .fc .fc-button-group > .fc-button:not(.fc-button-active) {
+  border: 1px solid #d9d9d9 !important;
+}
+
+:host ::ng-deep .fc .fc-button-group > .fc-button.fc-button-active {
+  border: none !important;
+  background: #1f3b8e !important;
+  color: #ffffff !important;
+}
+
+:host ::ng-deep .fc .fc-col-header-cell-cushion {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 25px;
+  text-align: right;
+}
+
+:host ::ng-deep .fc-col-header-cell {
+  padding: 8px;
+}
+
+:host ::ng-deep .fc-event {
+  display: flex;
+}
+
+// :host ::ng-deep .fc-daygrid-day-frame:before {
+//   display: none;
+// }
+
+:host ::ng-deep .fc-dayGridMonth-view thead * {
+  border: none !important;
+}
+
+:host ::ng-deep .fc-dayGridMonth-view thead table tbody th {
+  border-bottom: 4px solid #4876ff1a !important;
+}
+
+:host ::ng-deep .fc-dayGridMonth-view tbody table td:not(.fc-day-today),
+:host ::ng-deep .fc-dayGridMonth-view tbody table th {
+  border-style: none solid solid none;
+  border-color: #d9d9d9 !important;
+  border: solid 1px #d9d9d9 !important;
+}
+
+:host ::ng-deep .fc-dayGridMonth-view table {
+  border: none !important;
+
+  border-collapse: separate;
+  border-spacing: 0 !important;
+}
+
+:host ::ng-deep .fc-dayGridMonth-view tbody table {
+  border-collapse: separate;
+  border-spacing: 10px !important;
+}
+
+:host ::ng-deep .fc-dayGridMonth-view tbody table tr td {
+  border-radius: 10px;
+}
+
+:host ::ng-deep .fc-dayGridMonth-view tbody table tr td {
+  border-top-left-radius: 10px;
+}
+
+:host ::ng-deep .fc-dayGridMonth-view tbody table tr:last-child td:first-child {
+  border-bottom-right-radius: 10px;
+}
+
+:host ::ng-deep .fc-dayGridMonth-view tbody table tr:last-child td:last-child {
+  border-bottom-left-radius: 10px;
+}
+
+:host ::ng-deep .fc-dayGridMonth-view tbody table tr:first-child td {
+  border-top-style: solid;
+}
+
+:host ::ng-deep .fc-dayGridMonth-view tbody table tr td:first-child {
+  border-right-style: solid;
+}
+
+:host ::ng-deep .fc-dayGridMonth-view .fc-daygrid-day-events:after,
+:host ::ng-deep .fc-dayGridMonth-view .fc-daygrid-day-events:before,
+:host ::ng-deep .fc-dayGridMonth-view .fc-daygrid-day-frame:after,
+:host ::ng-deep .fc-dayGridMonth-view .fc-daygrid-day-frame:before,
+:host ::ng-deep .fc-dayGridMonth-view .fc-daygrid-event-harness:before,
+:host ::ng-deep .fc-timegrid-now-indicator-container {
+  display: none;
+}
+
+:host ::ng-deep .fc .fc-button-primary:focus,
+:host ::ng-deep .fc .fc-button-primary:not(:disabled).fc-button-active:focus,
+:host ::ng-deep .fc .fc-button-primary:not(:disabled):active:focus {
+  box-shadow: none !important;
+}
+
+:host ::ng-deep .fc .fc-daygrid-day-top {
+  flex-direction: row !important;
+  padding: 0 8px;
+}
+
+:host ::ng-deep .fc-day-today:not(.fc-more-popover) {
+  border: 2px solid #1f3b8e !important;
+  background: inherit !important;
+}
+
+:host ::ng-deep .fc-daygrid-event,
+:host ::ng-deep .fc-timegrid-event {
+  min-height: 30px !important;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 24px;
+  border-radius: 8px;
+}
+
+:host ::ng-deep .fc-event-main {
+  width: 100%;
+}
+
+:host ::ng-deep .event-content {
+  overflow: hidden;
+  padding: 0 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: #282828 !important;
+
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 24px;
+
+  .event-title {
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+:host ::ng-deep .fc-timegrid-col-events {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 5px !important;
+  margin: 5px !important;
+}
+
+:host ::ng-deep .fc-daygrid-event-harness::after {
+  content: "";
+  width: 1px !important;
+  height: 5px !important;
+  display: block !important;
+}
+
+:host ::ng-deep .fc-timegrid-event-harness {
+  position: relative;
+  width: 100%;
+  height: 80px;
+  right: 0 !important;
+  left: 0 !important;
+  top: inherit !important;
+}
+
+:host ::ng-deep .fc-timeGridWeek-view .fc-timegrid-slots {
+  visibility: hidden;
+}
+
+:host ::ng-deep .action-wrapper {
+  display: flex;
+  gap: 4px;
+  margin-left: 4px;
+}
+
+:host ::ng-deep .fc-more-popover {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 9999;
+}
+
+:host ::ng-deep .fc-more-popover::before {
+  content: "";
+}
+
+:host ::ng-deep .fc-daygrid-day-bottom::before {
+  display: none !important;
+}
+
+:host ::ng-deep .fc-daygrid-event-harness,
+:host ::ng-deep .fc-timegrid-event-harness {
+  cursor: pointer;
+}

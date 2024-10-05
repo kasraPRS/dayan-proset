@@ -1,0 +1,77 @@
+<div class="form-container box-sizing">
+  <form class="form-group" [formGroup]="taskFormGroup">
+    <div class="row mt-2">
+      <div
+        class="col-md-12 d-flex justify-content-end"
+        style="padding-left: 30px"
+      >
+        <mat-slide-toggle formControlName="active"></mat-slide-toggle>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row input-row mt-2">
+        <label
+          for="name"
+          class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+          >{{ "CHECKLIST.FORM.TASK.NAME" | translate }}</label
+        >
+        <div class="col-md-8 position-relative">
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            formControlName="name"
+          />
+          <small
+            class="form-text text-danger mt-2"
+            *ngIf="taskFormGroup.hasError('unique')"
+          >
+            {{ "MESSAGES.DUPLICATE_NAME" | translate }}
+          </small>
+        </div>
+      </div>
+      <div class="row input-row mt-2">
+        <label
+          for="costCenterTypes"
+          class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+        >
+          {{ "CHECKLIST.FORM.TASK.TYPE" | translate }}
+        </label>
+        <div class="col-md-8">
+          <ng-select
+            id="costCenterTypes"
+            formControlName="type"
+            appendTo="body"
+            (change)="onChangeType($event)"
+          >
+            <ng-option *ngFor="let item of taskType" [value]="item">
+              {{ "CHECKLIST.FORM.TASK_TYPE." + item | translate }}
+            </ng-option>
+          </ng-select>
+        </div>
+      </div>
+      <div
+        class="row input-row mt-2"
+        *ngIf="selectedTaskType === TaskTypeDto.UNIT"
+      >
+        <label
+          for="costCenterTypes"
+          class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+        >
+          {{ "CHECKLIST.FORM.TASK.MEASUREMENT" | translate }}
+        </label>
+        <div class="col-md-8">
+          <ng-select
+            id="measurement"
+            appendTo="body"
+            formControlName="measurement"
+            bindLabel="name"
+            [items]="measurementList"
+          >
+          </ng-select>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

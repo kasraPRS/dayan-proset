@@ -1,0 +1,95 @@
+<div class="row" *ngIf="workOrderDto.type != WorkOrderType.PREVENTIVE">
+  <div class="col-2">
+    <button
+      [disabled]="
+        workOrderService.workOrder.status !== WorkOrderStatus.UNDER_EXECUTION &&
+        workLog.status === WorkLogStatus.REGISTER
+      "
+      data-cy="dialog-submit"
+      class="btn btn-outline-primary px-3 white_button green_button_hover m-1 btn-sm"
+      type="button"
+      (click)="onSelectActivity()"
+    >
+      {{ "BUTTON.SELECT_ACTIVITY" | translate }}
+    </button>
+  </div>
+</div>
+<div id="table_id" class="row datatable_container">
+  <ngx-datatable
+    class="bootstrap viewOnly"
+    [rows]="activityList"
+    [loadingIndicator]="false"
+    [columnMode]="'force'"
+    [headerHeight]="40"
+    [footerHeight]="0"
+    [rowHeight]="'auto'"
+    [messages]="messages"
+  >
+    <ngx-datatable-column
+      name="{{ 'ACTIVITY.CODE' | translate }}"
+      prop="activityCode"
+    >
+    </ngx-datatable-column>
+    <ngx-datatable-column
+      name="{{ 'ACTIVITY.NAME' | translate }}"
+      prop="activityName"
+    >
+    </ngx-datatable-column>
+    <ngx-datatable-column
+      name="{{ 'ACTIVITY.STATUS' | translate }}"
+      prop="staus"
+      [minWidth]="300"
+    >
+      <ng-template
+        ngx-datatable-cell-template
+        let-rowIndex="rowIndex"
+        let-value="value"
+        let-row="row"
+      >
+        <div class="row" style="width: 200px">
+          <div
+            class="col-6 radius-border_success"
+            (click)="
+              isDisable ? null : onChangeStatus(row, ActivityStatus.SUCCESSFUL)
+            "
+            [ngClass]="{
+              successful_div: row.status === ActivityStatus.SUCCESSFUL
+            }"
+          >
+            <span class="mt-3">
+              {{ "ACTIVITY.ACTIVITY_STATUS.SUCCESSFUL" | translate }}
+            </span>
+          </div>
+          <div
+            class="col-6 radius-border_unsuccessful"
+            (click)="onChangeStatus(row, ActivityStatus.UNSUCCESSFUL)"
+            [ngClass]="{
+              unsuccessful_div: row.status === ActivityStatus.UNSUCCESSFUL
+            }"
+          >
+            <span>
+              {{ "ACTIVITY.ACTIVITY_STATUS.UNSUCCESSFUL" | translate }}
+            </span>
+          </div>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column
+      name="{{ 'GENERAL.ACTION' | translate }}"
+      *ngIf="
+        workOrderService.workOrder.status === WorkOrderStatus.UNDER_EXECUTION ||
+        workLog.status === WorkLogStatus.REJECT
+      "
+    >
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <a
+          class="mx-1 text-center"
+          role="button"
+          (click)="OnDeleteActivity(row)"
+        >
+          <i class="isax isax-trash"></i>
+        </a>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>

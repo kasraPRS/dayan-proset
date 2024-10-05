@@ -1,0 +1,12 @@
+<div class="d-flex justify-content-between flex-column layout">
+  <app-header *ngIf="isLogin"></app-header>
+  <div class="content">
+    <app-spinner></app-spinner>
+    <div class="mt-4">
+      <div class="container-fluid position-relative">
+        <proset-breadcrumb></proset-breadcrumb>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

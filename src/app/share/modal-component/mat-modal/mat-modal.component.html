@@ -1,0 +1,46 @@
+<h5 mat-dialog-title class="dialog_title">
+  @if (titleTemplateRef) {
+    <ng-container
+      [ngTemplateOutlet]="titleTemplateRef"
+      [ngTemplateOutletContext]="titleContext"
+    ></ng-container>
+  } @else if (title) {
+    <span>{{ title | translate }}</span>
+  } @else {
+    <span>Title here</span>
+  }
+</h5>
+<div mat-dialog-content class="dialog_content">
+  @if (bodyTemplateRef) {
+    <ng-container *ngTemplateOutlet="bodyTemplateRef"></ng-container>
+  } @else if (body) {
+    <p>{{ body | translate }}</p>
+  } @else {
+    <span>Body here</span>
+  }
+</div>
+
+@if (!actionLess) {
+  <div mat-dialog-actions>
+    @if (ctaTemplateRef) {
+      <ng-container
+        [ngTemplateOutlet]="ctaTemplateRef"
+        [ngTemplateOutletContext]="ctaContext"
+      ></ng-container>
+    } @else {
+      <div class="dialog_action">
+        <button mat-flat-button (click)="onCancel()">
+          {{ "GENERAL.NO" | translate }}
+        </button>
+        <button
+          mat-flat-button
+          color="primary"
+          cdkFocusInitial
+          [mat-dialog-close]="true"
+        >
+          {{ "GENERAL.YES" | translate }}
+        </button>
+      </div>
+    }
+  </div>
+}

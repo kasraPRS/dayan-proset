@@ -1,0 +1,72 @@
+<div class="dashboard-container">
+  <div
+    class="d-flex justify-content-between align-items-center header-report header-sticky"
+  >
+    <nav mat-tab-nav-bar>
+      <a
+        mat-tab-link
+        *ngFor="let tab of reportTabs; let i = index"
+        [active]="activeTabIndex === i"
+        (click)="activeTabIndex = i"
+      >
+        {{ tab | translate }}
+      </a>
+    </nav>
+
+    <div class="date-filter">
+      <div class="row">
+        <div class="col-3 text-end">
+          <label for="create_from" class="col-form-label"
+            ><b>{{ "FILTER.DATE_OF_CREATE" | translate }}</b></label
+          >
+        </div>
+        <div class="col-9">
+          <form
+            [formGroup]="form"
+            class="d-flex justify-content-between w-100 align-items-center"
+          >
+            <proset-datepicker
+              [dateInitValue]="false"
+              formControlName="fromDate"
+            ></proset-datepicker>
+            <div class="px-2">
+              <b>{{ "FILTER.TO" | translate }}</b>
+            </div>
+            <proset-datepicker
+              [dateInitValue]="false"
+              formControlName="toDate"
+              [min]="form.get('fromDate')?.value!"
+            ></proset-datepicker>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <mat-tab-nav-panel #tabPanel>
+    <ng-container *ngIf="activeTabIndex === 0">
+      <div class="tab-content">
+        <proset-work-order-report-tab
+          [fromDate]="form.get('fromDate')?.value"
+          [toDate]="form.get('toDate')?.value"
+        ></proset-work-order-report-tab>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="activeTabIndex === 1">
+      <div class="tab-content">
+        <proset-work-request-report-tab
+          [fromDate]="form.get('fromDate')?.value"
+          [toDate]="form.get('toDate')?.value"
+        ></proset-work-request-report-tab>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="activeTabIndex === 2">
+      <div class="tab-content"></div>
+    </ng-container>
+
+    <ng-container *ngIf="activeTabIndex === 3">
+      <div class="tab-content"></div>
+    </ng-container>
+  </mat-tab-nav-panel>
+</div>

@@ -1,0 +1,16 @@
+{
+  "SALARY_DEFINITION": {
+    "TITLE": "تعریف دستمزد",
+    "FORM": {
+      "STAFF": "کارمند",
+      "COST_PER_HOUR": "هزینه هر ساعت کارکرد عادی",
+      "OVER_TIME_COST": "هزینه هر ساعت اضافه کاری"
+    },
+    "TABLE": {
+      "STAFF": "کارمند",
+      "ACCOUNT_DETAIL": "کد تفضیلی",
+      "COST_PER_HOUR": "هزینه هر ساعت کارکرد عادی",
+      "OVER_TIME_COST": "هزینه هر ساعت اضافه کاری"
+    }
+  }
+}

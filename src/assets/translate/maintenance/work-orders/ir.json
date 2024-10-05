@@ -1,0 +1,171 @@
+{
+  "WORK_ORDERS": {
+    "TITLE": "دستور کار",
+    "BUTTONS": {
+      "NEW": "جدید",
+      "DELETE": "حذف",
+      "SAVE_AND_CLOSE": "ذخیره و بستن",
+      "EDIT": "ویرایش",
+      "SAVE": "ذخیره",
+      "COPY": "کپی",
+      "PRINT": "چاپ",
+      "REGISTRATION": "ثبت",
+      "RUN": "اجرا",
+      "UNDER_EXECUTION": "برگشت از اجرا",
+      "ADD": "افزودن",
+      "CALENDAR": "تقویم",
+      "LIST_ACTION": "لیست",
+      "KANBAN": "کانبان"
+    },
+    "FILTER": {
+      "TO": "تا",
+      "ORDER_TYPE": "نوع دستور",
+      "ASSET": "دارایی",
+      "NUMBER": "شماره",
+      "START_DATE": "تاریخ شروع",
+      "CATEGORY": "دسته بندی",
+      "PRIORITY": "اولویت",
+      "FITTERS": "پرسنل تعمیرات",
+      "EXECUTION_RESPONSIBLE": "مسئول اجرا",
+      "CREATOR": "ایجاد کننده",
+      "CREATION_DATE": "تاریخ ایجاد",
+      "EDITOR": "ویرایش کننده",
+      "EDIT_DATE": "تاریخ ویرایش",
+      "SHOW_ALL": "نمایش همه",
+      "JUST_ARCHIVED": "فقط آرشیو شده",
+      "HIDE_ARCHIVED": "مخفی کردن آرشیو"
+    },
+    "TABLE": {
+      "LIST": "لیست دستور کار",
+      "WORK_ORDERS_NUMBER": "شماره دستور کار",
+      "WORK_ORDERS_DATE": "تاریخ دستور کار",
+      "REQUEST_NUMBER": "شماره درخواست",
+      "TITLE": "عنوان",
+      "REQUEST_DATE": "تاریخ درخواست",
+      "REQUESTER_NAME": "نام درخواست کننده",
+      "FAILURE_LIST": "حالت خرابی",
+      "FAILURE_DETECTION": "روش کشف خرابی",
+      "ASSET": "دارایی",
+      "NUMBER_PLATE": "کد دارایی",
+      "EMPLACEMENT_LOCATION": "محل استقرار",
+      "ASSET_STATUS": "وضعیت دارایی",
+      "DESCRIPTION": "شرح",
+      "ORDER_TYPE": "نوع دستور",
+      "SERVICE_TITLE": "عنوان فعالیت",
+      "CATEGORY": "دسته بندی",
+      "PRIORITY": "اولویت انجام",
+      "REPAIR_CATEGORY": "تعمیرکار",
+      "REPAIR_PERSONNEL": "پرسنل تعمیرات",
+      "PERSONNEL": "پرسنل ",
+      "SERVICE": "فعالیت",
+      "EXECUTION_RESPONSIBLE": "مسئول اجرا",
+      "EXECUTION_RESPONSIBLE_CODE": "کد مسئول اجرا",
+      "ASSET_STATUS_WHILE_REPAIRING": "وضعیت دارایی در زمان تعمیر",
+      "ESTIMATION_TIME": "مدت زمان تخمینی",
+      "START_DATE": "تاریخ شروع",
+      "END_DATE": "تاریخ پایان",
+      "CREATOR": "ایجاد کننده",
+      "CREATION_DATE": "تاریخ ایجاد",
+      "LAST_EDIT_DATE": "تاریخ آخرین ویرایش",
+      "STATUS": "وضعیت",
+      "TIME_MINUTE": "{{minute}} دقیقه",
+      "TIME_HOUR": "{{hour}} ساعت",
+      "ESTIMATED_TIME": "{{hour}} ساعت {{minute}} دقیقه"
+    },
+    "FORM": {
+      "HEADERS": {
+        "WORK_ORDER": "دستور کار",
+        "WORK_LOG": "ثبت عملکرد",
+        "WORK_ORDERS_INFO": "اطلاعات دستور کار",
+        "TOOLS": "ابزارآلات",
+        "CONSUMABLE_EQUIPMENTS_AND_COMPONENTS": "قطعات و لوازم مصرفی"
+      },
+      "PLACEHOLDERS": {
+        "HOUR": "ساعت",
+        "MINUTE": "دقیقه"
+      },
+      "WORK_ORDERS_NUMBER": "شماره دستور کار",
+      "WORK_ORDERS_DATE": "تاریخ دستور کار",
+      "REQUEST_NUMBER": "شماره درخواست",
+      "TITLE": "عنوان",
+      "REQUEST_DATE": "تاریخ درخواست",
+      "REQUESTER_NAME": "نام درخواست کننده",
+      "ASSET": "دارایی",
+      "NUMBER_PLATE": "کد دارایی",
+      "EMPLACEMENT_LOCATION": "محل استقرار",
+      "ASSET_STATUS": "وضعیت دارایی",
+      "DESCRIPTION": "شرح",
+      "REQUEST_DESCRIPTION": "شرح درخواست",
+      "ORDER_TYPE": "نوع دستور",
+      "SERVICE_TITLE": "عنوان فعالیت",
+      "CATEGORY": "دسته بندی",
+      "PRIORITY": "اولویت انجام",
+      "MECHANIC": "تعمیرکار",
+      "FITTERS": "پرسنل تعمیرات",
+      "EXECUTION_RESPONSIBLE": "مسئول اجرا",
+      "EXECUTION_RESPONSIBLE_CODE": "کد مسئول اجرا",
+      "ASSET_STATUS_WHILE_REPAIRING": "وضعیت در زمان تعمیر",
+      "ESTIMATION_TIME": "مدت زمان تخمینی",
+      "START_DATE": "تاریخ و زمان شروع",
+      "END_DATE": "تاریخ و زمان پایان",
+      "DESCRIPTIONS": "توضیحات",
+      "TOOLS_NAME": "نام ابزار",
+      "CONSUMABLE_EQUIPMENTS_AND_COMPONENT_NAME": "نام قطعه و لوازم مصرفی",
+      "QUANTITY": "تعداد",
+      "DATE": "تاریخ"
+    },
+    "WORK_ORDER_TYPE": {
+      "CORRECTIVE": "اصلاحی",
+      "EMERGENCY": "اضطراری",
+      "PREVENTIVE": "پیش‌گیرانه"
+    },
+    "WORK_ORDER_TYPE_KANBAN": {
+      "CORRECTIVE": "اصلاحی",
+      "EMERGENCY": "اضطراری",
+      "PREVENTIVE": "دوره‌ای"
+    },
+    "RepairType": {
+      "INTERNAL": "درون سازمانی",
+      "EXTERNAL": "برون سازمانی"
+    },
+    "ASSET_CONDITION": {
+      "STOPPED": "متوقف",
+      "IS_WORKING": "در حال کار"
+    },
+    "PRIORITY": {
+      "CRITICAL": "اضطراری",
+      "HIGH": "فوری",
+      "MIDDLE": "جدی",
+      "LOW": "نرمال"
+    },
+    "MODAL": {
+      "UNDER_EXECUTION_TEXT": "آیا از برگشت از اجرای دستور کار اطمینان دارید؟",
+      "EXECUTION_TEXT": "آیا از اجرای دستور کار اطمینان دارید؟",
+      "DELETE_WORK_ORDER": "آیا از حذف دستور کار اطمینان دارید؟"
+    },
+    "MESSAGES": {
+      "MESSAGE_SUCCESS": " اطلاعات با موفقیت  ثبت شد.",
+      "MESSAGE_FAIL": " خطا در ذخیره سازی اطلاعات. ",
+      "ACTION_MESSAGE_SUCCESS": " عملیات با موفقیت انجام شد.",
+      "ACTION_MESSAGE_FAIL": " خطا در انجام عملیات. ",
+      "CODE_DUPLICATE": " شماره دستور کار تکراری است .",
+      "INVALID_DATE": "زمان پایان باید بزرگتر از زمان شروع باشد",
+      "ESTIMATED_TIME_MINUTE_MAX_ERROR": "دقیقه وارد شده بیشتر از حد مجاز است .",
+      "WORK_ORDER_NOT_DELETABLE": "این دستور کار قابل حذف نمی باشد.",
+      "WORK_ORDER_NOT_UPDATABLE": "این درستور کار قابل ویرایش نمی باشد.",
+      "RETURN_TO_LIST": "آیا از بازگشت به لیست اطمینان دارید؟"
+    },
+    "WORK_ORDER_CALENDAR": {
+      "DAY": "روز"
+    },
+    "STATUS": {
+      "OPEN": "باز",
+      "UNDER_EXECUTION": "درحال جرا",
+      "WORK_LOG": "ثبت عملکرد",
+      "FINISHED": "خاتمه یافته"
+    }
+  },
+  "WORK_ORDER_CALENDAR": {
+    "DAY": "روز"
+  }
+}

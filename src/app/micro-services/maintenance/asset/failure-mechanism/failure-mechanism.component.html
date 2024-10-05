@@ -1,0 +1,18 @@
+<div class="mt-3">
+  <app-datatable
+    id="FailureMechanism_Table"
+    [limit]="30"
+    [filterNumber]="filterNumber"
+    [config]="config"
+    [tableRow]="tableRow"
+    [newEntryFormTemplate]="FailureMechanismFormComponent"
+    [showFilter]="false"
+    [viewOnly]="true"
+    [showIndex]="true"
+    [scrollbarV]="false"
+    [scrollbarH]="true"
+    [formTitle]="'FAILURE_MECHANISM.TITLE'"
+    [newEntryPermission]="[permission.GROUP_CREATE]"
+    (onDoubleClickRow)="showFormInViewMode($event)"
+  ></app-datatable>
+</div>

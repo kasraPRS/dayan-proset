@@ -1,0 +1,27 @@
+{
+  "COST_CENTER": {
+    "TITLE": "تعریف مرکزهزینه",
+    "FORM": {
+      "TYPE": "نوع مرکزهزینه",
+      "NAME": "عنوان مرکزهزینه",
+      "CODE": "کد",
+      "DESCRIPTION": "توضیحات"
+    },
+    "TABLE": {
+      "TYPE": "نوع مرکزهزینه",
+      "NAME": "عنوان مرکزهزینه",
+      "CODE": "کد",
+      "DESCRIPTION": "توضیحات"
+    },
+    "TYPES": {
+      "OPERATIONAL": "عملیاتی",
+      "SUPPORT": "پشتیبانی",
+      "ADMINISTRATIVE_AND_ORGANIZATIONAL": "اداری و سازمانی"
+    },
+    "MESSAGES": {
+      "CODE_INVALID": ".کد نامعتبر است",
+      "CODE_ALREADY_EXIST": "کد وارد شده تکراری است",
+      "COST_CENTER_DELETE": "مرکزهزینه با موفقیت حذف شد."
+    }
+  }
+}

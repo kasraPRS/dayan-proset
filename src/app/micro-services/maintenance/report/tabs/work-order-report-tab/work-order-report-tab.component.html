@@ -1,0 +1,148 @@
+<div class="row report-grid-row">
+  <div
+    class="col report-grid-item"
+    *ngFor="let status of workOrderStatusCount?.workOrderStatusList"
+  >
+    <proset-status-card
+      class="w-100"
+      cardTitle="{{ 'WORK_ORDERS.STATUS.' + status.status | translate }}"
+      [value]="status.count!"
+      [color]="getOrderColorByStatus(status.status!)"
+      [loading]="getLoadingState('WORK_ORDER_STATUS')"
+    ></proset-status-card>
+  </div>
+</div>
+<div class="row report-grid-row">
+  <div class="col-md-4 report-grid-item">
+    <div class="action-btns">
+      <button
+        (click)="workOrderTypeToggle = !workOrderTypeToggle"
+        class="bg-transparent border-less"
+      >
+        <mat-icon
+          svgIcon="chart"
+          class="medium"
+          [style.color]="workOrderTypeToggle ? '#4876FF' : 'inherit'"
+        ></mat-icon>
+      </button>
+
+      <button
+        (click)="workOrderTypeToggle = !workOrderTypeToggle"
+        class="bg-transparent border-less"
+      >
+        <mat-icon
+          svgIcon="list"
+          [style.color]="!workOrderTypeToggle ? '#4876FF' : 'inherit'"
+          class="medium"
+        ></mat-icon>
+      </button>
+    </div>
+
+    <proset-chart
+      *ngIf="workOrderTypeToggle"
+      chartTitle="REPORT.TITLES.WORK_ORDER_BY_TYPE"
+      [fromDate]="fromDate"
+      [toDate]="toDate"
+      [reportType]="ReportType.WORK_ORDER_TYPE"
+      chartViewType="pie"
+    ></proset-chart>
+
+    <proset-chart
+      *ngIf="!workOrderTypeToggle"
+      chartTitle="REPORT.TITLES.WORK_ORDERـRATIO"
+      [fromDate]="fromDate"
+      [toDate]="toDate"
+      [reportType]="ReportType.WORK_ORDER_TYPE"
+      chartViewType="bar"
+    ></proset-chart>
+  </div>
+  <div class="col-md-4 report-grid-item">
+    <proset-chart
+      chartTitle="REPORT.TITLES.WORK_ORDER_BY_PRIORITY"
+      [fromDate]="fromDate"
+      [toDate]="toDate"
+      [reportType]="ReportType.WORK_ORDER_PRIORITY"
+    ></proset-chart>
+  </div>
+  <div class="col-md-4 report-grid-item">
+    <proset-chart
+      chartTitle="REPORT.TITLES.WORK_ORDER_COST"
+      [chartData]="workOrderCostPieOption"
+      [reportType]="ReportType.WORK_ORDER_STATUS"
+      [fromDate]="fromDate"
+      [toDate]="toDate"
+    ></proset-chart>
+  </div>
+</div>
+<div class="row report-grid-row">
+  <div class="col-md-6 report-grid-item">
+    <proset-chart
+      chartTitle="REPORT.TITLES.THE_PROCESS_OF_CREATED_AGENDAS"
+      [fromDate]="fromDate"
+      [toDate]="toDate"
+      [reportType]="ReportType.CREATED_WORK_ORDER"
+    ></proset-chart>
+  </div>
+  <div class="col-md-6 report-grid-item">
+    <proset-chart
+      chartTitle="REPORT.TITLES.PROCESS_OF_TERMINATED_AGENDAS"
+      [fromDate]="fromDate"
+      [toDate]="toDate"
+      [reportType]="ReportType.FINISHED_WORK_ORDER"
+    ></proset-chart>
+  </div>
+</div>
+<div class="row report-grid-row">
+  <div class="col-md-6 report-grid-item">
+    <proset-report-list-view
+      listTitle="REPORT.TITLES.FAULT_LIST"
+      [config]="workOrderFailureModeTableConfig"
+      [reportType]="ReportType.WORK_ORDER_FAILURE_MODE"
+      [fromDate]="fromDate"
+      [toDate]="toDate"
+    ></proset-report-list-view>
+  </div>
+  <div class="col-md-6 report-grid-item">
+    <div class="action-btns">
+      <button
+        (click)="workOrderExpiredToggle = !workOrderExpiredToggle"
+        class="bg-transparent border-less"
+      >
+        <mat-icon
+          svgIcon="chart"
+          class="medium"
+          [style.color]="workOrderExpiredToggle ? '#4876FF' : 'inherit'"
+        ></mat-icon>
+      </button>
+
+      <button
+        (click)="workOrderExpiredToggle = !workOrderExpiredToggle"
+        class="bg-transparent border-less"
+      >
+        <mat-icon
+          svgIcon="list"
+          [style.color]="!workOrderExpiredToggle ? '#4876FF' : 'inherit'"
+          class="medium"
+        ></mat-icon>
+      </button>
+    </div>
+
+    <proset-report-list-view
+      *ngIf="!workOrderExpiredToggle"
+      listTitle="REPORT.TITLES.EXPIRED_AGENDAS"
+      [config]="workOrderExpiredTableConfig"
+      [reportType]="ReportType.EXPIRED_WORK_ORDER"
+      [fromDate]="fromDate"
+      [toDate]="toDate"
+    ></proset-report-list-view>
+
+    <proset-chart
+      *ngIf="workOrderExpiredToggle"
+      chartTitle="REPORT.TITLES.EXPIRED_AGENDAS"
+      [fromDate]="fromDate"
+      [toDate]="toDate"
+      [reportType]="ReportType.EXPIRED_WORK_ORDER"
+      chartViewType="bar"
+    ></proset-chart>
+  </div>
+</div>

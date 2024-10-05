@@ -1,0 +1,93 @@
+@import "./variables";
+@import "./mixins.scss";
+
+// button
+.btn-blue-color-light {
+  background: $blue-color-light !important;
+  box-shadow: none;
+  color: $whit-color !important;
+}
+
+.btn-blue-color-dark {
+  background: $blue-color-dark !important;
+  box-shadow: none;
+  color: $whit-color !important;
+}
+.link-btn-blue-color-dark {
+  color: $blue-color-dark !important;
+  box-shadow: none;
+}
+.btn-whit-color {
+  background: $whit-color !important;
+  box-shadow: none;
+  border: 1px solid $whit-color;
+}
+.btn-blue-color-light-100 {
+  background: $blue-color-light-100 !important;
+  box-shadow: none;
+  border: 1px solid $blue-color-light-100;
+}
+.square-btn-1 {
+  @include square-btn($size3);
+  text-align: center;
+}
+.square-btn-2 {
+  @include square-btn($size4);
+  text-align: center;
+}
+
+//color
+
+.color-red-light {
+  color: $red-color-light;
+}
+
+.color-gray-light-100 {
+  color: $gray-color-light-100;
+  &:hover {
+    color: darken($gray-color-light-100, 10%);
+  }
+}
+
+//  border
+.border-radius-1 {
+  border-radius: $size;
+}
+.border-radius-2 {
+  border-radius: $size1;
+}
+.border-radius-3 {
+  border-radius: $size2;
+}
+.border-gray-light {
+  border-color: $gray-color-light-20 !important;
+}
+
+// font weight
+.w100 {
+  @include font-weight(thin);
+}
+.w200 {
+  @include font-weight(extra-light);
+}
+.w300 {
+  @include font-weight(light);
+}
+.w400 {
+  @include font-weight(book);
+}
+.w500 {
+  @include font-weight(medium);
+}
+.w600 {
+  @include font-weight(semi-bold);
+}
+.w700 {
+  @include font-weight(bold);
+}
+.w800 {
+  @include font-weight(extra-bold);
+}
+.w900 {
+  @include font-weight(ultra-bold);
+}

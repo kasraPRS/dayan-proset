@@ -1,0 +1,144 @@
+:root {
+  --tr: all 0.5s ease 0s;
+  --ch1: #05478a;
+  --ch2: #0070e0;
+  --cs1: #005e38;
+  --cs2: #03a65a;
+  --cw1: #c24914;
+  --cw2: #fc8621;
+  --ce1: #851d41;
+  --ce2: #db3056;
+}
+
+.toast-container {
+  margin-top: 80px;
+}
+
+.toast-item {
+  height: 100%;
+  transition: var(--tr);
+  position: relative;
+}
+
+.toastWrapp {
+  background: #fff;
+  color: #f5f5f5;
+  padding: 1rem 2rem 1rem 3rem;
+  text-align: center;
+  border-radius: 1rem;
+  position: relative;
+  font-weight: 300;
+  margin: 1rem 0;
+  text-align: left;
+  width: 100%;
+  transition: var(--tr);
+  opacity: 1;
+  border: 0.15rem solid #fff2;
+  box-shadow: 0 0 1.5rem 0 #1a1f4360;
+}
+
+.toastWrapp:before {
+  content: "";
+  position: absolute;
+  width: 0.5rem;
+  height: calc(100% - 1.5rem);
+  top: 0.75rem;
+  right: 0.5rem;
+  z-index: 0;
+  border-radius: 1rem;
+  background: var(--clr);
+}
+
+.toastWrapp h3 {
+  font-size: 1.2rem;
+  margin: 0;
+  line-height: 1.35rem;
+  font-weight: 600;
+  position: relative;
+  color: var(--clr);
+  text-align: start;
+}
+
+.toastWrapp p {
+  position: relative;
+  font-size: 0.95rem;
+  z-index: 1;
+  margin: 0.25rem 0 0;
+  color: #595959;
+  line-height: 1.3rem;
+  text-align: start;
+}
+
+.close {
+  position: absolute;
+  width: 1.35rem;
+  height: 1.35rem;
+  text-align: center;
+  left: 1rem;
+  cursor: pointer;
+  border-radius: 100%;
+}
+
+.close:after {
+  position: absolute;
+  font-family: "Varela Round", san-serif;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  font-size: 1.8rem;
+  content: "+";
+  transform: rotate(-45deg);
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #595959;
+  text-indent: 1px;
+}
+
+.close:hover:after {
+  background: var(--clr);
+  color: #fff;
+}
+
+.toast-item.success {
+  animation-delay: 2s;
+}
+
+.toast-item.warning {
+  animation-delay: 1s;
+}
+
+.toast-item.error {
+  animation-delay: 0s;
+}
+
+.toastWrapp.info {
+  --bg: var(--ch1);
+  --clr: var(--ch2);
+  --brd: var(--ch3);
+}
+
+.toastWrapp.success {
+  --bg: var(--cs1);
+  --clr: var(--cs2);
+  --brd: var(--cs3);
+}
+
+.toastWrapp.warning {
+  --bg: var(--cw1);
+  --clr: var(--cw2);
+  --brd: var(--cw3);
+}
+
+.toastWrapp.error {
+  --bg: var(--ce1);
+  --clr: var(--ce2);
+  --brd: var(--ce3);
+}
+
+.btn-close {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}

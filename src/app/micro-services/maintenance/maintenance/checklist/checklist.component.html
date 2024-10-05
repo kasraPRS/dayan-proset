@@ -1,0 +1,17 @@
+<div class="mt-3">
+  <app-datatable
+    id="checklistTable"
+    [limit]="30"
+    [config]="config"
+    [tableRow]="tableRow"
+    (onDoubleClickRow)="showFormInViewMode($event)"
+    [newWindowUrl]="'/maintenance/maintenance/checklist/form'"
+    [viewOnly]="true"
+    [showIndex]="true"
+    [scrollbarV]="false"
+    [showFilter]="false"
+    [scrollbarH]="true"
+    [formTitle]="'CHECKLIST.TITLE'"
+    [newEntryPermission]="[permission.CHECKLIST_CREATE]"
+  ></app-datatable>
+</div>

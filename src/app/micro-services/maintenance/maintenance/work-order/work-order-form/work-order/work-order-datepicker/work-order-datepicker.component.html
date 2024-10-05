@@ -1,0 +1,91 @@
+<div *ngIf="form" [formGroup]="form">
+  <div *ngIf="form.controls['type'].value !== workOrderType">
+    <div class="row form-group mt-1">
+      <label
+        class="col-md-4 col-form-label text-md-end mt-1"
+        [ngClass]="{
+          required: formStyle('startDate', form)
+        }"
+        >{{ "WORK_ORDERS.FORM.START_DATE" | translate }}</label
+      >
+      <div class="col-md-8 position-relative">
+        <proset-datepicker
+          formControlName="startDate"
+          [showTime]="true"
+          [min]="form.controls['date']?.value!"
+          [max]="form.controls['endDate']?.value!"
+        ></proset-datepicker>
+      </div>
+    </div>
+    <div class="row form-group mt-1">
+      <label
+        class="col-md-4 col-form-label text-md-end mt-1"
+        [ngClass]="{
+          required: formStyle('endDate', form)
+        }"
+        >{{ "WORK_ORDERS.FORM.END_DATE" | translate }}</label
+      >
+      <div class="col-md-8 position-relative">
+        <proset-datepicker
+          formControlName="endDate"
+          [min]="form.controls['date']?.value! && form.get('startDate')?.value"
+          [showTime]="true"
+        ></proset-datepicker>
+        <small
+          class="form-text text-danger mt-2"
+          *ngIf="
+            form.get('endDate')?.value && form.errors && form.errors['invalid']
+          "
+        >
+          {{ "WORK_ORDERS.MESSAGES.INVALID_DATE" | translate }}
+        </small>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="form.controls['type'].value === workOrderType">
+    <div class="row form-group mt-1">
+      <label
+        class="col-md-4 col-form-label text-md-end mt-1"
+        [ngClass]="{
+          required: formStyle('startDate', form)
+        }"
+        >{{ "WORK_ORDERS.FORM.START_DATE" | translate }}</label
+      >
+      <div class="col-md-8 position-relative">
+        <proset-datepicker
+          formControlName="startDate"
+          [showTime]="true"
+          [min]="scheduleStartDate"
+          [max]="scheduleEndDate"
+        ></proset-datepicker>
+      </div>
+    </div>
+    <div class="row form-group mt-1">
+      <label
+        class="col-md-4 col-form-label text-md-end mt-1"
+        [ngClass]="{
+          required: formStyle('endDate', form)
+        }"
+        >{{ "WORK_ORDERS.FORM.END_DATE" | translate }}</label
+      >
+      <div class="col-md-8 position-relative">
+        <proset-datepicker
+          formControlName="endDate"
+          [min]="form.controls['date']?.value! && form.get('startDate')?.value"
+          [max]="form.controls['date']?.value! && form.get('startDate')?.value"
+          [showTime]="true"
+          [disabled]="form.controls['type'].value === workOrderType"
+        ></proset-datepicker>
+        <small
+          class="form-text text-danger mt-2"
+          *ngIf="
+            form.get('endDate')?.value && form.errors && form.errors['invalid']
+          "
+        >
+          {{ "WORK_ORDERS.MESSAGES.INVALID_DATE" | translate }}
+        </small>
+      </div>
+    </div>
+  </div>
+</div>

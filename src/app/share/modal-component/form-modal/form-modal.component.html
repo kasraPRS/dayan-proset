@@ -1,0 +1,19 @@
+<h5 mat-dialog-title class="dialog_title">{{ title | translate }}</h5>
+
+<button (click)="onClose()" class="dialog_close">
+  <i class="fa-solid fa-close"></i>
+</button>
+
+<mat-dialog-content class="mat-typography">
+  <ng-template #targetComponent></ng-template>
+</mat-dialog-content>
+<mat-dialog-actions [align]="'end'" class="dialog_action">
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="onSave()"
+    [disabled]="formGroup?.invalid || viewMode"
+  >
+    {{ "GENERAL.SAVE" | translate }}
+  </button>
+</mat-dialog-actions>

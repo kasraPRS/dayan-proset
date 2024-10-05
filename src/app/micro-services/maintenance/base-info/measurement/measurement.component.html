@@ -1,0 +1,17 @@
+<div class="mt-3">
+  <app-datatable
+    id="measurementTable"
+    [tableRow]="tableRow"
+    [limit]="30"
+    [config]="config"
+    (onDoubleClickRow)="showFormInViewMode($event)"
+    [newEntryFormTemplate]="MeasurementFormComponent"
+    [viewOnly]="true"
+    [showIndex]="true"
+    [scrollbarV]="false"
+    [showFilter]="false"
+    [scrollbarH]="true"
+    [formTitle]="'MEASUREMENT.TITLE'"
+    [newEntryPermission]="[permission.MEASUREMENT_CREATE]"
+  ></app-datatable>
+</div>

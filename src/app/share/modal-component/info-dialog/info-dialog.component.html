@@ -1,0 +1,9 @@
+<h5 class="dialog_title">{{ title | translate }}</h5>
+<mat-dialog-content class="dialog_content">{{
+  contentMessage | translate
+}}</mat-dialog-content>
+<mat-dialog-actions class="dialog_action">
+  <button mat-flat-button color="primary" (click)="onClose()">
+    {{ "GENERAL.UNDERSTAND" | translate }}
+  </button>
+</mat-dialog-actions>

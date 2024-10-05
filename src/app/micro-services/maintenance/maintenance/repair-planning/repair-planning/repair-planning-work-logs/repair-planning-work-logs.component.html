@@ -1,0 +1,13 @@
+<div class="mt-3">
+  <app-datatable
+    [limit]="30"
+    [config]="config"
+    [scrollbarH]="true"
+    [tableRow]="workOrders"
+    (onDoubleClickRow)="onDoubleClick($event)"
+    [showFilter]="false"
+    [showToolbar]="false"
+    [newEntryPermission]="[permission.WORK_ORDER_CREATE]"
+  >
+  </app-datatable>
+</div>

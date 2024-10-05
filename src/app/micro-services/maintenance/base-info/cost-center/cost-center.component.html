@@ -1,0 +1,17 @@
+<div class="mt-3">
+  <app-datatable
+    [limit]="30"
+    [filterNumber]="filterNumber"
+    [config]="config"
+    [tableRow]="tableRow"
+    [newEntryFormTemplate]="CostCenterFormComponent"
+    (onDoubleClickRow)="showFormInViewMode($event)"
+    [showFilter]="false"
+    [viewOnly]="true"
+    [showIndex]="true"
+    [scrollbarV]="false"
+    [scrollbarH]="true"
+    [formTitle]="'COST_CENTER.TITLE'"
+    [newEntryPermission]="[permission.COST_CENTER_CREATE]"
+  ></app-datatable>
+</div>

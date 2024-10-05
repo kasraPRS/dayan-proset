@@ -1,0 +1,97 @@
+:host ::ng-deep .datatable-body-cell {
+  text-align: center !important;
+  vertical-align: center !important;
+  font-size: 12px;
+}
+
+:host ::ng-deep .datatable-footer {
+  background: none !important;
+  filter: alpha(opacity=0) !important;
+  direction: rtl !important;
+  color: #080808 !important;
+}
+
+.separator {
+  border-left: 1px solid #9c9c9c;
+}
+
+.divider {
+  min-height: 40px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.badge-filter {
+  background: #4876ff;
+  width: 16px;
+  height: 16px;
+  border-radius: 100%;
+  color: white;
+  position: absolute;
+  left: 7px;
+}
+
+.no-message-found {
+  font-size: medium;
+}
+
+:host ::ng-deep .viewOnly .datatable-header-cell,
+:host ::ng-deep .viewOnly .datatable-body-cell {
+  text-align: center !important;
+  vertical-align: center !important;
+  font-size: 12px;
+}
+
+:host ::ng-deep .viewOnly .datatable-header {
+  background-color: #fff;
+  border-radius: 8px;
+  width: 100% !important;
+}
+
+:host ::ng-deep .viewOnly .visible {
+  overflow: hidden;
+  width: 100% !important;
+}
+
+:host ::ng-deep .viewOnly .datatable-header-cell span,
+:host ::ng-deep .viewOnly .datatable-header-cell-template-wrap {
+  color: #fff;
+}
+
+:host ::ng-deep .viewOnly .datatable-body-row {
+  border-top: 0px solid #fff !important;
+  border-bottom: 10px solid #fff !important;
+  //background-color: #fff !important;
+}
+
+:host ::ng-deep .viewOnly .datatable-body-row .datatable-row-center {
+  box-shadow: 0px 4px 12px 0px #72727226;
+  //border-radius: 1.25vmin;
+}
+
+:host ::ng-deep .viewOnly .datatable-header {
+  margin-bottom: 1%;
+}
+
+.viewOnly::-webkit-scrollbar,
+:host ::ng-deep .viewOnly .datatable-body::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+  background: #c6c6c6;
+}
+
+.viewOnly::-webkit-scrollbar-thumb,
+:host ::ng-deep .viewOnly .datatable-body::-webkit-scrollbar-thumb {
+  background: #00a1e0;
+}
+
+.viewOnly::-webkit-scrollbar-thumb:hover,
+:host ::ng-deep .viewOnly .datatable-body::-webkit-scrollbar-thumb:hover {
+  background: #00a1e0;
+}
+
+:host ::ng-deep .viewOnly .datatable-header .datatable-row-center {
+  background-color: #00a1e0 !important;
+}

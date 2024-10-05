@@ -1,0 +1,67 @@
+<div
+  class="form-continer"
+  [ngClass]="{
+    'view-mode': viewMode
+  }"
+>
+  <form class="form-level mt-5" [formGroup]="formGroup">
+    <div class="row">
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="code"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+            >{{ "FAIL_DETECTION.FORM.CODE" | translate }}</label
+          >
+          <div class="col-md-8 position-relative">
+            <input
+              type="text"
+              class="form-control"
+              id="code"
+              formControlName="code"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="name"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1"
+            [ngClass]="{
+              required: formGroup.controls['name'].validator
+            }"
+            >{{ "FAIL_DETECTION.FORM.NAME" | translate }}</label
+          >
+          <div class="col-md-8 d-flex position-relative">
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              formControlName="name"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="description"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1"
+            >{{ "FAIL_DETECTION.FORM.DESCRIPTION" | translate }}</label
+          >
+          <div class="col-md-8 d-flex position-relative">
+            <textarea
+              type="text"
+              class="form-control"
+              id="description"
+              formControlName="description"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

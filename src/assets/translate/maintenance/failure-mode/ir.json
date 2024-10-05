@@ -1,0 +1,22 @@
+{
+  "FAILURE_MODE": {
+    "TITLE": "تعریف حالت‌خرابی",
+    "FORM": {
+      "ASSET": "دارایی",
+      "NAME": "عنوان حالت‌خرابی",
+      "CODE": "کد",
+      "DESCRIPTION": "توضیحات"
+    },
+    "TABLE": {
+      "NAME": "عنوان حالت‌خرابی",
+      "CODE": "کد",
+      "ASSET": "دارایی",
+      "DESCRIPTION": "توضیحات"
+    },
+    "MESSAGES": {
+      "CODE_INVALID": ".کد نامعتبر است",
+      "CODE_ALREADY_EXIST": "کد وارد شده تکراری است",
+      "FAILURE_MODE_DELETE": "حالت‌خرابی با موفقیت حذف شد."
+    }
+  }
+}

@@ -1,0 +1,284 @@
+<div class="p-2" [formGroup]="form">
+  <div class="row m-0">
+    <div class="col-4">
+      <div class="row input-row mt-2">
+        <label class="col-md-4 col-form-label text-dark text-md-end mt-1">{{
+          "ASSET.FORM.FINANCIAL.PURCHASE_PRICE" | translate
+        }}</label>
+        <div class="col-md-8 d-flex position-relative">
+          <input
+            type="text"
+            class="form-control"
+            id="price"
+            inputPrice
+            numbersOnly
+            formControlName="price"
+          />
+          <span class="my-2 mx-3 light_text position-absolute left_align top-0">
+            {{ "CURRENCY.RIAL" | translate }}
+          </span>
+        </div>
+      </div>
+
+      <div class="row d-flex form-group mt-2">
+        <label class="col-md-4 col-form-label text-dark text-md-end mt-1">
+          {{ "ASSET.FORM.FINANCIAL.PURCHASE_DATE" | translate }}
+        </label>
+        <div class="col-md-8">
+          <proset-datepicker
+            formControlName="purchaseDate"
+            [max]="utilizationDate"
+          ></proset-datepicker>
+          <small
+            class="form-text text-danger mt-2"
+            *ngIf="
+              form
+                .get('purchaseDate')
+                ?.hasError('purchaseDateBeforeUtilizationDate')
+            "
+          >
+            {{
+              "ASSET.MESSAGES.PURCHASE_DATE_BEFORE_UTILIZATION_DATE" | translate
+            }}
+          </small>
+        </div>
+      </div>
+
+      <div class="row input-row mt-2">
+        <label class="col-md-4 col-form-label text-dark text-md-end mt-1">{{
+          "ASSET.FORM.FINANCIAL.PURCHASE_INVOICE_NUMBER" | translate
+        }}</label>
+        <div class="col-md-8 d-flex position-relative">
+          <input
+            type="text"
+            class="form-control"
+            id="invoiceNumber"
+            numbersOnly
+            formControlName="invoiceNumber"
+          />
+        </div>
+      </div>
+
+      <div class="row input-row mt-2">
+        <label class="col-md-4 col-form-label text-dark text-md-end mt-1">{{
+          "ASSET.FORM.FINANCIAL.SUPPLIER" | translate
+        }}</label>
+        <div class="col-md-8 d-flex position-relative">
+          <proset-person-select
+            class="w-100"
+            [userType]="userType.SUPPLIER"
+            [value]="supplier"
+            (personChange)="onPersonChange($event)"
+          ></proset-person-select>
+        </div>
+      </div>
+
+      <div class="row input-row mt-2">
+        <label class="col-md-4 col-form-label text-dark text-md-end mt-1">{{
+          "ASSET.FORM.FINANCIAL.COST_CENTER" | translate
+        }}</label>
+        <div class="col-md-8 d-flex position-relative">
+          <proset-cost-center-select
+            class="w-100"
+            [value]="costCenter"
+            (costCenterChange)="onCostCenterChange($event)"
+          >
+          </proset-cost-center-select>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="row input-row mt-2">
+        <label class="col-md-4 col-form-label text-dark text-md-end mt-1">{{
+          "ASSET.FORM.FINANCIAL.DEPRECIATION_METHOD" | translate
+        }}</label>
+        <div class="col-md-8 d-flex gap-2 position-relative">
+          <ng-select formControlName="depreciationMethod" class="w-100">
+            <ng-option
+              *ngFor="let item of depreciationMethod"
+              [value]="item"
+              [disabled]="item == DepreciationMethod.DESCENDING"
+            >
+              {{ "ASSET.FORM.DEPRECIATION_METHOD." + item | translate }}
+            </ng-option>
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="row input-row mt-2">
+        <label class="col-md-4 col-form-label text-dark text-md-end mt-1">{{
+          "ASSET.FORM.FINANCIAL.CONSUMABLE_LIFE" | translate
+        }}</label>
+        <div class="col-md-8 position-relative">
+          <input
+            type="text"
+            class="form-control"
+            id="consumableLife"
+            numbersOnly
+            formControlName="consumableLife"
+          />
+          <small
+            class="form-text text-danger mt-2"
+            *ngIf="form.get('consumableLife')?.hasError('min')"
+          >
+            {{ "ASSET.MESSAGES.ZIRO_LESS" | translate }}
+          </small>
+        </div>
+      </div>
+
+      <div class="row input-row mt-2">
+        <label class="col-md-4 col-form-label text-dark text-md-end mt-1">{{
+          "ASSET.FORM.FINANCIAL.DEPRECIATION_RATE" | translate
+        }}</label>
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-12 position-relative">
+              <input
+                type="text"
+                class="form-control"
+                id="depreciationRate"
+                numbersOnly
+                formControlName="depreciationRate"
+              />
+              <span
+                class="my-2 mx-3 light_text position-absolute left_align top-0"
+              >
+                {{ "GENERAL.PERCENT" | translate }}
+              </span>
+            </div>
+            <div class="col-12">
+              <small
+                class="form-text text-danger mt-2"
+                *ngIf="form.get('depreciationRate')?.hasError('min')"
+              >
+                {{ "ASSET.MESSAGES.ZIRO_LESS" | translate }}
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row input-row mt-2">
+        <label class="col-md-4 col-form-label text-dark text-md-end mt-1">{{
+          "ASSET.FORM.FINANCIAL.IMPAIRMENT_VALUE" | translate
+        }}</label>
+        <div class="col-md-8 position-relative d-flex flex-column">
+          <div class="w-100">
+            <input
+              type="text"
+              class="form-control"
+              id="depreciationValue"
+              numbersOnly
+              inputPrice
+              formControlName="depreciationValue"
+            />
+            <span
+              class="my-2 mx-3 light_text position-absolute left_align top-0"
+            >
+              {{ "CURRENCY.RIAL" | translate }}
+            </span>
+          </div>
+          <small
+            class="form-text text-danger mt-2"
+            *ngIf="form.hasError('depreciationExceedsPrice')"
+          >
+            {{
+              "ASSET.MESSAGES.DEPRECIATION_VALUE_MUST_BE_LESS_THAN_OR_EQUAL_TO_PRICE"
+                | translate
+            }}
+          </small>
+        </div>
+      </div>
+
+      <div class="row input-row mt-2">
+        <label class="col-md-4 col-form-label text-dark text-md-end mt-1">{{
+          "ASSET.FORM.FINANCIAL.ACCUMULATED_DEPRECIATION" | translate
+        }}</label>
+        <div class="col-md-8 d-flex position-relative">
+          <input
+            type="text"
+            class="form-control"
+            id="accumulatedDepreciation"
+            numbersOnly
+            inputPrice
+            formControlName="accumulatedDepreciation"
+          />
+          <span class="my-2 mx-3 light_text position-absolute left_align top-0">
+            {{ "CURRENCY.RIAL" | translate }}
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="row input-row mt-2">
+        <label class="col-md-4 col-form-label text-dark text-md-end mt-1">{{
+          "ASSET.FORM.FINANCIAL.BOOK_VALUE" | translate
+        }}</label>
+        <div class="col-md-8 d-flex position-relative">
+          <input
+            type="text"
+            class="form-control"
+            id="bookValue"
+            inputPrice
+            formControlName="bookValue"
+          />
+          <span class="my-2 mx-3 light_text position-absolute left_align top-0">
+            {{ "CURRENCY.RIAL" | translate }}
+          </span>
+        </div>
+      </div>
+
+      <div class="row d-flex form-group mt-2">
+        <label class="col-md-4 col-form-label text-dark text-md-end mt-1">
+          {{ "ASSET.FORM.FINANCIAL.CONSUMABLE_LIFE_DATE" | translate }}
+        </label>
+        <div class="col-md-8">
+          <proset-datepicker
+            formControlName="depreciationDate"
+            [disabled]="true"
+          ></proset-datepicker>
+        </div>
+      </div>
+
+      <div class="row input-row mt-2">
+        <label class="col-md-4 col-form-label text-dark text-md-end mt-1">{{
+          "ASSET.FORM.FINANCIAL.STATUS_WHILE_PURCHASE" | translate
+        }}</label>
+        <div class="col-md-8 d-flex position-relative">
+          <ng-select formControlName="purchaseStatus" class="w-100">
+            <ng-option *ngFor="let item of purchaseStatus" [value]="item">
+              {{ "ASSET.FORM.STATUS_WHILE_PURCHASE." + item | translate }}
+            </ng-option>
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="row input-row mt-2">
+        <label class="col-md-4 col-form-label text-dark text-md-end mt-1">{{
+          "ASSET.FORM.FINANCIAL.REPLACEMENT_VALUE" | translate
+        }}</label>
+        <div class="col-md-8 d-flex position-relative">
+          <input
+            type="text"
+            class="form-control"
+            id="replacementValue"
+            numbersOnly
+            inputPrice
+            formControlName="replacementValue"
+          />
+          <span class="my-2 mx-3 light_text position-absolute left_align top-0">
+            {{ "CURRENCY.RIAL" | translate }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row m-0 mt-2" *ngIf="chartOption">
+    <proset-chart
+      [chartData]="chartOption"
+      fromDate=""
+      toDate=""
+      [reportType]=""
+    ></proset-chart>
+  </div>
+</div>

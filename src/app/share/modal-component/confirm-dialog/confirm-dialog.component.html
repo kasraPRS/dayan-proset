@@ -1,0 +1,26 @@
+<div
+  class="alert alert-info"
+  role="alert"
+  *ngIf="warningMessages && warningMessages.length > 0"
+>
+  <ul>
+    <li *ngFor="let warning of warningMessages">
+      {{ warning | translate }}
+    </li>
+  </ul>
+</div>
+<mat-dialog-content class="dialog_content"
+  >{{ contentMessage | translate }}
+  <div class="form-group mt-4" *ngIf="scopeVars.hasDescription">
+    <label>{{ "GENERAL.DESCRIPTION" | translate }}</label>
+    <textarea class="form-control" [(ngModel)]="descriptionContent"></textarea>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog_action">
+  <button mat-flat-button (click)="onClose()">
+    {{ "GENERAL.NO" | translate }}
+  </button>
+  <button mat-flat-button color="primary" (click)="onSubmitClick()">
+    {{ "GENERAL.YES" | translate }}
+  </button>
+</mat-dialog-actions>

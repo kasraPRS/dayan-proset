@@ -1,0 +1,224 @@
+<form [formGroup]="workLogForm" class="mt-2">
+  <div class="row">
+    <div class="col-4">
+      <div class="row d-flex form-group mt-1">
+        <label
+          for="end-date-and-time"
+          class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+          >{{ "WORK_LOG.END_DATE_AND_TIME" | translate }}</label
+        >
+        <div class="col-md-8">
+          <proset-datepicker
+            id="end-date-and-time"
+            [showTime]="true"
+            (dateChange)="onDateChange($event)"
+            formControlName="endDateAndTime"
+          ></proset-datepicker>
+          <small
+            id="code_error_duplicated"
+            class="form-text text-danger mt-2"
+            *ngIf="
+              workLogForm.controls['endDateAndTime'].hasError('formIsInvalid')
+            "
+          >
+            {{
+              "WORK_LOG.MESSAGES.DATE_AND_TIME_AFTER_WORK_ORDER_DATE_AND_TIME"
+                | translate
+            }}
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="row d-flex form-group mt-1">
+        <label
+          for=""
+          class="col-md-5 col-form-label text-dark text-md-end mt-1 required"
+          >{{ "WORK_LOG.ASSET_DOWNTIME_DURATION" | translate }} :</label
+        >
+        <div class="col-md-7 position-relative">
+          <div class="row">
+            <div class="d-flex flex-nowrap gap-2">
+              <div class="w-50 position-relative">
+                <input
+                  id="asset-down-time"
+                  type="number"
+                  class="form-control"
+                  numbersOnly
+                  (keyup)="checkMinuteValidation($event)"
+                  formControlName="assetMinuteDownTime"
+                />
+                <span
+                  class="my-2 mx-1 light_text position-absolute left_align top-0"
+                >
+                  {{ "GENERAL.MINUTE" | translate }}
+                </span>
+              </div>
+              <div class="w-50 position-relative">
+                <input
+                  id=""
+                  type="number"
+                  class="form-control"
+                  formControlName="assetHourDownTime"
+                />
+                <span
+                  class="my-2 mx-1 light_text position-absolute left_align top-0"
+                >
+                  {{ "GENERAL.HOUR" | translate }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="row d-flex form-group mt-1">
+        <label
+          for="end-date-and-time"
+          class="col-md-4 col-form-label text-dark text-md-end mt-1"
+          >{{ "WORK_LOG.COST" | translate }}</label
+        >
+        <div class="col-md-8">
+          <input
+            id="cost"
+            class="form-control"
+            [disabled]="true"
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="workOrder.cost"
+            inputPrice
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class="row" *ngIf="workOrderType != WorkOrderType.PREVENTIVE">
+    <proset-work-log-activity [workLog]="workLog"></proset-work-log-activity>
+  </div>
+  <div class="row" *ngIf="workOrderType === WorkOrderType.PREVENTIVE">
+    <proset-work-log-checklist [workLog]="workLog"></proset-work-log-checklist>
+  </div>
+  <mat-divider class="mt-3 mb-3 material-devider"></mat-divider>
+  <div>
+    <proset-work-log-personnel [workLog]="workLog"></proset-work-log-personnel>
+  </div>
+  <mat-divider class="mt-3 mb-3 material-devider"></mat-divider>
+  <div class="row">
+    <proset-work-log-contractor
+      [workLog]="workLog"
+    ></proset-work-log-contractor>
+  </div>
+  <mat-divider class="mt-3 mb-3 material-devider"></mat-divider>
+  <div class="row">
+    <proset-work-log-part [workLog]="workLog"></proset-work-log-part>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-12">
+      <label class="col-form-label text-dark">
+        {{ "WORK_LOG.DESCRIPTION" | translate }}
+      </label>
+    </div>
+    <div class="row">
+      <ckeditor
+        formControlName="logDescription"
+        [editor]="editor"
+        [config]="{
+          language: 'fa',
+          toolbar: [
+            'undo',
+            'redo',
+            '|',
+            'heading',
+            '|',
+            'fontfamily',
+            'fontsize',
+            'fontColor',
+            'fontBackgroundColor',
+            '|',
+            'bold',
+            'italic',
+            'strikethrough',
+            'subscript',
+            'superscript',
+            'code',
+            '|',
+            'bulletedList',
+            'numberedList',
+            'todoList',
+            'outdent',
+            'indent'
+          ]
+        }"
+        (ready)="onReadyEditor($event)"
+      >
+      </ckeditor>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-12 text-end">
+      <button
+        class="btn btn-primary px-5 btn-sm mx-3 my-3"
+        *ngIf="
+          workOrder.status === WorkOrderStatus.UNDER_EXECUTION ||
+          workLog.status === WorkLogStatus.REJECT
+        "
+        [disabled]="workLogForm.invalid || isFormInvalid"
+        (click)="onSaveWorkLog()"
+      >
+        <span>{{ "WORK_LOG.BUTTON.SAVE" | translate }}</span>
+      </button>
+      <button
+        class="btn btn-danger px-5 btn-sm mx-1 my-3"
+        *ngIf="
+          workOrder.status !== WorkOrderStatus.UNDER_EXECUTION &&
+          workLog.status === WorkLogStatus.REGISTER
+        "
+        (click)="onDeleteWorkLog()"
+      >
+        <span class="px-2">{{ "WORK_LOG.BUTTON.DELETE" | translate }}</span>
+      </button>
+      <button
+        class="btn btn-info px-5 btn-sm mx-1 my-3"
+        (click)="onChangeWorkLogStatus(WorkLogStatus.REJECT)"
+        *ngIf="
+          workOrder.status !== WorkOrderStatus.UNDER_EXECUTION &&
+          workLog.status === WorkLogStatus.REGISTER
+        "
+      >
+        <span class="px-2">{{ "WORK_LOG.BUTTON.REJECT" | translate }}</span>
+      </button>
+      <button
+        class="btn btn-info px-5 btn-sm mx-1 my-3"
+        (click)="onChangeWorkLogStatus(WorkLogStatus.APPROVED)"
+        *ngIf="
+          workOrder.status !== WorkOrderStatus.UNDER_EXECUTION &&
+          workLog.status === WorkLogStatus.REGISTER
+        "
+      >
+        <span class="px-2">{{ "WORK_LOG.BUTTON.CONFIRM" | translate }}</span>
+      </button>
+      <button
+        class="btn btn-info px-5 btn-sm mx-1 my-3"
+        (click)="onChangeWorkLogStatus(WorkLogStatus.RETURN_FROM_APPROVED)"
+        *ngIf="workLog.status === WorkLogStatus.APPROVED"
+      >
+        <span class="px-2">{{ "BUTTON.RETURN_FROM_CONFIRM" | translate }}</span>
+      </button>
+      <button
+        class="btn btn-info px-5 btn-sm mx-1 my-3"
+        (click)="onChangeWorkLogStatus(WorkLogStatus.CALCULATED)"
+        *ngIf="workLog.status === WorkLogStatus.APPROVED"
+      >
+        <span class="px-2">{{ "BUTTON.CALCULATE" | translate }}</span>
+      </button>
+      <button
+        class="btn btn-info px-5 btn-sm mx-1 my-3"
+        (click)="onChangeWorkLogStatus(WorkLogStatus.RETURN_FROM_CALCULATION)"
+        *ngIf="workLog.status === WorkLogStatus.CALCULATED"
+      >
+        <span class="px-2">{{ "BUTTON.RETURN_CALCULATE" | translate }}</span>
+      </button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,139 @@
+<div
+  class="form-continer"
+  [ngClass]="{
+    'view-mode': viewMode
+  }"
+>
+  <form class="form-group mt-5" [formGroup]="formGroup">
+    <div class="row">
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="code"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1"
+            [ngClass]="{
+              required: formGroup.controls['code'].validator
+            }"
+            >{{ "GROUP.FORM.CODE" | translate }}</label
+          >
+          <div class="col-md-8 position-relative">
+            <input
+              type="text"
+              class="form-control"
+              id="code"
+              formControlName="code"
+            />
+            <small
+              id="code_error_duplicated"
+              class="form-text text-danger mt-2"
+              *ngIf="formGroup.get('code')?.hasError('isDuplicate')"
+            >
+              {{ "GROUP.MESSAGES.CODE_ALREADY_EXIST" | translate }}
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="name"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1"
+            [ngClass]="{
+              required: formGroup.controls['name'].validator
+            }"
+            >{{ "GROUP.FORM.NAME" | translate }}</label
+          >
+          <div class="col-md-8 d-flex position-relative">
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              formControlName="name"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="level"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+            >{{ "GROUP.FORM.LEVEL" | translate }}</label
+          >
+          <div class="col-md-8 d-flex position-relative">
+            <div class="w-100">
+              <ng-select
+                id="level"
+                appendTo="body"
+                formControlName="level"
+                [items]="levels"
+                bindLabel="name"
+                [loading]="levels.length == 0"
+                [readonly]="viewMode"
+                [searchable]="false"
+                #selectLevel
+              >
+                <ng-template ng-header-tmp>
+                  <div class="form-group has-feedback">
+                    <input
+                      style="width: 100%; line-height: 24px"
+                      type="text"
+                      class="form-control"
+                      id="inputValidation"
+                      placeholder="{{ 'GENERAL.SEARCH' | translate }}"
+                      (input)="onSearch($event, selectLevel)"
+                    />
+                  </div>
+                </ng-template>
+                <ng-template ng-option-tmp let-item="item">
+                  <mat-card class="example-card">
+                    <mat-card-header>
+                      <mat-card-title-group>
+                        <mat-card-title>{{ item.name }}</mat-card-title>
+                        <mat-card-subtitle>
+                          {{ item.code }}
+                        </mat-card-subtitle>
+                      </mat-card-title-group>
+                    </mat-card-header>
+                  </mat-card>
+                </ng-template>
+                <ng-template ng-footer-tmp>
+                  <div class="d-flex justify-content-end">
+                    <button
+                      *prosetHasPermissions="[permission.LEVEL_CREATE]"
+                      class="btn btn-info btn-sm d-flex"
+                      (click)="onNewLevel()"
+                    >
+                      <i class="fa-solid fa-plus fs-6"></i>
+                      <span class="mx-1"></span>
+                      {{ "SHARE_COMPONENT.CREATE_NEW_LEVEL" | translate }}
+                    </button>
+                  </div>
+                </ng-template>
+              </ng-select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="description"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1"
+            >{{ "GROUP.FORM.DESCRIPTION" | translate }}</label
+          >
+          <div class="col-md-8 d-flex position-relative">
+            <textarea
+              type="text"
+              class="form-control"
+              id="description"
+              formControlName="description"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

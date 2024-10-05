@@ -1,0 +1,17 @@
+<div class="expandable-row">
+  <div class="pr-2">
+    <div class="mb-2">
+      <strong>{{ "REPAIR_PLANNING.ACTIVITY" | translate }}</strong>
+    </div>
+    <div class="mt-2" *ngFor="let task of tasksList; let i = index">
+      <span>
+        <b>{{ "REPAIR_PLANNING.ACTIVITY_NAME" | translate }} : </b
+        >{{ task?.name }},
+      </span>
+      <span>
+        <b>{{ "ACTIVITY.FORM.TYPE" | translate }} : </b>
+        {{ "CHECKLIST.FORM.TASK_TYPE." + task?.type | translate }}
+      </span>
+    </div>
+  </div>
+</div>

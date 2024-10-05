@@ -1,0 +1,55 @@
+{
+  "REPORT": {
+    "TABS": {
+      "REQUEST": "درخواست کار",
+      "WORK_ORDER": "دستور کار",
+      "ASSET": "دارایی",
+      "PARTS": "قطعات"
+    },
+    "TITLES": {
+      "WORK_ORDER_BY_TYPE": "دستورکار بر حسب نوع",
+      "WORK_ORDER_BY_PRIORITY": "دستورکارها بر اساس اولویت",
+      "WORK_ORDERـRATIO": "نسبت دستورکارها",
+      "WORK_ORDER_COST": "هزینه دستورکارها",
+      "GRAPH_OF_AGENDA_COST_TREND_OVER_TIME": "نمودار روند هزینه دستورکارها در ازای زمان",
+      "PROCESS_OF_TERMINATED_AGENDAS": "روند دستورکارهای خاتمه یافته",
+      "THE_PROCESS_OF_CREATED_AGENDAS": "روند دستورکارهای ایجاد شده",
+      "COST_REPORT_BY_TYPE": "گزارش هزینه محاسبه به تفکیک نوع",
+      "EXPIRED_AGENDAS": "دستورکارهای تاریخ گذشته",
+      "FAULT_LIST": "لیست خرابی ها",
+      "ACCEPTED_REQUESTS": "درخواست کارهای تایید شده",
+      "REJECTED_REQUESTS": "درخواست کارهای رد شده",
+      "WAIT_FOR_ACCEPT_REQUESTS": "درخواست کارهای در انتظار تایید",
+      "CONVERTED_REQUESTS_TO_AGENDAS": "درخواست کارهای تبدیل شده به دستورکار",
+      "TOTAL_REQUESTS": "تعداد درخواست کارها",
+      "MONTHLY_REQUEST_ISSUANCE_TREND": "روند صدور درخواست کار به ازای ماه",
+
+      "TOP_WORKING_HOURS": "لیست بیشترین ساعات کاری",
+      "TOP_MAINTENANCE_COSTS": "لیست بیشترین هزینه تعمیرات دارایی",
+      "FAULTY_DEVICES": "دستگاهای با بیشترین خرابی",
+      "DOWNTIME_HOURS": "ساعات توقف دارایی",
+      "ASSET_COST_DETAILS": "جزییات هزینه دارایی",
+      "REQUEST": "درخواست",
+      "FROM": "از"
+    },
+    "TABLE": {
+      "NAME": "حالت خرابی",
+      "CODE": "کد خرابی",
+      "ASSET_NAME": "دارایی",
+      "COUNT": "تعداد",
+
+      "WORK_ORDER": "دستورکار",
+      "ASSET": "عنوان دارایی",
+      "ASSET_CODE": "کد دارایی",
+      "PRIORITY": "اولویت",
+      "STATUS": "وضعیت",
+      "END_DATE": "تاریخ پایان",
+      "DAY_AFTER_END_DATE": "مدت زمان گذشته از دستور"
+    },
+    "MESSAGES": {
+      "CODE_INVALID": ".کد نامعتبر است",
+      "CODE_ALREADY_EXIST": "کد وارد شده تکراری است",
+      "LEVEL_DELETE": "کلاس با موفقیت حذف شد."
+    }
+  }
+}

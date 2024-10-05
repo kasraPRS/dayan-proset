@@ -1,0 +1,22 @@
+{
+  "WORK_CENTER": {
+    "TITLE": "تعریف مرکز‌کاری",
+    "FORM": {
+      "NAME": "عنوان مرکز‌کاری",
+      "CODE": "کد",
+      "DESCRIPTION": "توضیحات",
+      "PRODUCTION_LINE": "خط‌تولید"
+    },
+    "TABLE": {
+      "NAME": "عنوان مرکز‌کاری",
+      "CODE": "کد",
+      "DESCRIPTION": "توضیحات",
+      "PRODUCTION_LINE": "خط‌تولید"
+    },
+    "MESSAGES": {
+      "CODE_INVALID": ".کد نامعتبر است",
+      "CODE_ALREADY_EXIST": "کد وارد شده تکراری است",
+      "WORK_CENTER_DELETE": "مرکز‌کاری با موفقیت حذف شد."
+    }
+  }
+}

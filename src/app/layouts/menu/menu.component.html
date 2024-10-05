@@ -1,0 +1,87 @@
+<nav
+  class="navbar navbar-expand-lg navbar-light shadow-none bg-white h-100 top_menu"
+>
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button
+      (click)="toggleNavbarCollapsing()"
+      class="navbar-toggler px-0"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarTopMenu"
+      aria-controls="navbarTopMenu"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div
+      class="collapse navbar-collapse"
+      [class.collapse]="navbarCollapsed"
+      id="proset-navbar"
+    >
+      <!-- Left links -->
+      <ul class="navbar-nav ps-lg-0">
+        <ng-container
+          *ngFor="
+            let menu of leftMenus;
+            trackBy: trackMenuByName;
+            let i = index
+          "
+        >
+          <li
+            [matMenuTriggerFor]="!menu.route ? menuItem : null"
+            #menuItemTrigger="matMenuTrigger"
+            (click)="!menu.route ? openMenu(i) : $event.stopPropagation()"
+            class="nav-item"
+          >
+            <a
+              class="nav-link"
+              *ngIf="!menu.route"
+              [class]="{ 'active-menu': isRouteActive(menu) }"
+            >
+              {{ menu.name | translate }}
+            </a>
+            <a
+              class="nav-link"
+              routerLinkActive="active-menu"
+              [routerLinkActiveOptions]="matchSubPathOption"
+              [routerLink]="menu.route ? menu.route : null"
+              *ngIf="menu.route"
+            >
+              {{ menu.name | translate }}
+            </a>
+
+            <mat-menu
+              #menuItem="matMenu"
+              class="nav-mat-menu"
+              [overlapTrigger]="false"
+            >
+              <mat-nav-list>
+                <ng-container
+                  *ngFor="let column of menu.columns; trackBy: trackMenuByName"
+                >
+                  <mat-list-item
+                    *prosetHasPermissions="column.permission!"
+                    [routerLinkActiveOptions]="matchSubPathOption"
+                    routerLinkActive="active-menu"
+                    class="nav-link"
+                  >
+                    <a [routerLink]="column.route ? column.route : null">
+                      {{ column.name | translate }}
+                    </a>
+                  </mat-list-item>
+                </ng-container>
+              </mat-nav-list>
+            </mat-menu>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+</nav>

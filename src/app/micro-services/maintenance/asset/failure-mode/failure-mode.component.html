@@ -1,0 +1,18 @@
+<div class="mt-3">
+  <app-datatable
+    id="salaryDefinitionTable"
+    [limit]="30"
+    [filterNumber]="filterNumber"
+    [config]="config"
+    [tableRow]="tableRow"
+    [newEntryFormTemplate]="FailureModeFormComponent"
+    (onDoubleClickRow)="showFormInViewMode($event)"
+    [showFilter]="false"
+    [viewOnly]="true"
+    [showIndex]="true"
+    [scrollbarV]="false"
+    [scrollbarH]="true"
+    [formTitle]="'FAILURE_MODE.TITLE'"
+    [newEntryPermission]="[permission.FAILURE_MODE_CREATE]"
+  ></app-datatable>
+</div>

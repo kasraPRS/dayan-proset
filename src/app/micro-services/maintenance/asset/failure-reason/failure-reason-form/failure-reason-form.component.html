@@ -1,0 +1,87 @@
+<div
+  class="wrapper"
+  [ngClass]="{
+    'view-mode': viewMode
+  }"
+>
+  <form class="form-group mt-5" [formGroup]="formGroup">
+    <div class="row">
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="code"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+            >{{ "FAILURE_REASON.FORM.CODE" | translate }}</label
+          >
+          <div class="col-md-8 position-relative">
+            <input
+              type="text"
+              class="form-control"
+              id="code"
+              formControlName="code"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="code"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+            >{{ "FAILURE_REASON.FORM.NAME" | translate }}</label
+          >
+          <div class="col-md-8 position-relative">
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              formControlName="name"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="code"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+            >{{ "FAILURE_REASON.FORM.ASSET" | translate }}</label
+          >
+          <div class="col-md-8 position-relative">
+            <proset-asset-tree-select
+              (assetChange)="assetChange($event)"
+              [disabled]="viewMode || disableAsset"
+              placeholder="{{ 'GENERAL.ASSET_SELECT' | translate }}"
+              formControlName="asset"
+            >
+            </proset-asset-tree-select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="code"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1"
+            >{{ "FAILURE_REASON.FORM.DESCRIPTION" | translate }}</label
+          >
+          <div class="col-md-8 position-relative">
+            <textarea
+              type="text"
+              class="form-control"
+              id="description"
+              formControlName="description"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

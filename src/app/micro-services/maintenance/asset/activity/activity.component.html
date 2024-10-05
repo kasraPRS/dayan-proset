@@ -1,0 +1,17 @@
+<div class="mt-3">
+  <app-datatable
+    id="salaryDefinitionTable"
+    [limit]="30"
+    [config]="config"
+    [tableRow]="tableRow"
+    [newEntryFormTemplate]="ActivityFormComponent"
+    (onDoubleClickRow)="showFormInViewMode($event)"
+    [viewOnly]="true"
+    [showIndex]="true"
+    [scrollbarV]="false"
+    [showFilter]="false"
+    [scrollbarH]="true"
+    [formTitle]="'ACTIVITY.TITLE'"
+    [newEntryPermission]="[permission.ACTIVITY_CREATE]"
+  ></app-datatable>
+</div>

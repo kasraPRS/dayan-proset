@@ -1,0 +1,20 @@
+{
+  "PRODUCTION_LINE": {
+    "TITLE": "تعریف خط‌تولید",
+    "FORM": {
+      "NAME": "عنوان خط‌تولید",
+      "CODE": "کد",
+      "DESCRIPTION": "توضیحات"
+    },
+    "TABLE": {
+      "NAME": "عنوان خط‌تولید",
+      "CODE": "کد",
+      "DESCRIPTION": "توضیحات"
+    },
+    "MESSAGES": {
+      "CODE_INVALID": ".کد نامعتبر است",
+      "CODE_ALREADY_EXIST": "کد وارد شده تکراری است",
+      "PRODUCTION_LINE_DELETE": "خط‌تولید با موفقیت حذف شد."
+    }
+  }
+}

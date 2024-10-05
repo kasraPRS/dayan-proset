@@ -1,0 +1,47 @@
+{
+  "EMPLACEMENT_LOCATION": {
+    "LIST": {
+      "EMPLACEMENT_LOCATION": "محل استقرار"
+    },
+    "TABS": {
+      "EMPLACEMENT_LOCATION_DEFINITION": "تعریف محل استقرار",
+      "EMPLACEMENT_LOCATION_LIST": "لیست محل استقرار"
+    },
+    "FORM": {
+      "PARENT": "سرشاخه",
+      "CODE": "کد محل استقرار",
+      "TITLE": "عنوان محل استقرار",
+      "ADDRESS": "آدرس",
+      "DESCRIPTION": "توضیحات",
+      "DEFINITION": "تعریف محل استقرار"
+    },
+    "BUTTONS": {
+      "SUBMIT": "ثبت",
+      "DELETE": "حذف",
+      "EDIT": "ویرایش",
+      "NEW_EMPLACEMENT_LOCATION": "تعریف محل استقرار جدید",
+      "ACCEPT": "تایید",
+      "CANCEL": "انصراف"
+    },
+
+    "MESSAGES": {
+      "CODE_ALREADY_EXIST": "کد وارد شده تکراری است",
+      "DELETE_EMPLACEMENT_LOCATION": "آیا از پاک کردن این محل استقرار اطمینان دارید ؟",
+      "CREATION_SUCCESS_EMPLACEMENT_LOCATION": "محل استقرار شما با موفقیت ثبت شد.",
+      "UPDATE_SUCCESS_EMPLACEMENT_LOCATION": "محل استقرار شما با موفقیت بروزرسانی شد.",
+      "CLOSE_LOCATION": "آیا از بستن این محل استقرار اطمینان دارید ؟"
+    },
+    "TABLE": {
+      "EMPLACEMENT_LOCATION": {
+        "TITLE": "عنوان محل استقرار",
+        "CODE": "کد محل استقرار",
+        "ASSET_SUBSIDIARY": "معین دارایی",
+        "ASSET_SUBSIDIARY_CODE": "کد معین دارایی",
+        "ACCUMULATED_DEPRECIATION_SUBSIDIARY": "معین استهلاک انباشته",
+        "ACCUMULATED_DEPRECIATION_SUBSIDIARY_CODE": "کد معین استهلاک انباشته",
+        "COST_OF_DEPRECIATION_SUBSIDIARY": "معین هزینه استهلاک",
+        "COST_OF_DEPRECIATION_SUBSIDIARY_CODE": "کد معین هزینه ی استهلاک"
+      }
+    }
+  }
+}

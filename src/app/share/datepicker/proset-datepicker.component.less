@@ -1,0 +1,50 @@
+::ng-deep .cdk-overlay-container {
+  z-index: 1056 !important;
+}
+
+.toggleIcon {
+  position: absolute;
+  left: -8px;
+  top: -8px;
+}
+
+.time-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid var(--mat-datepicker-calendar-header-divider-color);
+}
+
+.time-picker {
+  direction: ltr;
+  width: 100% !important;
+  margin-bottom: 5px;
+  border-bottom: 1px solid var(--mat-datepicker-calendar-header-divider-color);
+}
+
+.picker-actions {
+  width: 100%;
+  display: flex;
+
+  button {
+    flex: 1;
+  }
+}
+
+/* NGB Time selector */
+::ng-deep .ngb-tp .ngb-tp-input-container {
+  flex: 1;
+}
+
+::ng-deep .mat-calendar-controls {
+  margin: 1% calc(4.7142857143% - 16px) !important;
+}
+
+::ng-deep .mat-calendar-content {
+  padding: 0 8px !important;
+}
+
+::ng-deep .mat-datepicker-content .mat-calendar {
+  height: 325px !important;
+}

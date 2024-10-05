@@ -1,0 +1,573 @@
+<form [formGroup]="form">
+  <div class="d-flex justify-content-end mt-2 mb-2">
+    <ng-container>
+      <proset-event
+        [entityUuid]="repairPlanningDTO.uuid!"
+        [titleOfHistory]="'REPAIR_PLANNING.HEADER.PLANNING'"
+      ></proset-event>
+    </ng-container>
+    <button
+      (click)="goToList()"
+      class="btn btn-sm top_action_button"
+      type="button"
+    >
+      <div class="d-flex justify-content-around align-items-center">
+        <span>{{ "GENERAL.BUTTON.BACK_TO_LIST" | translate }}</span>
+        <i class="isax isax-arrow-left"></i>
+      </div>
+    </button>
+  </div>
+
+  <div class="border gray_background rounded-3 p-2">
+    <div class="row mb-4">
+      <div class="col-5">
+        <span class="fs-6 fw-bolder mx-2">
+          {{ "REPAIR_PLANNING.HEADER.BASIC_INFORMATION" | translate }}
+        </span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <!-- REPAIR_PLANNING_TITLE -->
+
+        <div class="row form-group mt-1">
+          <label
+            for="name"
+            class="col-md-4 col-form-label text-md-end mt-1 required"
+            >{{
+              "REPAIR_PLANNING.FORM.BASIC_INFORMATION.REPAIR_PLANNING_TITLE"
+                | translate
+            }}</label
+          >
+          <div class="col-md-8">
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              formControlName="name"
+            />
+          </div>
+        </div>
+        <div class="row form-group mt-1">
+          <label
+            for="code"
+            class="col-md-4 col-form-label text-md-end mt-1 required"
+            >{{
+              "REPAIR_PLANNING.FORM.BASIC_INFORMATION.REPAIR_PLANNING_NUMBER"
+                | translate
+            }}</label
+          >
+          <fieldset [disabled]="true" class="col-md-8">
+            <input
+              type="text"
+              class="form-control"
+              id="code"
+              formControlName="code"
+            />
+          </fieldset>
+        </div>
+        <!--                    date region-->
+        <div class="row form-group mt-1">
+          <label class="col-md-4 col-form-label text-md-end mt-1 required">{{
+            "REPAIR_PLANNING.FORM.BASIC_INFORMATION.DATE" | translate
+          }}</label>
+          <div class="col-md-8">
+            <input
+              type="text"
+              class="form-control"
+              [value]="form.controls['date'].value | jalaliDate"
+              disabled
+            />
+          </div>
+        </div>
+
+        <!-- asset info select-->
+
+        <div class="row form-group mt-1">
+          <label
+            for="asset"
+            class="col-md-4 col-form-label text-md-end mt-1 required"
+            >{{
+              "REPAIR_PLANNING.FORM.BASIC_INFORMATION.ASSET_TITLE" | translate
+            }}</label
+          >
+          <div class="col-md-8">
+            <proset-asset-tree-select
+              placeholder="{{ 'GENERAL.ASSET_SELECT' | translate }}"
+              formControlName="asset"
+              (assetChange)="assetChange($event)"
+              [disabled]="viewMode || workOrders?.length! > 0"
+            ></proset-asset-tree-select>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <!--plate number-->
+        <fieldset [disabled]="true" class="row form-group mt-1">
+          <label
+            for="plateNumber"
+            class="col-md-4 col-form-label text-md-end mt-1"
+            >{{
+              "REPAIR_PLANNING.FORM.BASIC_INFORMATION.NUMBER_PLATE" | translate
+            }}</label
+          >
+
+          <div class="col-md-8">
+            <input
+              type="text"
+              id="plateNumber"
+              class="form-control"
+              [value]="form.controls['asset']?.value?.code"
+            />
+          </div>
+        </fieldset>
+
+        <!--emplacement location-->
+        <fieldset [disabled]="true" class="row form-group mt-1">
+          <label
+            for="emplacementLocation"
+            class="col-md-4 col-form-label text-md-end mt-1"
+            >{{
+              "REPAIR_PLANNING.FORM.BASIC_INFORMATION.EMPLACEMENT_LOCATION"
+                | translate
+            }}</label
+          >
+          <div class="col-md-8">
+            <input
+              type="text"
+              class="form-control"
+              id="emplacementLocation"
+              [value]="
+                form.controls['asset']?.value?.emplacementLocationName! ||
+                form.controls['asset']?.value?.emplacementLocation?.name!
+              "
+            />
+          </div>
+        </fieldset>
+        <fieldset [disabled]="true" class="row form-group mt-1">
+          <label
+            for="assetStatus"
+            class="col-md-4 col-form-label text-md-end mt-1"
+            >{{
+              "REPAIR_PLANNING.FORM.BASIC_INFORMATION.ASSET_STATUS" | translate
+            }}</label
+          >
+          <div class="col-md-8">
+            <input
+              type="text"
+              class="form-control"
+              id="assetStatus"
+              [value]="
+                form.controls['asset']?.value?.status! &&
+                ('REPAIR_PLANNING.ASSET_STATUS.' +
+                  form.controls['asset']?.value?.status! | translate)
+              "
+            />
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="col-md-4">
+        <!--             EXECUTION_PRIORITY       -->
+        <div class="row form-group mt-1">
+          <label
+            for="priority"
+            class="col-md-4 col-form-label text-md-end mt-1 required"
+            >{{
+              "REPAIR_PLANNING.FORM.BASIC_INFORMATION.EXECUTION_PRIORITY"
+                | translate
+            }}</label
+          >
+
+          <ng-select class="col-md-8" formControlName="priority" id="priority">
+            <ng-option *ngFor="let item of priority" [value]="item">
+              {{ "REPAIR_PLANNING.PRIORITY." + item | translate }}
+            </ng-option>
+          </ng-select>
+        </div>
+        <!--                    repair personnel-->
+
+        <!--                EXECUTION_RESPONSIBLE    -->
+
+        <div class="row form-group mt-1">
+          <label class="col-md-4 col-form-label text-md-end mt-1 required">{{
+            "REPAIR_PLANNING.FORM.BASIC_INFORMATION.EXECUTION_RESPONSIBLE"
+              | translate
+          }}</label>
+          <div class="col-md-8 position-relative">
+            <div class="d-flex flex-nowrap gap-2">
+              <div class="w-100">
+                <proset-person-select
+                  class="col-md-8"
+                  id="executionResponsible"
+                  [userType]="userType.STAFF"
+                  [required]="true"
+                  (personChange)="executionResponsibleChange($event)"
+                  [value]="repairPlanningDTO?.executionManager!"
+                  [disabled]="viewMode || workOrders?.length! > 0"
+                ></proset-person-select>
+              </div>
+              <fieldset [disabled]="true" class="w-25">
+                <input
+                  data-cy="staff"
+                  type="text"
+                  class="form-control"
+                  [value]="form.controls['executionManager']?.value?.code"
+                />
+              </fieldset>
+            </div>
+          </div>
+        </div>
+
+        <!--                   CONDITION_OF_EQUIPMENT_AT_THE_TIME_OF_REPAIR -->
+
+        <div class="row form-group mt-1">
+          <label
+            class="col-md-4 col-form-label text-md-end mt-1 required"
+            id="maintenanceAssetCondition"
+            >{{
+              "REPAIR_PLANNING.FORM.BASIC_INFORMATION.CONDITION_OF_EQUIPMENT_AT_THE_TIME_OF_REPAIR"
+                | translate
+            }}</label
+          >
+
+          <ng-select class="col-md-8" formControlName="assetStatusDuringRepair">
+            <ng-option
+              *ngFor="let item of maintenanceAssetCondition"
+              [value]="item"
+            >
+              {{
+                "REPAIR_PLANNING.MAINTENANCE_ASSET_CONDITION." + item
+                  | translate
+              }}
+            </ng-option>
+          </ng-select>
+        </div>
+
+        <!--description-->
+
+        <div class="row form-group mt-1">
+          <label class="col-md-4 col-form-label text-md-end mt-1">{{
+            "REPAIR_PLANNING.FORM.BASIC_INFORMATION.DESCRIPTION" | translate
+          }}</label>
+          <div class="col-md-8">
+            <textarea
+              type="text"
+              class="form-control"
+              formControlName="description"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--  end of basic form info-->
+  <mat-tab-group
+    mat-stretch-tabs="false"
+    mat-align-tabs="start"
+    class="custom-tab-label"
+  >
+    <mat-tab label="{{ 'REPAIR_PLANNING.HEADER.PLANNING' | translate }}">
+      <div class="container-fluid mt-5" style="height: 250px">
+        <div class="row">
+          <div class="d-flex w-100" formGroupName="schedule">
+            <div
+              class="form-check"
+              *ngFor="let item of scheduleTypes; let i = index"
+            >
+              <fieldset>
+                <input
+                  class="form-radio-input mx-1 radio_input radio_gray"
+                  type="radio"
+                  value="{{ item }}"
+                  formControlName="scheduleType"
+                  id="{{ 'REPAIR_PLANNING.FORM.PLANNING.TYPE.' + item }}"
+                  (change)="changeScheduleType(item)"
+                />
+                <label
+                  class="form-check-label pt-1 user-select-none"
+                  for="{{ 'REPAIR_PLANNING.FORM.PLANNING.TYPE.' + item }}"
+                >
+                  {{ "REPAIR_PLANNING.FORM.PLANNING.TYPE." + item | translate }}
+                </label>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <!--        select time based-->
+          <div
+            class="col-md-4"
+            *ngIf="schedule.controls['scheduleType'].value === 'TIME_BASE'"
+          >
+            <!--          planning type-->
+            <div class="row form-group mt-1" formGroupName="schedule">
+              <label
+                class="col-md-4 col-form-label text-md-end mt-1 required"
+                >{{
+                  "REPAIR_PLANNING.FORM.PLANNING.PLANNING_TYPE" | translate
+                }}</label
+              >
+              <ng-select
+                class="col-md-8"
+                formControlName="iterationType"
+                (change)="onIterationTypeCheck($event)"
+                *ngIf="planningType"
+              >
+                <ng-option *ngFor="let item of planningType" [value]="item">
+                  {{
+                    "REPAIR_PLANNING.TIMEBASE_ITERATION_TYPE." + item
+                      | translate
+                  }}
+                </ng-option>
+              </ng-select>
+            </div>
+            <!--each-->
+            <div class="row form-group mt-1" formGroupName="schedule">
+              <label
+                class="col-md-4 col-form-label text-md-end mt-1 required"
+                >{{ "REPAIR_PLANNING.FORM.PLANNING.EACH" | translate }}</label
+              >
+              <div
+                class="col-md-8 position-relative d-flex align-content-center"
+              >
+                <input
+                  numbersOnly
+                  type="number"
+                  class="form-control w-100"
+                  id="month"
+                  formControlName="iterator"
+                />
+                <span
+                  class="my-2 mx-4 light_text position-absolute left_align top-0"
+                  *ngIf="iterationType"
+                >
+                  {{
+                    "REPAIR_PLANNING.TIMEBASE_ITERATION_VALUE." + iterationType
+                      | translate
+                  }}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-md-4"
+            *ngIf="schedule.controls['scheduleType'].value === 'USAGE_BASE'"
+          >
+            <div class="row form-group mt-1" formGroupName="schedule">
+              <label
+                class="col-md-4 col-form-label text-md-end mt-1 required"
+                >{{
+                  "REPAIR_PLANNING.FORM.PLANNING.PLANNING_TYPE" | translate
+                }}</label
+              >
+              <ng-select
+                class="col-md-8"
+                formControlName="schedulerType"
+                *ngIf="measurement"
+                bindLabel="name"
+                [items]="measurement"
+              >
+              </ng-select>
+            </div>
+
+            <div class="row form-group mt-1" formGroupName="schedule">
+              <label
+                class="col-md-4 col-form-label text-md-end mt-1 required"
+                >{{ "REPAIR_PLANNING.FORM.PLANNING.EACH" | translate }}</label
+              >
+              <div
+                class="col-md-8 position-relative d-flex align-content-center"
+              >
+                <input
+                  numbersOnly
+                  type="number"
+                  class="form-control w-100"
+                  id="iteratorReminder"
+                  formControlName="iteratorReminder"
+                />
+                <span
+                  class="my-2 mx-4 light_text position-absolute left_align top-0"
+                >
+                  {{ schedule.controls["schedulerType"].value?.name! }}
+                </span>
+              </div>
+            </div>
+
+            <div class="row form-group mt-1" formGroupName="schedule">
+              <label
+                class="col-md-4 col-form-label text-md-end mt-1 required"
+                >{{
+                  "REPAIR_PLANNING.FORM.PLANNING.SUGGESTED_DATE" | translate
+                }}</label
+              >
+              <div
+                class="col-md-8 position-relative d-flex align-content-center"
+              >
+                <input
+                  numbersOnly
+                  type="number"
+                  class="form-control w-100"
+                  id="day"
+                  formControlName="iterator"
+                />
+                <span
+                  class="my-2 mx-4 light_text position-absolute left_align top-0"
+                >
+                  {{
+                    "REPAIR_PLANNING.TIMEBASE_ITERATION_VALUE.DAY" | translate
+                  }}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <!--       DUE_DATE   -->
+
+            <div class="row form-group" formGroupName="schedule">
+              <label
+                class="col-md-4 col-form-label text-md-end mt-1 required"
+                >{{
+                  "REPAIR_PLANNING.FORM.PLANNING.DUE_DATE" | translate
+                }}</label
+              >
+              <div class="col-md-8">
+                <proset-datepicker
+                  formControlName="startDate"
+                  [showTime]="true"
+                  [min]="minDateController"
+                  [max]="schedule.controls['endDate']?.value"
+                ></proset-datepicker>
+              </div>
+            </div>
+            <div class="row form-group" formGroupName="schedule">
+              <label
+                class="col-md-4 col-form-label text-md-end mt-1 required"
+                >{{
+                  "REPAIR_PLANNING.FORM.PLANNING.REPEAT_PATTERN_END_DATE"
+                    | translate
+                }}</label
+              >
+              <div class="col-md-8">
+                <proset-datepicker
+                  [min]="schedule.controls['startDate']?.value"
+                  formControlName="endDate"
+                ></proset-datepicker>
+                <small
+                  class="form-text text-danger mt-2"
+                  *ngIf="
+                    schedule.controls['endDate']?.value &&
+                    schedule.errors &&
+                    schedule.errors['invalid']
+                  "
+                >
+                  {{ "WORK_ORDERS.MESSAGES.INVALID_DATE" | translate }}
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="row form-group mt-1" formGroupName="schedule">
+              <label
+                class="col-md-4 col-form-label text-md-end mt-1 required"
+                >{{
+                  "REPAIR_PLANNING.FORM.PLANNING.CREATE_WORK_ORDER" | translate
+                }}</label
+              >
+              <div class="col-md-8 position-relative">
+                <input
+                  numbersOnly
+                  type="number"
+                  class="form-control w-50"
+                  formControlName="schedulerStartPointInDay"
+                />
+                <span
+                  class="pl-5 light_text position-absolute left_align top-0"
+                >
+                  {{ "REPAIR_PLANNING.TEXTS.DAYS_BEFORE_DUE_DATE" | translate }}
+                </span>
+              </div>
+            </div>
+
+            <div class="row form-group mt-1" formGroupName="schedule">
+              <label class="col-md-4 col-form-label text-md-end mt-1">{{
+                "REPAIR_PLANNING.FORM.BASIC_INFORMATION.DESCRIPTION" | translate
+              }}</label>
+              <div class="col-md-8">
+                <textarea
+                  type="text"
+                  class="form-control"
+                  formControlName="description"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="{{ 'REPAIR_PLANNING.HEADER.CHECKLIST' | translate }}">
+      <div class="container-fluid mt-5">
+        <div class="d-flex mt-3 mb-3 flex-row">
+          <button
+            type="button"
+            class="btn btn-outline-primary px-4 white_button btn-sm m-1"
+            (click)="openActivity()"
+            [disabled]="!checkList"
+            *ngIf="!viewMode"
+          >
+            {{ "REPAIR_PLANNING.BUTTONS.SELECT_CHECKLIST" | translate }}
+          </button>
+        </div>
+
+        <ng-template #detail ngx-datatable-row-detail-template>
+          <proset-repair-planning-checklist
+            [checkList]="checkListDto"
+          ></proset-repair-planning-checklist>
+        </ng-template>
+        <proset-expandable-datatable
+          [showIndex]="false"
+          *ngIf="selectedCheckLists"
+          [config]="checkListDataTableConfig"
+          [tableRow]="selectedCheckLists"
+          [detail]="detail"
+          (onRowSelect)="onRowSelect($event)"
+          [scrollbarH]="false"
+          [sortable]="true"
+        >
+        </proset-expandable-datatable>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+  <div class="d-flex mt-5 mb-5 flex-row-reverse">
+    <ng-container *ngIf="!repairPlanningDTO?.status">
+      <button
+        *prosetHasPermissions="[permission.REPAIR_PLANNING_CREATE]"
+        type="submit"
+        class="btn btn-primary mx-1 px-5"
+        [disabled]="form.invalid"
+        (click)="createAction()"
+      >
+        {{ "WORK_ORDERS.BUTTONS.REGISTRATION" | translate }}
+      </button>
+    </ng-container>
+    <ng-container *ngIf="!viewMode && viewType != 'form'">
+      <button
+        *prosetHasPermissions="[permission.REPAIR_PLANNING_UPDATE]"
+        type="submit"
+        class="btn btn-primary mx-1 px-5"
+        [disabled]="form.invalid || isCodeInvalid"
+        (click)="updateRepairPlanningById()"
+      >
+        {{ "WORK_ORDERS.BUTTONS.REGISTRATION" | translate }}
+      </button>
+    </ng-container>
+  </div>
+</form>

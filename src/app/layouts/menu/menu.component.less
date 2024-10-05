@@ -1,0 +1,221 @@
+:host ::ng-deep .top_menu {
+  position: unset;
+}
+
+:host ::ng-deep .top_menu .dropdown-menu {
+  right: 7.5%;
+  left: unset;
+  top: 3%;
+  width: 85%;
+  min-height: 350px;
+}
+
+:host ::ng-deep .top_menu .dropdown-menu .container .row {
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-origin: content-box;
+  background-position-x: 30px;
+}
+
+:host ::ng-deep .top_menu .dropdown-toggle:after {
+  display: none;
+}
+
+:host ::ng-deep .top_menu .dropdown-menu.show {
+  display: flex !important;
+  padding: 0px 48px;
+}
+
+:host ::ng-deep .top_menu .nav-item {
+  border-left: 1px solid #9c9c9c;
+}
+
+:host ::ng-deep .top_menu .nav-link {
+  color: #9c9c9c;
+}
+
+:host ::ng-deep .top_menu .dropdown-toggle.show {
+  color: #282828;
+  font-weight: bold;
+}
+
+:host ::ng-deep .top_menu .nav-item:last-child {
+  border-left: none;
+}
+
+@media only screen and (max-width: 992px) {
+  :host ::ng-deep .top_menu .nav-item {
+    border-left: none;
+  }
+
+  :host ::ng-deep .top_menu .dropdown-menu.show {
+    padding: 0px 10px;
+  }
+}
+
+//
+:host ::ng-deep .btn-link {
+  font-size: 16px;
+}
+
+:host ::ng-deep div.tree div.tree-children::before,
+:host ::ng-deep div.tree::before {
+  content: "";
+  position: absolute;
+  border-left: 1px dotted #23527c;
+  height: 100%;
+  top: -14px;
+  left: 12px;
+}
+
+//
+:host ::ng-deep div.tree {
+  padding-left: 0;
+  margin-left: -5px;
+}
+
+:host ::ng-deep div.tree div.tree-children {
+  position: relative;
+  padding-left: 0;
+  margin-left: 16px;
+}
+
+:host ::ng-deep div.tree div.tree-children::before {
+  left: 5px;
+}
+
+:host ::ng-deep div.tree tree-node > div > .node-wrapper {
+  margin-left: 24px;
+}
+
+:host
+  ::ng-deep
+  div.tree
+  tree-node
+  > div
+  > .node-wrapper
+  > .node-content-wrapper {
+  margin-left: 4px;
+}
+
+:host ::ng-deep div.tree tree-node > div.tree-node-leaf > .node-wrapper {
+  margin-left: 0;
+}
+
+//
+:host ::ng-deep div.tree tree-node > div::before {
+  content: "";
+  position: absolute;
+  width: 7px;
+  margin-top: 12px;
+  left: 7px;
+}
+
+:host ::ng-deep div.tree tree-node > div .toggle-children-wrapper {
+  width: 13px;
+  height: 13px;
+  border: 1px solid #23527c;
+  position: absolute;
+  left: 15px;
+  margin-top: 5px;
+  margin-left: 0;
+  display: inline-block;
+  background-color: #fff;
+  z-index: 1;
+}
+
+:host ::ng-deep div.tree tree-node > div .toggle-children-wrapper::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  border-top: 1px solid #23527c;
+  position: absolute;
+  top: 5px;
+  left: 2px;
+}
+
+:host
+  ::ng-deep
+  div.tree
+  tree-node
+  > div
+  .toggle-children-wrapper.toggle-children-wrapper-collapsed::after {
+  content: "";
+  display: inline-block;
+  height: 7px;
+  border-left: 1px solid #23527c;
+  position: absolute;
+  top: 2px;
+  left: 5px;
+}
+
+//
+:host
+  ::ng-deep
+  div.tree
+  tree-node
+  > div
+  .toggle-children-wrapper
+  .toggle-children {
+  display: none;
+}
+
+:host ::ng-deep div.tree tree-node > div .node-content-wrapper {
+  margin-left: 4px;
+}
+
+:host ::ng-deep div.tree > tree-node > div::before {
+  left: 14px;
+}
+
+:host
+  ::ng-deep
+  div.tree
+  > tree-node
+  > div
+  > .node-wrapper
+  > tree-node-expander
+  > .toggle-children-wrapper {
+  left: 22px;
+}
+
+:host ::ng-deep .list-group-flush > .list-group-item {
+  border-bottom: 0px solid !important;
+  background-color: transparent;
+}
+
+.list-group-item-action:focus,
+.list-group-item-action:hover {
+  background-color: #4876ff1a;
+  color: #1f3b8e;
+  border-radius: 8px;
+}
+
+.list-group-item-action .fa-arrow-left {
+  display: none;
+}
+
+.list-group-item-action:hover .show_arrow {
+  display: inline-block;
+  position: absolute;
+  left: 10px;
+  top: 12px;
+}
+
+.mid_section {
+  border-left: 1px solid #1f3b8e;
+}
+
+:host ::ng-deep .mdc-list {
+  padding: 0;
+}
+
+:host ::ng-deep .mat-mdc-menu-content {
+  padding: 0;
+}
+
+:host ::ng-deep .mdc-list-item__content a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

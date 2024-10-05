@@ -1,0 +1,90 @@
+<div
+  [ngClass]="{
+    'view-mode': viewMode
+  }"
+>
+  <div class="d-flex justify-content-end mb-4">
+    <button
+      (click)="goToList()"
+      *prosetHasPermissions="[permissions.ASSET]"
+      class="btn btn-sm top_action_button"
+      attr.aria-label="{{ 'GENERAL.BUTTON.BACK_TO_LIST' | translate }}"
+      type="button"
+    >
+      <div class="d-flex justify-content-around align-items-center">
+        {{ "GENERAL.BUTTON.BACK_TO_LIST" | translate }}
+        <i class="isax isax-arrow-left"></i>
+      </div>
+    </button>
+  </div>
+
+  <form name="assetForm" (ngSubmit)="saveAsset()">
+    <div class="row m-0 mb-4">
+      <div class="col-md-8">
+        <proset-asset-main-info></proset-asset-main-info>
+      </div>
+      <div class="col-md-4">
+        <proset-uploader></proset-uploader>
+      </div>
+    </div>
+
+    <mat-tab-group [mat-stretch-tabs]="true" class="custom-tab-label">
+      <mat-tab label="{{ 'ASSET.FORM.TAB.FINANCIAL' | translate }}">
+        <proset-asset-financial></proset-asset-financial>
+      </mat-tab>
+      <mat-tab label="{{ 'ASSET.FORM.TAB.TECHNICAL' | translate }}">
+        <proset-asset-technical></proset-asset-technical>
+      </mat-tab>
+      <mat-tab
+        label="{{ 'ASSET.FORM.TAB.INSURANCE_AND_GUARANTEE' | translate }}"
+      >
+        <proset-asset-insurance-and-guarantee></proset-asset-insurance-and-guarantee>
+      </mat-tab>
+      <mat-tab label="{{ 'ASSET.FORM.TAB.FAILURE_MODE' | translate }}">
+        <proset-asset-failure-mode
+          [tableRow]="assetDto.failureModeList!"
+        ></proset-asset-failure-mode>
+      </mat-tab>
+      <mat-tab label="{{ 'ASSET.FORM.TAB.ACTIVITY' | translate }}">
+        <proset-asset-activity
+          [tableRow]="assetDto.activityList!"
+        ></proset-asset-activity>
+      </mat-tab>
+      <mat-tab label="{{ 'ASSET.FORM.TAB.PART' | translate }}">
+        <proset-asset-part [tableRow]="assetDto.partList!"></proset-asset-part>
+      </mat-tab>
+      <mat-tab label="{{ 'ASSET.FORM.TAB.WORK_ORDER' | translate }}">
+        <proset-asset-work-order-list
+          [tableRow]="assetDto.workOrderList!"
+        ></proset-asset-work-order-list>
+      </mat-tab>
+      <mat-tab label="{{ 'ASSET.FORM.TAB.WORK_REQUEST' | translate }}">
+        <proset-asset-request-list
+          [tableRow]="assetDto.workRequestList!"
+        ></proset-asset-request-list>
+      </mat-tab>
+      <mat-tab label="{{ 'ASSET.FORM.TAB.COST' | translate }}">
+        <proset-asset-cost [cost]="assetDto.cost!"></proset-asset-cost>
+      </mat-tab>
+      <mat-tab label="{{ 'ASSET.FORM.TAB.DOCUMENTS' | translate }}">
+        <proset-asset-document [tableRow]="[]"></proset-asset-document>
+      </mat-tab>
+    </mat-tab-group>
+
+    <div class="row mt-4 sticky-submit" *ngIf="!viewMode">
+      <div class="text-end">
+        <button
+          type="submit"
+          class="btn btn-primary saveBtn"
+          *prosetHasPermissions="[
+            permissions.ASSET_CREATE,
+            permissions.ASSET_UPDATE
+          ]"
+          [disabled]="!assetStateService.isValidForms()"
+        >
+          {{ "ASSET.FORM.BUTTONS.SAVE" | translate }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

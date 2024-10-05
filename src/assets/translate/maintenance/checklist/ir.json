@@ -1,0 +1,47 @@
+{
+  "CHECKLIST": {
+    "TITLE": "چک لیست",
+    "FORM": {
+      "NAME": "عنوان",
+      "TYPE": "نوع",
+      "DESCRIPTION": "شرح",
+      "ADD_TASK": "اضافه کردن وظیفه",
+      "CODE": "کد",
+      "COUNT": "تعداد",
+      "TASK_TYPE": {
+        "GLOBAL": "عمومی",
+        "UNIT": "واحد",
+        "TEXT": "متن"
+      },
+      "TASK": {
+        "TITLE": "وظیفه جدید",
+        "NAME": "وظیفه",
+        "TYPE": "نوع",
+        "MEASUREMENT": "واحد"
+      }
+    },
+    "TABLE": {
+      "NAME": "عنوان",
+      "TYPE": "نوع",
+      "DESCRIPTION": "شرح",
+      "TASKS": "وظایف",
+      "TASK_NAME": "وظیفه",
+      "CODE": "کد",
+      "STATUS": "فعال",
+      "TASK": {
+        "NAME": "عنوان",
+        "CODE": "کد",
+        "TYPE": "نوع",
+        "MEASUREMENT": "واحد"
+      }
+    },
+    "MESSAGES": {
+      "CHECKLIST_DELETE": "  چکک لیست با موفقیت حذف شد.",
+      "DELETE_TITLE": "حذف چک لیست",
+      "DELETE_CONTENT": "آیا از حذف چک لیست اطمینان دارید؟"
+    },
+    "MODAL": {
+      "SELECT": "انتخاب چک لیست"
+    }
+  }
+}

@@ -1,0 +1,113 @@
+<div class="d-flex gap-2">
+  <a
+    type="button"
+    class="d-flex align-items-center"
+    data-toggle="dropdown"
+    aria-haspopup="true"
+    aria-expanded="false"
+    [matMenuTriggerFor]="action"
+  >
+    <i class="fa-solid fa-ellipsis-vertical fa-2xl"></i>
+    <mat-menu #action="matMenu">
+      <button mat-menu-item (click)="onExportExcel()">
+        <i class="fa fa-arrow-left excel_icon fs-6"></i>
+        <span class="me-1"></span>
+        {{ "GENERAL.BUTTON.SEND_TO_EXCEL" | translate }}
+      </button>
+    </mat-menu>
+  </a>
+  <mat-divider [vertical]="true"></mat-divider>
+  <button class="new-button" (click)="goNewAsset()">
+    <div class="d-flex">
+      <span>{{ "GENERAL.NEW" | translate }}</span>
+    </div>
+  </button>
+</div>
+<mat-divider class="my-2"></mat-divider>
+
+<div class="tree-container">
+  <!-- Level Column -->
+  <div class="tree-column">
+    <ul>
+      <li
+        *ngFor="let level of treeData?.treeLevelList; let i = index"
+        (click)="selectLevel(i)"
+        [class.selected]="isLevelSelected(i)"
+      >
+        <div
+          class="d-flex justify-content-between align-items-center p-2 w-100"
+        >
+          <div class="d-flex flex-column">
+            <span class="tree-title">{{ level.name }}</span>
+            <span class="tree-title">{{ level.code }}</span>
+          </div>
+          <button
+            class="border-less bg-transparent"
+            *ngIf="level.treeGroupList?.length"
+          >
+            <i class="isax isax-arrow-left-2"></i>
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Group Column -->
+  <div class="tree-column" *ngIf="getGroupsForSelectedLevel().length > 0">
+    <ul>
+      <li
+        *ngFor="let group of getGroupsForSelectedLevel(); let i = index"
+        [class.selected]="isGroupSelected(i)"
+        [style.animation-delay]="i * 50 + 'ms'"
+        (click)="selectGroup(i)"
+      >
+        <div
+          class="d-flex justify-content-between align-items-center p-2 w-100"
+        >
+          <div class="d-flex flex-column">
+            <span class="tree-title">{{ group.name }}</span>
+            <span class="tree-title">{{ group.code }}</span>
+          </div>
+          <button
+            class="border-less bg-transparent"
+            *ngIf="group.assetList?.length"
+          >
+            <i class="isax isax-arrow-left-2"></i>
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <ng-container *ngFor="let column of columns; let columnIndex = index">
+    <div class="tree-column" *ngIf="column && column.length > 0">
+      <ul>
+        <li
+          *ngFor="let asset of column; let i = index"
+          [class.selected]="isAssetSelected(asset, columnIndex)"
+          [style.animation-delay]="i * 50 + 'ms'"
+          (click)="selectAsset(asset, columnIndex)"
+        >
+          <div
+            class="d-flex justify-content-between align-items-center p-2 w-100"
+          >
+            <a
+              class="d-flex flex-column"
+              [href]="'/maintenance/asset/asset/view/' + asset.id"
+              target="_blank"
+            >
+              <span class="tree-title hover-underline">{{ asset.name }}</span>
+              <span class="tree-title">{{ asset.code }}</span>
+            </a>
+            <button
+              class="border-less bg-transparent"
+              *ngIf="hasChildren(asset)"
+            >
+              <i class="isax isax-arrow-left-2"></i>
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </ng-container>
+</div>

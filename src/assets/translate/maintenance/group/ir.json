@@ -1,0 +1,22 @@
+{
+  "GROUP": {
+    "TITLE": "تعریف گروه",
+    "FORM": {
+      "NAME": "عنوان گروه",
+      "CODE": "کد",
+      "LEVEL": "کلاس",
+      "DESCRIPTION": "توضیحات"
+    },
+    "TABLE": {
+      "NAME": "عنوان گروه",
+      "CODE": "کد",
+      "LEVEL": "کلاس",
+      "DESCRIPTION": "توضیحات"
+    },
+    "MESSAGES": {
+      "CODE_INVALID": ".کد نامعتبر است",
+      "CODE_ALREADY_EXIST": "کد وارد شده تکراری است",
+      "GROUP_DELETE": "گروه با موفقیت حذف شد."
+    }
+  }
+}

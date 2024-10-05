@@ -1,0 +1,123 @@
+<div class="form-continer">
+  <form class="form-group mt-2" [formGroup]="contractorFormGroup">
+    <div class="row">
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="contractor"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+          >
+            {{ "CONTRACTOR.NAME" | translate }}
+          </label>
+          <div class="col-md-8 position-relative">
+            <proset-person-select
+              id="contractor"
+              [userType]="UserType.CONTRACTOR"
+              (personChange)="onPersonChange($event)"
+            >
+            </proset-person-select>
+            <small
+              id="code_error_duplicated"
+              class="form-text text-danger mt-2"
+              *ngIf="isPersonSelected"
+            >
+              {{ "WORK_LOG.MESSAGES.WORK_LOG_PERSON_IS_SELECTED" | translate }}
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="workingsheet"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1"
+          >
+            {{ "PERSONNEL.FORM.HOUR" | translate }}
+          </label>
+          <div class="col-md-8 position-relative">
+            <div class="d-flex flex-nowrap gap-2">
+              <div class="w-100 position-relative">
+                <input
+                  id="workingsheet"
+                  type="text"
+                  class="form-control mx-1"
+                  formControlName="workingMinute"
+                  numbersOnly
+                />
+                <span
+                  class="my-2 mx-1 light_text position-absolute left_align top-0"
+                >
+                  {{ "GENERAL.MINUTE" | translate }}
+                </span>
+                <small
+                  class="form-text text-danger mt-2"
+                  *ngIf="
+                    contractorFormGroup.controls['workingMinute'].hasError(
+                      'max'
+                    )
+                  "
+                >
+                  {{ "WORK_LOG.MESSAGES.TIME_ERROR" | translate }}
+                </small>
+              </div>
+              <div class="w-100 position-relative">
+                <input
+                  type="text"
+                  class="form-control mx-1"
+                  formControlName="workingHour"
+                  numbersOnly
+                />
+                <span
+                  class="my-2 mx-1 light_text position-absolute left_align top-0"
+                >
+                  {{ "GENERAL.HOUR" | translate }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="invoice_number"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1"
+          >
+            {{ "CONTRACTOR.INVOICE_NUMBER" | translate }}
+          </label>
+          <div class="col-md-8 position-relative">
+            <input
+              id="invoice_number"
+              class="form-control"
+              formControlName="invoiceNumber"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="invoice_fee"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1"
+          >
+            {{ "CONTRACTOR.INVOICE_FEE" | translate }}
+          </label>
+          <div class="col-md-8 position-relative">
+            <input
+              id="invoice_fee"
+              class="form-control"
+              formControlName="invoiceFee"
+              inputPrice
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

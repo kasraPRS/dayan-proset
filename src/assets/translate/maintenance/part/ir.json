@@ -1,0 +1,32 @@
+{
+  "PART": {
+    "TITLE": "تعریف قطعه",
+    "CREATE_COST": "ایجاد هزینه",
+    "SUBMIT": "ثبت",
+    "FORM": {
+      "NAME": "عنوان‌قطعه",
+      "CODE": "کد",
+      "PRICE": "قیمت قطعه",
+      "DESCRIPTION": "توضیحات",
+      "START_DATE": "از تاریخ",
+      "END_DATE": "تا تاریخ"
+    },
+    "TABLE": {
+      "NAME": "عنوان‌قطعه",
+      "CODE": "کد",
+      "PRICE": "قیمت قطعه",
+      "START_DATE": "از تاریخ",
+      "END_DATE": "تا تاریخ",
+      "DESCRIPTION": "توضیحات"
+    },
+    "MESSAGES": {
+      "CODE_INVALID": ".کد نامعتبر است",
+      "CODE_ALREADY_EXIST": "کد وارد شده تکراری است",
+      "PART_DELETE": "قطعه با موفقیت حذف شد.",
+      "COST_DELETE": "هزینه با موفقیت حذف شد.",
+      "CREATION_SUCCESS_PART": "قطعه با موفقیت ثبت شد.",
+      "UPDATE_SUCCESS_PART": "قطعه با موفقیت بروزرسانی شد.",
+      "END_DATE_BEFORE_START_DATE": "تاریخ‌پایان نباید کوچک‌تر از تاریخ شروع باشد"
+    }
+  }
+}

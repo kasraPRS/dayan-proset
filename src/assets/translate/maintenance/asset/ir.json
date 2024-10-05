@@ -1,0 +1,267 @@
+{
+  "ASSET": {
+    "FORM": {
+      "PLACEHOLDER": {
+        "INSURER": "بیمه گر",
+        "DIMENTION": {
+          "LENGTH": "طول",
+          "WIDTH": "عرض",
+          "HIGHT": "ارتفاع",
+          "UNIT": "واحد"
+        },
+        "DEVICE_SPEED": {
+          "NORMAL": "اسمی",
+          "MAXIMUM": "حداکثر",
+          "UNIT": "واحد"
+        },
+        "WIEGHT": {
+          "KG": "کیلوگرم"
+        }
+      },
+      "HEADERS": {
+        "ORIGINAL_INFO": "اطلاعات اصلی",
+        "IMAGE": "تصویر تجهیز",
+        "TECHNICAL_SPECIFICATION": "مشخصات فنی",
+        "DEVICE_ORIGINAL_COMPONENTS": "قطعات/قسمت های اصلی دستگاه",
+        "ATTACHMENT": "پیوست"
+      },
+      "BUTTONS": {
+        "NEW": "جدید",
+        "DELETE": "حذف",
+        "SAVE_AND_CLOSE": "ثبت و بستن",
+        "EDIT": "ویرایش",
+        "COPY": "کپی",
+        "PRINT": "چاپ",
+        "SAVE": "ثبت",
+        "LIST": "لیست",
+        "TREE": "درخت دارایی"
+      },
+      "ORIGINAL_INFO": {
+        "NAME": "نام",
+        "CODE": "کد",
+        "PARENT": "والد",
+        "GROUP": "گروه",
+        "LEVEL": "کلاس",
+        "PROPERTY_COLLECTOR": "جمع دار",
+        "RECIPIENT": "تحویل گیرنده",
+        "PRODUCTION_LINE": "خط‌تولید",
+        "WORK_CENTER": "مرکز‌کاری",
+        "PURCHASE_INVOICE_NUMBER": "شماره فاکتور خرید",
+        "COGS": "بهای تمام شده",
+        "DEPRECIATION_METHOD": "روش استهلاک",
+        "IMPAIRMENT_VALUE": "ارزش اسقاط",
+        "DEPRECIATION_USEFUL_LIFE": "عمر مفید",
+        "DEPRECIATION_RATE": "نرخ استهلاک",
+        "RIAL": "ریال",
+        "YEAR": "سال",
+        "TAX": "مالیات و عوارض بر ارزش افزوده",
+        "ADD_TO_LIST": "اضافه به لیست",
+        "NUMBER_PLATE": "کد دارایی",
+        "EMPLACEMENT_LOCATION": "محل استقرار",
+        "COST_CENTER": "مرکز هزینه",
+        "PRIORITY": "اولویت",
+        "STATUS": "وضعیت دارایی",
+        "DAILY_USAGE_DURATION": "مدت زمان استفاده در روز",
+
+        "STATUS_WHILE_PURCHASE": "وضعیت هنگام خرید",
+        "UTILIZATION_DATE": "تاریخ بهره برداری",
+        "DESCRIPTION": "توضیحات"
+      },
+      "FINANCIAL": {
+        "PURCHASE_PRICE": "قیمت خرید",
+        "PURCHASE_DATE": "تاریخ خرید",
+        "PURCHASE_INVOICE_NUMBER": "شماره فاکتور خرید",
+        "SUPPLIER": "تامین کننده",
+        "COST_CENTER": "مرکز هزینه",
+        "DEPRECIATION_METHOD": "روش استهلاک",
+        "DEPRECIATION_RULES": "قوانین‌استهلاک",
+        "CONSUMABLE_LIFE": "عمر مفید",
+        "DEPRECIATION_RATE": "نرخ استهلاک",
+        "IMPAIRMENT_VALUE": "ارزش اسقاط",
+        "ACCUMULATED_DEPRECIATION": "استهلاک انباشته",
+        "BOOK_VALUE": "ارزش دفتری",
+        "CONSUMABLE_LIFE_DATE": "تاریخ پایان عمر مفید",
+        "STATUS_WHILE_PURCHASE": "وضعیت هنگام خرید",
+        "REPLACEMENT_VALUE": "ارزش جایگزینی"
+      },
+      "INSURANCE_AND_GUARANTEE": {
+        "INSURANCE": "بیمه",
+        "INSURANCE_TYPE": "نوع بیمه",
+        "INSURANCE_START_AND_END_DATE": "تاریخ شروع و پایان بیمه",
+        "GUARANTEE": "گارانتی",
+        "GUARANTEE_START_AND_END_DATE": "تاریخ شروع و پایان گارانتی",
+        "DESCRIPTION": "توضیحات"
+      },
+      "DEPRECIATION_METHOD": {
+        "DIRECT": "مستقیم",
+        "DESCENDING": "نزولی"
+      },
+      "STATUS_WHILE_PURCHASE": {
+        "NEW": "نو",
+        "USED": "کارکرده"
+      },
+      "TECHNICAL_SPECIFICATION": {
+        "MANUFACTURER": "سازنده",
+        "MODEL": "مدل",
+        "SERIALNUMBER": "شماره سریال",
+        "WEIGHT": "وزن(کیلوگرم)",
+        "FUEL_TYPE": "نوع سوخت",
+        "WIDTH": "عرض",
+        "LENGTH": "طول",
+        "HEIGHT": "ارتفاع",
+        "VOLTAGE": "ولتاژ",
+        "POWER": "توان",
+        "SPEED": "اسمی",
+        "MAXSPEED": "حداکثر",
+        "SPEEDMEASUREMENT": "واحد",
+        "DIMENTION": "ابعاد(سانتی متر)",
+        "DEVICE_SPEED": "سرعت دستگاه",
+        "GASOLINE": "بنزین",
+        "DIESEL": "گازوئیل",
+        "GAS": "گاز",
+        "OIL": "نفتی"
+      },
+      "DEVICE_ORIGINAL_COMPONENTS": {
+        "NAME": "نام",
+        "TECHNICAL_SPECIFICATION": "مشخصات فنی"
+      },
+      "PART": {
+        "NAME": "نام‌قطعه",
+        "CODE": "کد قطعه",
+        "PRICE": "قیمت قطعه",
+        "UNIT_PRICE": "قیمت واحد",
+        "COST": "هزینه",
+        "WORKORDER_CODE": "دستورات کاری",
+        "COUNT": "تعداد"
+      },
+      "WORK_ORDER": {
+        "NUMBER": "شماره دستور کار",
+        "TYPE": "نوع دستور کار",
+        "STATUS": "وضعیت دستور کار",
+        "CREATE_DATE": "تاریخ ایجاد",
+        "START_DATE": "تاریخ شروع",
+        "END_DATE": "تاریخ اتمام",
+        "WORKING_HOUR": "ساعت کارکرد عادی",
+        "WORKING_COST": "هزینه کار عادی",
+        "OVERTIME_HOUR": "ساعت اضافه کاری",
+        "OVERTIME_COST": "هزینه اضافه کاری",
+        "SUM_HOUR": "مجموع ساعت",
+        "SUM_COST": "مجموع هزینه"
+      },
+      "WORK_REQUEST": {
+        "NUMBER": "شماره درخواست",
+        "STATUS": "وضعیت",
+        "REQUESTER": "درخواست کننده"
+      },
+      "COST": {
+        "WORKINGHOUR": "ساعت کارکرد عادی",
+        "OVERTIMEHOUR": "ساعت اضافه کاری",
+        "PERSONNELCOST": "هزینه پرسنل تعمیرات",
+        "CONTRACTORWORKINGHOUR": "ساعت کارکرد پیمانکاران",
+        "CONTRACTORCOST": "هزینه پیمانکاران",
+        "PARTSCOST": "هزینه قطعات یدکی",
+        "SUMCOST": "مجموع هزینه ها"
+      },
+      "DOCUMENT": {
+        "NAME": "نام سند",
+        "SIZE": "حجم",
+        "DOWNLOAD": "دانلود"
+      },
+      "PRIORITY": {
+        "HIGH": "بالا",
+        "MIDDLE": "متوسط",
+        "LOW": "پایین",
+        "NONE": "بدون اولویت"
+      },
+      "STATUS": {
+        "CURRENT": "جاری",
+        "SOLD": "فروخته شده",
+        "SCRAP": "اسقاط",
+        "STAGNANT": "راکد"
+      },
+      "TAB": {
+        "FINANCIAL": "مالی",
+        "TECHNICAL": "فنی",
+        "INSURANCE_AND_GUARANTEE": "بیمه‌و‌گارانتی",
+        "FAILURE_MODE": "حالت‌خرابی",
+        "ACTIVITY": "فعالیت",
+        "PART": "قطعات",
+        "WORK_ORDER": "دستورکارها",
+        "WORK_REQUEST": "درخواست کارها",
+        "COST": "هزینه ها",
+        "DOCUMENTS": "اسناد"
+      }
+    },
+    "TABLE": {
+      "ASSET_TITLE": "نام دارایی",
+      "NUMBER_PLATE": "کد دارایی",
+      "PARENT": "والد",
+      "COST_CENTER": "مرکز هزینه",
+      "STATUS_WHILE_PURCHASE": "وضعیت هنگام خرید",
+      "ASSET_PRIORITY": "اولویت دارایی",
+      "ASSET_STATUS": "وضعیت دارایی",
+      "EMPLACEMENT_LOCATION": "محل استقرار",
+      "UTILIZATION_DATE": "تاریخ بهره برداری",
+      "INSURANCE": "بیمه",
+      "INSURANCE_TYPE": "نوع بیمه",
+      "INSURANCE_START_DATE": "تاریخ شروع بیمه",
+      "INSURANCE_END_DATE": "تاریخ پایان بیمه",
+      "GUARANTEE": "گارانتی",
+      "GUARANTEE_START_DATE": "تاریخ شروع گارانتی",
+      "GUARANTEE_END_DATE": "تاریخ پایان گارانتی",
+      "MANUFACTURER_NAME": "نام سازنده",
+      "MODEL": "مدل",
+      "SERIAL_NUMBER": "شماره سریال",
+      "FUEL_TYPE": "نوع سوخت",
+      "WEIGHT": "وزن‌(کیلوگرم)",
+      "VOLTAGE": "ولتاژ",
+      "POTENCY": "توان",
+      "DEVICE_NORMAL_SPEED": "سرعت اسمی دستگاه",
+      "DEVICE_MAXIMUM_SPEED": "حداکثر سرعت دستگاه",
+      "DESCRIPTION": "توضیحات",
+      "CREATION_DATE": "تاریخ ایجاد",
+      "LAST_UPDATE_DATE": "تاریخ آخرین ویرایش",
+      "CREATOR": "ایجاد کننده",
+      "DAILY_USAGE_DURATION": "مدت زمان استفاده در روز",
+
+      "GROUP": "گروه",
+      "LEVEL": "کلاس",
+      "PRODUCTION_LINE": "خط‌تولید",
+      "WORK_CENTER": "مرکز‌کاری"
+    },
+    "SEARCH": {
+      "FROM_CODE": "کد",
+      "TO_CODE": "تا",
+      "LEVEL": "کلاس",
+      "GROUP": "گروه",
+      "EMPLACEMENT_LOCATION": "محل استقرار",
+      "PRODUCTION_LINE": "خط‌تولید",
+      "WORK_CENTER": "مرکز‌کاری",
+      "ASSET_STATUS": "وضعیت دارایی"
+    },
+    "MESSAGES": {
+      "INSURANCE_TYPE_REQUIRED": "نوع بیمه الزامی است.",
+      "INSURER_REQUIRED": "بیمه گر الزامی است",
+      "INSURANCE_START_DATE_REQUIRED": "تاریخ شروع بیمه الزامی است",
+      "INSURANCE_END_DATE_REQUIRED": "تاریخ پایان بیمه الزامی است",
+      "GUARANTEE_START_DATE_REQUIRED": "تاریخ شروع گارانتی الزامی است",
+      "GUARANTEE_END_DATE_REQUIRED": "تاریخ پایان گارانتی الزامی است",
+      "INSERT": "دارایی با موفقیت ثبت شد. ",
+      "UPDATE": "دارایی با موفقیت ویرایش شد.",
+      "INSERT_FAIL": "خطا در ذخیره سازی اطلاعات . لطفا دوباره سعی کنید یا با مدیر سیستم تماس بگیرید. ",
+      "DELETE": "دارایی با موفقیت حذف شد.",
+      "DELETE_MODAL_TITLE": "حذف دارایی",
+      "DELETE_MODAL_CONTENT": "آیا از حذف رکورد مورد نظر اطمینان دارید ؟",
+      "ASSET_IS_DEFINE_EXCEPTION": "دارایی قبلا تعریف شده.",
+      "END_DATE_BEFORE_START_DATE": "تاریخ‌پایان نباید کوچک‌تر از تاریخ شروع باشد",
+      "PURCHASE_DATE_BEFORE_UTILIZATION_DATE": "خرید باید کوچکترمساوی بهره‌برداری باشد",
+      "DEPRECIATION_VALUE_MUST_BE_LESS_THAN_OR_EQUAL_TO_PRICE": "مقدار ارزش اسقاط باید کمتر یا مساوی قیمت باشد",
+      "ASSET_IS_USED_EXCEPTION": "دارایی استفاده شده.",
+      "ZIRO_LESS": "بزرگتر از صفر باید باشد.",
+      "BACK_TO_LIST": "آیا از بازگشت به لیست اطمینان دارید ؟",
+      "BACK_TO_LIST_TITLE": "بازگشت به لیست",
+      "FROM_NUMBER_IS_BIGGER_THAN_TO_NUMBER": "شماره انتخابی باید بزرکتر یا مساوی ",
+      "BEE": "باشد"
+    }
+  }
+}

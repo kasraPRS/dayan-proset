@@ -1,0 +1,93 @@
+:host ::ng-deep .view-mode input,
+:host ::ng-deep .view-mode button {
+  pointer-events: none !important;
+  cursor: auto !important;
+  user-select: none !important;
+}
+
+:host ::ng-deep .view-mode .mdc-checkbox__native-control {
+  opacity: 0 !important;
+}
+
+:host ::ng-deep .mat-tree-node {
+  margin-bottom: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+:host ::ng-deep .mat-tree-node:hover {
+  background: #e2f2ff;
+}
+
+:host ::ng-deep .mat-tree-node.selected::after {
+  content: "\2713";
+  position: absolute;
+  left: 5px;
+  color: #72adfc;
+  font-size: 24px;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+:host ::ng-deep .mat-tree-node.selected {
+  background: #e2f2ff;
+}
+
+.tree-row {
+  position: relative;
+  width: inherit;
+  height: 48px;
+  line-height: 48px;
+  vertical-align: middle;
+}
+
+.tree-row.child {
+  padding-right: 20px;
+  margin-right: 10px;
+}
+
+.tree-row.child::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  right: -5px;
+  background: #dfe3e8;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.btn-arrow {
+  padding: 0;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+
+  i {
+    font-size: 20px;
+  }
+}
+
+.parent-row {
+  display: flex;
+  width: 100%;
+  min-height: inherit;
+  align-items: center;
+}
+
+.custom-input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 12px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 14px;
+  line-height: 1.5;
+  outline: none;
+}
+
+.custom-input:focus {
+  border-color: #1976d2;
+  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
+}

@@ -1,0 +1,104 @@
+<div class="row report-grid-row">
+  <div
+    class="col report-grid-item"
+    *ngFor="let status of reportResult.workRequestStatusList"
+  >
+    <div class="card">
+      <div class="card-title">
+        {{ "REPORT.TITLES." + status.status + "_REQUESTS" | translate }}
+      </div>
+      <div class="card-content">
+        <div class="progress-count">{{ status.count }}</div>
+        <div class="reportProgress">
+          <mat-progress-bar
+            [mode]="
+              getLoadingState('WORK_REQUEST_STATUS')
+                ? 'indeterminate'
+                : 'determinate'
+            "
+            mode="determinate"
+            [value]="calcPercent(status.count, reportResult.total)"
+          ></mat-progress-bar>
+          <div class="progress-text">
+            %{{ calcPercent(status.count, reportResult.total) }}
+            {{ "REPORT.TITLES.REQUEST" | translate }}
+            {{ "REPORT.TITLES.FROM" | translate }}
+            {{ reportResult.total }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col report-grid-item">
+    <div class="card">
+      <div class="card-title">
+        {{ "REPORT.TITLES.CONVERTED_REQUESTS_TO_AGENDAS" | translate }}
+      </div>
+      <div class="card-content">
+        <div class="progress-count">
+          {{ reportResult.workRequestHasWorkOrderCount }}
+        </div>
+        <div class="reportProgress">
+          <mat-progress-bar
+            [mode]="
+              getLoadingState('WORK_REQUEST_STATUS')
+                ? 'indeterminate'
+                : 'determinate'
+            "
+            [value]="
+              calcPercent(
+                reportResult.workRequestHasWorkOrderCount,
+                reportResult.total
+              )
+            "
+          ></mat-progress-bar>
+          <div class="progress-text">
+            %{{
+              calcPercent(
+                reportResult.workRequestHasWorkOrderCount,
+                reportResult.total
+              )
+            }}
+            {{ "REPORT.TITLES.REQUEST" | translate }}
+            {{ "REPORT.TITLES.FROM" | translate }}
+            {{ reportResult.total }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row report-grid-row">
+  <div class="col-md-3 report-grid-item">
+    <proset-chart
+      chartTitle="REPORT.TITLES.TOTAL_REQUESTS"
+      [chartData]="workRequestCountChartOption"
+      *ngIf="workRequestCountChartOption"
+      [maxWidth]="350"
+      [reportType]="ReportType.WORK_ORDER_STATUS"
+      [fromDate]="fromDate"
+      [toDate]="toDate"
+    ></proset-chart>
+  </div>
+  <div class="col-md-9 report-grid-item">
+    <proset-report-list-view
+      listTitle="REPORT.TITLES.FAULT_LIST"
+      [config]="workOrderFailureModeTableConfig"
+      [reportType]="ReportType.WORK_REQUEST_FAILURE_MODE"
+      [fromDate]="fromDate"
+      [toDate]="toDate"
+    ></proset-report-list-view>
+  </div>
+</div>
+
+<div class="row report-grid-row">
+  <div class="col-md-12 report-grid-item">
+    <proset-chart
+      chartTitle="REPORT.TITLES.MONTHLY_REQUEST_ISSUANCE_TREND"
+      [fromDate]="fromDate"
+      [toDate]="toDate"
+      [reportType]="ReportType.CREATED_WORK_REQUEST"
+    ></proset-chart>
+  </div>
+</div>

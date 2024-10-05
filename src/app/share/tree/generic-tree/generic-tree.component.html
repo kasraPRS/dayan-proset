@@ -1,0 +1,70 @@
+<input
+  type="text"
+  class="form-control w-100 my-2"
+  [formControl]="searchControl"
+  placeholder="{{ 'GENERAL.SEARCH_IN_TREE' | translate }}"
+/>
+
+<fieldset>
+  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+    <!-- Leaf nodes -->
+    <mat-tree-node
+      *matTreeNodeDef="let node"
+      (click)="nameSelectionToggle(node)"
+      [class]="{ selected: selection.isSelected(node) }"
+    >
+      <div matTreeNodePadding matTreeNodePaddingIndent="25" class="d-flex">
+        <ng-container *ngIf="!nodeTemplate">
+          <div
+            class="tree-row child"
+            [class]="{ selected: selection.isSelected(node) }"
+          >
+            {{ node[nameKey] }}
+          </div>
+        </ng-container>
+        <ng-container *ngIf="nodeTemplate">
+          <ng-container
+            *ngTemplateOutlet="nodeTemplate; context: { $implicit: node }"
+          >
+          </ng-container>
+        </ng-container>
+      </div>
+    </mat-tree-node>
+
+    <!-- Expandable nodes -->
+    <mat-tree-node
+      *matTreeNodeDef="let node; when: hasChild"
+      [class]="{ selected: selection.isSelected(node) }"
+    >
+      <div matTreeNodePadding matTreeNodePaddingIndent="25" class="parent-row">
+        <button
+          class="border-less bg-transparent btn-arrow"
+          matTreeNodeToggle
+          [attr.aria-label]="'Toggle ' + node.name"
+          [disabled]="!node.expandable"
+          type="button"
+        >
+          <i
+            *ngIf="!treeControl.isExpanded(node)"
+            class="isax isax-arrow-left-fill"
+          ></i>
+          <i
+            *ngIf="treeControl.isExpanded(node)"
+            class="isax isax-arrow-down-fill"
+          ></i>
+        </button>
+        <ng-container *ngIf="!nodeTemplate">
+          <div class="tree-row" (click)="nameSelectionToggle(node)">
+            {{ node[nameKey] }}
+          </div>
+        </ng-container>
+        <ng-container *ngIf="nodeTemplate">
+          <ng-container
+            *ngTemplateOutlet="nodeTemplate; context: { $implicit: node }"
+          >
+          </ng-container>
+        </ng-container>
+      </div>
+    </mat-tree-node>
+  </mat-tree>
+</fieldset>

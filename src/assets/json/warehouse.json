@@ -1,0 +1,102 @@
+[
+  {
+    "id": "ACTION",
+    "name": "عملیات",
+    "children": [
+      {
+        "id": "DEFINITION_SERVICE_AND_GOODS_FORM",
+        "name": "تعریف  کالا/خدمات"
+      },
+      {
+        "id": "DEFINITION_KOP_STONE_TITLE_FORM",
+        "name": "تعریف  انواع کوپ یا سنگ"
+      },
+      {
+        "id": "DEFINITION_KOP_AND_STONE_DEGREE_FORM",
+        "name": "تعریف  درجه کوپ یا سنگ"
+      },
+      {
+        "id": "DEFINITION_STONE_FINISHING_FORM",
+        "name": "تعریف پرداخت های سنگ"
+      },
+      {
+        "id": "DEFINITION_GOODS_GROUPING_FORM",
+        "name": "تعریف  گروه بندی کالا ها"
+      },
+      {
+        "id": "DEFINITION_MEASUREMENT_UNIT_FORM",
+        "name": "تعریف واحدهای اندازه گیری "
+      },
+      {
+        "id": "DEFINITION_WAREHOUSE_WAREHOUSE_CATEGORY_FORM",
+        "name": "تعریف انبار و دسته ای انبار"
+      }
+    ]
+  },
+  {
+    "id": "LIST",
+    "name": "فهرست",
+    "children": [
+      {
+        "id": "SERVICE_AND_GOODS_LIST",
+        "name": "فهرست  کالا/خدمات"
+      },
+      {
+        "id": "KOP_LIST",
+        "name": "فهرست کوپ ها"
+      },
+      {
+        "id": "STONE_TYPE_LIST",
+        "name": "فهرست  انواع سنگ"
+      },
+      {
+        "id": "KOP_AND_STONE_LIST",
+        "name": "فهرست درجه کوپ یا سنگ"
+      },
+      {
+        "id": "STONE_ADJUSTMENT_LIST",
+        "name": "فهرست پرداخت های سنگ"
+      },
+      {
+        "id": "GOODS_GROUPING_LIST",
+        "name": "فهرست  گروه کالا ها"
+      },
+      {
+        "id": "MEASUREMENT_UNIT_LIST",
+        "name": "فهرست واحدهای اندازه گیری"
+      },
+      {
+        "id": "WAREHOUSE_LIST",
+        "name": "فهرست انبارها"
+      },
+      {
+        "id": "WAREHOUSE_GROUP_LIST",
+        "name": "فهرست دسته های انبار"
+      }
+    ]
+  },
+  {
+    "id": "REPORT",
+    "name": "گزارشات",
+    "children": [
+      {
+        "id": "PRE_INVOICE_REPORT",
+        "name": "مرور موجودی انبار"
+      }
+    ]
+  },
+  {
+    "id": "SETTING",
+    "name": "تنظیمات",
+    "children": [
+      {
+        "id": "RELATED_MOEIN_ACCOUNT",
+        "name": "حساب های معین مرتبط"
+      },
+      {
+        "id": "OTHER_SETTING",
+        "name": "سایر تنظیمات"
+      }
+    ]
+  }
+]

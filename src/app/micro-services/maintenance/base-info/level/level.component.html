@@ -1,0 +1,17 @@
+<div class="mt-3">
+  <app-datatable
+    [limit]="30"
+    [filterNumber]="filterNumber"
+    [config]="config"
+    [tableRow]="tableRow"
+    [newEntryFormTemplate]="LevelFormComponent"
+    (onDoubleClickRow)="showFormInViewMode($event)"
+    [showFilter]="false"
+    [viewOnly]="true"
+    [showIndex]="true"
+    [scrollbarV]="false"
+    [scrollbarH]="true"
+    [formTitle]="'LEVEL.TITLE'"
+    [newEntryPermission]="[permission.LEVEL_CREATE]"
+  ></app-datatable>
+</div>

@@ -1,0 +1,59 @@
+:host ::ng-deep .third-color {
+  color: #009878 !important;
+}
+
+:host ::ng-deep .disaccept-color {
+  color: #e30000 !important;
+}
+
+:host {
+  .filter-button {
+    border: 1px solid;
+    overflow: hidden;
+
+    button {
+      border: 0 !important;
+      border-left: 1px solid #d9d9d9 !important;
+      width: 34%;
+      box-shadow: none;
+
+      &:last-child {
+        border-left: 0 !important;
+      }
+    }
+  }
+
+  .list-view-switch {
+    position: absolute;
+    left: 40px;
+  }
+
+  .badge-filter {
+    background: #4876ff;
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+    color: white;
+    position: absolute;
+    left: 7px;
+  }
+
+  .separator {
+    border-left: 1px solid #9c9c9c;
+    height: 20px;
+  }
+}
+
+::ng-deep .svg-inline--fa {
+  height: 24px;
+}
+
+:host ::ng-deep .button-active {
+  border: none !important;
+  background: #4876ff !important;
+  color: #ffffff;
+}
+.filter-button {
+  position: relative !important;
+  top: 10%;
+}

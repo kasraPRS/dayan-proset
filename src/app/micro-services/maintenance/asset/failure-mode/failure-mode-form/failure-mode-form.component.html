@@ -1,0 +1,89 @@
+<div
+  class="form-continer"
+  [ngClass]="{
+    'view-mode': viewMode
+  }"
+>
+  <form class="form-group mt-5" [formGroup]="formGroup">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row input-row mt-2">
+          <label
+            for="code"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+            >{{ "FAILURE_MODE.FORM.CODE" | translate }}</label
+          >
+          <div class="col-md-8 position-relative">
+            <input
+              type="text"
+              class="form-control"
+              id="code"
+              formControlName="code"
+            />
+            <small
+              id="code_error_duplicated"
+              class="form-text text-danger mt-2"
+              *ngIf="formGroup.get('code')?.hasError('isDuplicate')"
+            >
+              {{ "FAILURE_MODE.MESSAGES.CODE_ALREADY_EXIST" | translate }}
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="row input-row mt-2">
+          <label
+            for="name"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+            >{{ "FAILURE_MODE.FORM.NAME" | translate }}</label
+          >
+          <div class="col-md-8 d-flex position-relative">
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              formControlName="name"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="row input-row mt-2">
+          <label
+            for="asset"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+            >{{ "FAILURE_MODE.FORM.ASSET" | translate }}</label
+          >
+          <div class="col-md-8 position-relative">
+            <proset-asset-tree-select
+              placeholder="{{ 'GENERAL.ASSET_SELECT' | translate }}"
+              formControlName="asset"
+              (assetChange)="assetChange($event)"
+              [disabled]="viewMode || isInUsed"
+            ></proset-asset-tree-select>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="row input-row mt-2">
+          <label
+            for="description"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1"
+            >{{ "FAILURE_MODE.FORM.DESCRIPTION" | translate }}</label
+          >
+          <div class="col-md-8 d-flex position-relative">
+            <textarea
+              type="text"
+              class="form-control"
+              id="description"
+              formControlName="description"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

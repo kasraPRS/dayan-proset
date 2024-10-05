@@ -1,0 +1,61 @@
+<div>
+  <ng-select
+    #costCenterSelect
+    [items]="costCenterDtoList"
+    [multiple]="multiple"
+    bindLabel="name"
+    [loading]="costCenterDtoList.length == 0"
+    (change)="onCostCenterChange($event)"
+    [readonly]="disabled"
+    [(ngModel)]="costCenter"
+    [searchable]="false"
+    [searchFn]="searchCostCenter"
+    appendTo="body"
+  >
+    <ng-template ng-label-tmp let-item="item" let-clear="clear">
+      <div class="ng-value-wrapper default">
+        <span class="ng-value-icon left" (click)="clear(item)">×</span>
+        <span class="ng-value-label">{{ item.name }}</span>
+      </div>
+    </ng-template>
+
+    <ng-template ng-header-tmp>
+      <div class="form-group has-feedback">
+        <input
+          style="width: 100%; line-height: 24px"
+          type="text"
+          class="form-control"
+          id="inputValidation"
+          placeholder="{{ 'GENERAL.SEARCH' | translate }}"
+          (input)="onCostCenterSearch($event)"
+        />
+      </div>
+    </ng-template>
+
+    <ng-template ng-option-tmp let-item="item">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>{{ item.name }}</mat-card-title>
+            <mat-card-subtitle>
+              {{ item.code }}
+            </mat-card-subtitle>
+          </mat-card-title-group>
+        </mat-card-header>
+      </mat-card>
+    </ng-template>
+    <ng-template ng-footer-tmp>
+      <div class="d-flex justify-content-end">
+        <button
+          *prosetHasPermissions="[permission.COST_CENTER_CREATE]"
+          class="btn btn-info btn-sm d-flex"
+          (click)="onOpenCostCenterWindow()"
+        >
+          <i class="fa-solid fa-plus fs-6"></i>
+          <span class="mx-1"></span>
+          {{ "SHARE_COMPONENT.CREATE_NEW_COST_CENTER" | translate }}
+        </button>
+      </div>
+    </ng-template>
+  </ng-select>
+</div>

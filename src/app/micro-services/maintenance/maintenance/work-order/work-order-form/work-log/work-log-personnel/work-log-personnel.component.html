@@ -1,0 +1,78 @@
+<div class="row">
+  <div class="col-2">
+    <button
+      [disabled]="
+        workOrder.status !== WorkOrderStatus.UNDER_EXECUTION &&
+        workLog.status === WorkLogStatus.REGISTER
+      "
+      data-cy="dialog-submit"
+      class="btn btn-outline-primary px-3 white_button green_button_hover m-1 btn-sm"
+      type="button"
+      (click)="onOpenPersonnel()"
+    >
+      {{ "BUTTON.SELECT_PERSONNEL" | translate }}
+    </button>
+  </div>
+</div>
+<div id="table_id" class="row datatable_container">
+  <ngx-datatable
+    style="width: 100%"
+    class="bootstrap viewOnly"
+    [rows]="personnelList"
+    [loadingIndicator]="false"
+    [columnMode]="'force'"
+    [headerHeight]="40"
+    [footerHeight]="0"
+    [rowHeight]="'auto'"
+    [messages]="messages"
+  >
+    <ngx-datatable-column
+      name="{{ 'PERSONNEL.CODE' | translate }}"
+      prop="person.code"
+    >
+      <input class="form-control" />
+    </ngx-datatable-column>
+    <ngx-datatable-column
+      name="{{ 'PERSONNEL.NAME' | translate }}"
+      prop="person.name"
+    >
+    </ngx-datatable-column>
+    <ngx-datatable-column
+      name="{{ 'PERSONNEL.WORK_SHEET' | translate }}"
+      prop="workingHourPresent"
+    >
+    </ngx-datatable-column>
+    <ngx-datatable-column
+      name="{{ 'PERSONNEL.OVER_TIME' | translate }}"
+      prop="overTimeHourPresent"
+    >
+    </ngx-datatable-column>
+    <ngx-datatable-column name="{{ 'PERSONNEL.COST' | translate }}" prop="sum">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        @if (row.sum) {
+          <span>{{ row.sum | number }}</span>
+          <span>{{ "CURRENCY.RIAL" | translate }}</span>
+        } @else {
+          <span>-</span>
+        }
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column
+      name="{{ 'GENERAL.ACTION' | translate }}"
+      *ngIf="
+        workOrder.status === WorkOrderStatus.UNDER_EXECUTION ||
+        workLog.status === WorkLogStatus.REJECT
+      "
+    >
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <a
+          class="mx-1 text-center"
+          role="button"
+          (click)="onDeletePersonnel(row)"
+        >
+          <i class="fisax isax-trash"></i>
+        </a>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>

@@ -1,0 +1,50 @@
+{
+  "MENU": {
+    "FINANCIAL_YEAR": "انتخاب سالی مالی سامانه",
+    "HOME": "خانه",
+    "BASE_INFO": {
+      "TITLE": "اطلاعات پایه",
+      "MEASUREMENT": "واحد اندازه گیری",
+      "LEVEL": "کلاس",
+      "GROUP": "گروه",
+      "PRODUCTION_LINE": "خط‌تولید",
+      "WORK_CENTER": "مرکز‌کاری",
+      "EMPLACEMENT_LOCATION": "محل استقرار",
+      "COST_CENTER": "مرکز‌هزینه",
+      "FAILURE_DETECTION_METHOD": "روش کشف خرابی",
+      "PART": "قطعه"
+    },
+    "ASSET": {
+      "TITLE": "دارایی",
+      "ASSET_LIST": " لیست دارایی",
+      "ASSET_FORM": " ایجاد دارایی",
+      "ACTIVITY": "فعالیت",
+      "FAILURE_MODE": "حالت‌ خرابی",
+      "FAILURE_MECHANISM": "مکانیزم خرابی",
+      "FAILURE_REASON": "دلایل خرابی"
+    },
+    "MAINTENANCE": {
+      "TITLE": "نگهداری",
+      "WORK-REQUEST": "درخواست کار",
+      "WORK_ORDERS": "دستور کار",
+      "CHECKLIST": "چک لیست",
+      "REPAIR_PLANNING": "برنامه‌ ریزی تعمیرات"
+    },
+    "SETTINGS": {
+      "TITLE": "تنظیمات",
+      "COMPANY": "سازمان",
+      "USER_MANAGEMENT": "مدیریت کاربران",
+      "START_NUMBER": "شماره شروع",
+      "FINANCIAL_YEAR_DEFINITION": "تعریف سال مالی",
+      "TEAM": "تیم",
+      "PERSONS": "کاربران"
+    },
+    "EVENTS": {
+      "TITLE": "رویداد ها",
+      "ERROR_LOG": "لیست خطاها"
+    },
+    "REPORTS": {
+      "TITLE": "گزارشات"
+    }
+  }
+}

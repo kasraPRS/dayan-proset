@@ -1,0 +1,50 @@
+<div class="mb-2" *ngIf="_entityUuid">
+  <button
+    type="button"
+    class="btn btn-sm top_action_button"
+    (click)="openEventCart()"
+  >
+    <div class="d-flex justify-content-around align-items-center">
+      <span>{{ "GENERAL.EVENT.TITLE" | translate }}</span>
+    </div>
+  </button>
+
+  <ng-template #dialogTemplate>
+    <div class="dialog-wrapper">
+      <div class="d-flex justify-content-between align-items-center">
+        <h5 mat-dialog-title class="dialog_title">
+          <b
+            >{{ "GENERAL.EVENT.TITLE" | translate }}&nbsp;{{
+              titleOfHistory | translate
+            }}</b
+          >
+        </h5>
+      </div>
+
+      <mat-dialog-content>
+        <mat-card class="example-card mt-2" *ngFor="let event of eventDtoList">
+          <mat-card-header>
+            <mat-card-title-group>
+              <mat-card-subtitle>
+                &nbsp;
+                {{ event.eventDate | jalaliDatetime }} | &nbsp;
+                {{ event.eventCreatedBy }} | &nbsp;
+                {{ "GENERAL.EVENT." + event.eventType | translate }}
+                {{ "GENERAL.EVENT.DONE" | translate }} .
+              </mat-card-subtitle>
+            </mat-card-title-group>
+          </mat-card-header>
+        </mat-card>
+      </mat-dialog-content>
+      <mat-dialog-actions align="end">
+        <button
+          type="button"
+          class="d-flex justify-content-center align-items-center btn btn-primary mb-2"
+          [mat-dialog-close]="true"
+        >
+          {{ "GENERAL.EVENT.UNDERSTAND" | translate }}
+        </button>
+      </mat-dialog-actions>
+    </div>
+  </ng-template>
+</div>

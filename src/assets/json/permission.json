@@ -1,0 +1,48 @@
+[
+  {
+    "id": "user_management",
+    "name": "مدیریت کاربران",
+    "children": [
+      {
+        "id": "user_definition",
+        "name": "ثبت و ویرایش کاربران"
+      },
+      {
+        "id": "group_definition",
+        "name": "ثبت و ویرایش گروه های کاربری"
+      }
+    ]
+  },
+  {
+    "id": "sale_manager",
+    "name": "مدیریت فروش",
+    "children": [
+      {
+        "id": "pre_invoice",
+        "name": "صدور  ییش فاکتور"
+      },
+      {
+        "id": "load_licence",
+        "name": "صدور محوز بارگیری"
+      },
+      {
+        "id": "load",
+        "name": "بارگیری"
+      },
+      {
+        "id": "exit_licence",
+        "name": "صدور حواله خروج"
+      }
+    ]
+  },
+  {
+    "id": "maintenance",
+    "name": "تعمیر و نگهداری",
+    "children": [
+      {
+        "id": "measurement",
+        "name": "تعریف واحد"
+      }
+    ]
+  }
+]

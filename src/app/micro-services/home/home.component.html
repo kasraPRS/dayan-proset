@@ -1,0 +1,9 @@
+<ng-container *prosetHasPermissions="[permissions.WORK_ORDER]">
+  <kanban-board
+    [columns]="kanbanColumns"
+    [tasks]="workOrderTasks"
+    [cardActions]="workOrderTasksActions"
+    #kanbanBoard
+  >
+  </kanban-board>
+</ng-container>

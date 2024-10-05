@@ -1,0 +1,18 @@
+<div class="mt-3">
+  <app-datatable
+    id="salaryDefinitionTable"
+    [limit]="30"
+    [filterNumber]="filterNumber"
+    [config]="config"
+    [tableRow]="tableRow"
+    [newEntryFormTemplate]="GroupFormComponent"
+    (onDoubleClickRow)="showFormInViewMode($event)"
+    [showFilter]="false"
+    [viewOnly]="true"
+    [showIndex]="true"
+    [scrollbarV]="false"
+    [scrollbarH]="true"
+    [formTitle]="'GROUP.TITLE'"
+    [newEntryPermission]="[permission.GROUP_CREATE]"
+  ></app-datatable>
+</div>

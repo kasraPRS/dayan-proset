@@ -1,0 +1,23 @@
+<mat-tab-group
+  mat-stretch-tabs="true"
+  mat-align-tabs="start"
+  class="custom-tab-label"
+  *ngIf="workOrderDto?.code! && viewType"
+>
+  <mat-tab label="{{ 'WORK_ORDERS.FORM.HEADERS.WORK_ORDER' | translate }}">
+    <proset-work-order
+      [workOrderDto]="workOrderDto"
+      [viewType]="viewType"
+      (getWorkOrderEvent)="getWorkOrderById($event)"
+    ></proset-work-order>
+  </mat-tab>
+  <mat-tab
+    label="{{ 'WORK_ORDERS.FORM.HEADERS.WORK_LOG' | translate }}"
+    *ngIf="
+      workOrderDto.id !== undefined &&
+      workOrderDto.status !== WorkOrderStatus.OPEN
+    "
+  >
+    <proset-work-log [workOrderType]="workOrderDto.type!"></proset-work-log>
+  </mat-tab>
+</mat-tab-group>

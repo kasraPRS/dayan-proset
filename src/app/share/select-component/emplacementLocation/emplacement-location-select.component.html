@@ -1,0 +1,46 @@
+<form [formGroup]="formGroup" class="w-100">
+  <div class="bigger_dropdown">
+    <ng-select
+      #selectAsset
+      [multiple]="multiple"
+      [loading]="emplacementLocationDtoList.length == 0"
+      formControlName="emplacementLocation"
+      [class]="{ 'view-mode': disabled }"
+    >
+      <ng-template ng-label-tmp let-item="item" let-clear="clear">
+        <div class="ng-value-wrapper default">
+          <span class="ng-value-icon left" (click)="clear(item)">×</span>
+          <span class="ng-value-label">{{ item.name }}</span>
+        </div>
+      </ng-template>
+
+      <ng-template ng-notfound-tmp>
+        <app-datatable
+          *ngIf="emplacementLocationDtoList.length > 0"
+          id="personTable"
+          [limit]="10"
+          [showToolbar]="false"
+          [tableRow]="emplacementLocationDtoList"
+          [config]="emplacementLocationTableConfig"
+          [scrollbarH]="true"
+          [showIndex]="true"
+          [scrollbarV]="false"
+          (onRowActivate)="onEmplacementLocationChange($event, selectAsset)"
+        ></app-datatable>
+      </ng-template>
+      <ng-template ng-footer-tmp>
+        <div class="d-flex justify-content-end">
+          <button
+            *prosetHasPermissions="[permission.EMPLACEMENT_LOCATION_CREATE]"
+            class="btn btn-info btn-sm d-flex"
+            (click)="goToNewEmplacementLocation()"
+          >
+            <i class="fa-solid fa-plus fs-6"></i>
+            <span class="mx-1"></span>
+            {{ "SHARE_COMPONENT.CREATE_NEW_EMPLACEMENT_LOCATION" | translate }}
+          </button>
+        </div>
+      </ng-template>
+    </ng-select>
+  </div>
+</form>

@@ -1,0 +1,36 @@
+// color
+$whit-color: white;
+$blue-color-light: #4876ff;
+$blue-color-light-100: #e2f5fc;
+$blue-color-dark: #1f3b8e;
+$red-color-light: #e30000;
+$gray-color-light-100: #9c9c9c;
+$gray-color-light-20: #d9d9d9;
+
+$priority-low-color: #4876ff1a;
+$priority-middle-color: #fdab3d33;
+$priority-high-color: #e3000033;
+$priority-critical-color: #5d1ce833;
+
+//border-radius-size
+
+// size
+$size: 2px;
+$size1: $size * 2;
+$size2: $size1 * 2;
+$size3: $size2 * 2;
+$size4: $size3 * 2;
+
+:export {
+  priority-low-color: $priority-low-color;
+  priority-middle-color: $priority-middle-color;
+  priority-high-color: $priority-high-color;
+  priority-critical-color: $priority-critical-color;
+}
+
+:root {
+  --priority-low-color: #{$priority-low-color};
+  --priority-middle-color: #{$priority-middle-color};
+  --priority-high-color: #{$priority-high-color};
+  --priority-critical-color: #{$priority-critical-color};
+}

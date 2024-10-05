@@ -1,0 +1,17 @@
+<div class="mt-3">
+  <app-datatable
+    id="failMethodTable"
+    [tableRow]="tableRow"
+    [limit]="30"
+    [config]="config"
+    (onDoubleClickRow)="showFormInViewMode($event)"
+    [newEntryFormTemplate]="FailureMethodDetectionFormComponent"
+    [viewOnly]="true"
+    [showIndex]="true"
+    [scrollbarV]="false"
+    [showFilter]="false"
+    [scrollbarH]="true"
+    [formTitle]="'FAIL_DETECTION.TITLE'"
+    [newEntryPermission]="[permission.MEASUREMENT_CREATE]"
+  ></app-datatable>
+</div>

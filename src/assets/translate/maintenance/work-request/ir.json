@@ -1,0 +1,93 @@
+{
+  "REQUEST": {
+    "TITLE": "درخواست کار",
+    "BUTTONS": {
+      "NEW": "جدید",
+      "DELETE": "حذف",
+      "SAVE_AND_CLOSE": "ذخیره و بستن",
+      "EDIT": "ویرایش",
+      "SAVE": "ذخیره",
+      "COPY": "کپی",
+      "PRINT": "چاپ",
+      "GUIDLINE_ISSUE": "صدور دستور کار",
+      "REGISTRATION": "ثبت",
+      "REJECT_REQUEST": "رد درخواست",
+      "ACCEPT": "تایید",
+      "UNACCEPT": "برگشت از تایید"
+    },
+    "FORM": {
+      "REQUESTER_INFO": "اطلاعات درخواست کننده",
+      "DATE": "تاریخ درخواست کار",
+      "NUMBER": "شماره",
+      "TITLE": "عنوان",
+      "REQUESTER": "درخواست کننده",
+      "ASSET": "دارایی",
+      "ASSET_CODE": "کد دارایی",
+      "EMPLACEMENT_LOCATION": "محل استقرار",
+      "ASSET_STATUS": "وضعیت دارایی",
+      "FAILURE_MODE": "حالت خرابی",
+      "FAILURE_DETECTION": "روش کشف خرابی",
+      "PRIORITY": "اولویت پیشنهادی",
+      "DESCRIPTION": "شرح"
+    },
+    "FILTER": {
+      "REQUESTER_NUMBER": "شماره درخواست",
+      "TO": "تا",
+      "NUMBER": "شماره",
+      "DATE": "تاریخ درخواست کار",
+      "CREATOR": "ایجاد کننده",
+      "CREATION_DATE": "تاریخ ایجاد",
+      "EDITOR": "ویرایش کننده",
+      "EDIT_DATE": "تاریخ ویرایش",
+      "STATUS": "وضعیت"
+    },
+    "TABLE": {
+      "DATE": "تاریخ",
+      "NUMBER": "شماره",
+      "TITLE": "عنوان",
+      "REQUESTER": "درخواست کننده",
+      "REQUESTER_CODE": " کد درخواست کننده",
+      "ASSET": "دارایی",
+      "NUMBER_PLATE": "کد دارایی",
+      "EMPLACEMENT_LOCATION": "محل استقرار",
+      "REQUESTER_UNIT": "واحد درخواست کننده",
+      "PRIORITY": "الویت",
+      "FAILURE_LIST": "حالت خرابی",
+      "FAILURE_DETECTION": "روش کشف خرابی",
+      "WORKORDER_STATUS": "وضعیت دستور کار",
+      "WORKORDER_NUMBER": "شماره دستور کار",
+      "DELETE": "حذف",
+      "EDIT": "ویرایش",
+      "STATUS": "وضعیت",
+      "FAILURE": "خرابی"
+    },
+    "MODAL": {
+      "DESCRIPTION": "توضیحات",
+      "SAVE_REQUEST_TEXT": "از ثبت درخواست کار اطمینان دارید؟",
+      "ACCEPTED_REQUEST_TEXT": "از تایید درخواست کار اطمینان دارید؟",
+      "REJECTED_REQUEST_TEXT": "آیا از رد درخواست کار اطمینان دارید؟",
+      "WAIT_FOR_ACCEPT_REQUEST_TEXT": "آیا از برگشت از تایید درخواست کار اطمینان دارید؟",
+      "DELETE_REQUEST": "آیا از حذف درخواست کار اطمینان دارید؟"
+    },
+    "MESSAGES": {
+      "DELETE_CONFIRM": "از رد کردن درخواست کار اطمینان دارید؟",
+      "INSERT_FAIL": "خطا در ذخیره سازی اطلاعات . لطفا دوباره سعی کنید یا با مدیر سیستم تماس بگیرید. ",
+      "UPDATE_FAIL": "خطا در بروزرسانی اطلاعات . لطفا دوباره سعی کنید یا با مدیر سیستم تماس بگیرید. ",
+      "INSERT_SUCCESS": "ثبت اطلاعات با موفقیت صورت گرفت",
+      "UPDATE_SUCCESS": "بروزرسانی اطلاعات با موفقیت صورت گرفت",
+      "DELETE_FAIL": "خطا در حذف اطلاعات ، لطفا دوباره سعی کنید یا با مدیر سیستم تماس بگیرید",
+      "DELETE_SUCCESS": "حذف اطلاعات با موفقیت صورت گرفت",
+      "REQUEST_CODE_DUPLICATE": "این شماره قبلا به درخواست دیگری اختصاص داده شده است.",
+      "FROM_NUMBER_IS_BIGGER_THAN_TO_NUMBER": "شماره انتخابی باید بزرکتر یا مساوی ",
+      "BEE": "باشد",
+      "WORK_REQUEST_NOT_DELETABLE": "این درخواست کار قابل حذف نمی باشد.",
+      "WORK_REQUEST_NOT_UPDATABLE": "این درخواست کار قابل ویرایش نمی باشد.",
+      "RETURN_TO_LIST": "آیا از بازگشت به لیست اطمینان دارید؟"
+    },
+    "STATUS": {
+      "WAIT_FOR_ACCEPT": " در انتظار تایید",
+      "REJECTED": "رد درخواست",
+      "ACCEPTED": "تایید شده"
+    }
+  }
+}

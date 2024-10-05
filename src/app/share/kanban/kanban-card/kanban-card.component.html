@@ -1,0 +1,129 @@
+<div
+  class="card"
+  [draggable]="'true'"
+  id="columns-{{ columnIndex }}-card-{{ cardIndex }}"
+  attr.columnIndex="{{ columnIndex }}"
+  attr.cardIndex="{{ cardIndex }}"
+>
+  <div class="card-body">
+    <div class="d-flex justify-content-between align-items-center">
+      <a
+        class="card-title flex-1"
+        [href]="card.link ? card.link : null"
+        target="_blank"
+      >
+        {{ card.title }}
+      </a>
+
+      <div class="d-flex align-items-center gap-2">
+        <span
+          class="d-flex label-tooltip"
+          *ngIf="isPassed"
+          attr.aria-label="{{ 'KANBAN.DOING_TIME_PASSED' | translate }}"
+        >
+          <i class="isax isax-danger text-warning"></i>
+        </span>
+
+        <span
+          *ngIf="
+            card.isRejected && card.status == WorkOrderStatus.UNDER_EXECUTION
+          "
+          class="d-flex label-tooltip"
+          attr.aria-label="{{ 'GENERAL.NOT_ACCEPT' | translate }}"
+        >
+          <i class="isax isax-dislike text-danger"></i>
+        </span>
+
+        <span
+          *ngIf="card.orgEntity.type == WorkOrderType.PREVENTIVE"
+          class="d-flex label-tooltip"
+          attr.aria-label="{{ 'GENERAL.PERIOD' | translate }}"
+        >
+          <i class="isax isax-refresh-circle third-color"></i>
+        </span>
+
+        <ng-container [ngTemplateOutlet]="dotMenu"></ng-container>
+      </div>
+    </div>
+
+    <div class="d-flex flex-wrap gap-2" *ngIf="card.labels?.length">
+      <span *ngFor="let label of card.labels" class="chip-view label">
+        <span class="color-dot" [style.background]="label.color"></span>
+        {{ label.title | translate }}
+      </span>
+    </div>
+
+    <div
+      class="d-flex gap-2 align-items-center"
+      *ngIf="
+        isActiveField(KanbanCardFieldType.START_DATE) ||
+        isActiveField(KanbanCardFieldType.END_DATE)
+      "
+    >
+      <i class="isax isax-calendar-1"></i>
+      <span *ngIf="isActiveField(KanbanCardFieldType.START_DATE)">
+        {{ card.start_date | jalaliDate: true }}
+      </span>
+      <span
+        *ngIf="
+          isActiveField(KanbanCardFieldType.START_DATE) &&
+          isActiveField(KanbanCardFieldType.END_DATE)
+        "
+        >-</span
+      >
+      <span *ngIf="isActiveField(KanbanCardFieldType.END_DATE)">{{
+        card.end_date | jalaliDate: true
+      }}</span>
+    </div>
+
+    <hr class="m-0" />
+    <div class="d-flex bottomSection">
+      <div class="d-flex flex-1 align-items-center gap-2">
+        <span
+          class="chip-view label-tooltip"
+          *ngIf="isActiveField(KanbanCardFieldType.ID)"
+          attr.aria-label="{{ 'KANBAN.ID' | translate }}"
+          >{{ card.code }}</span
+        >
+        <span
+          class="chip-view label-tooltip"
+          [style.background]="priorityBackground"
+          *ngIf="isActiveField(KanbanCardFieldType.PRIORITY)"
+          attr.aria-label="{{ 'KANBAN.PRIORITY' | translate }}"
+          >{{ "PRIORITY." + card.priority | translate }}</span
+        >
+      </div>
+      <div
+        class="avatar label-tooltip"
+        *ngIf="isActiveField(KanbanCardFieldType.ASSIGNEE)"
+        attr.aria-label="{{ card.author.name }}"
+      >
+        <i class="isax isax-user"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #dotMenu>
+  <a
+    type="button"
+    data-toggle="dropdown"
+    aria-haspopup="true"
+    aria-expanded="false"
+    [matMenuTriggerFor]="action"
+    class="dotMenu"
+  >
+    <img src="/assets/img/table_menu.png" />
+    <mat-menu #action="matMenu">
+      <ng-container *ngFor="let action of cardActions">
+        <button
+          mat-menu-item
+          *ngIf="!action.status || card.status == action.status"
+          (click)="action.action(card)"
+        >
+          {{ action.title | translate }}
+        </button>
+      </ng-container>
+    </mat-menu>
+  </a>
+</ng-template>

@@ -1,0 +1,25 @@
+<div class="card">
+  <div class="card-title">
+    {{ chartTitle! | translate }}
+  </div>
+  <div class="card-content">
+    <mat-spinner *ngIf="loading" class="loading"></mat-spinner>
+    <div
+      *ngIf="chartOption && !loading"
+      class="w-100 d-flex justify-content-center align-items-center"
+    >
+      <highcharts-chart
+        #highchart
+        [Highcharts]="HighCharts"
+        [options]="chartOption"
+        [(update)]="updateFlag"
+        [style]="{
+          width: '100%',
+          maxWidth: maxWidth ? maxWidth + 'px' : 'auto',
+          height: height + 'px',
+          display: 'block'
+        }"
+      ></highcharts-chart>
+    </div>
+  </div>
+</div>

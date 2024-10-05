@@ -1,0 +1,62 @@
+:host {
+  --mdc-linear-progress-active-indicator-height: 30px;
+  --mdc-linear-progress-track-height: 30px;
+  --mdc-linear-progress-active-indicator-color: #4876ff;
+  --mdc-linear-progress-track-color: #ededed;
+}
+
+:host ::ng-deep .mdc-linear-progress__buffer-bar {
+  background-color: #ededed !important;
+}
+
+:host ::ng-deep .mdc-linear-progress__bar-inner {
+  border-color: #4876ff !important;
+}
+
+.reportProgress {
+  position: relative;
+}
+
+.progress-text {
+  color: var(--text-icon, #282828);
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  inset: 0;
+}
+
+.progress-count {
+  text-align: center !important;
+  margin: 32px 0;
+  color: var(--primery-color, #1f3b8e);
+  text-align: right;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+:host .card {
+  border-radius: 8px;
+  background: #fff;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  height: 100% !important;
+  min-height: 250px;
+}
+
+:host .card-title {
+  color: var(--second-text-table, #4c4b4b);
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+}

@@ -1,0 +1,162 @@
+{
+  "REPAIR_PLANNING": {
+    "ACTIVITY": "وظیفه",
+    "ACTIVITY_NAME": "عنوان وظیفه",
+    "BUTTONS": {
+      "SELECT_CHECKLIST": "انتخاب چک لیست"
+    },
+    "HEADER": {
+      "BASIC_INFORMATION": "اطلاعات اصلی",
+      "PLANNING": "برنامه ریزی",
+      "CHECKLIST": "چک لیست"
+    },
+    "FORM": {
+      "BASIC_INFORMATION": {
+        "REPAIR_PLANNING_NUMBER": "شماره برنامه",
+        "DATE": "تاریخ",
+        "REPAIR_PLANNING_TITLE": "عنوان برنامه",
+        "ASSET_TITLE": "عنوان دارایی",
+        "NUMBER_PLATE": "کد دارایی",
+        "EMPLACEMENT_LOCATION": "محل استقرار",
+        "ASSET_STATUS": "وضعیت دارایی",
+        "SERVICE_STATUS": "عنوان فعالیت",
+        "EXECUTION_PRIORITY": "اولویت انجام",
+        "REPAIRMAN": "تعمیرکار",
+        "REPAIR_PERSONNEL": "پرسونل تعمیرات",
+        "EXECUTION_RESPONSIBLE": "مسئول اجرا",
+        "CONDITION_OF_EQUIPMENT_AT_THE_TIME_OF_REPAIR": "وضعیت در زمان تعمیر",
+        "ESTIMATED_DURATION": "مدت زمان تخمینی",
+        "DESCRIPTION": "توضیحات",
+        "CHECKLIST_TITLE": "عنوان چک لیست ها"
+      },
+      "PLANNING": {
+        "TYPE": {
+          "TIME_BASE": "زمان",
+          "USAGE_BASE": "کارکرد"
+        },
+        "PLANNING_TYPE": "تناوب",
+        "EACH": "هر",
+        "SUGGESTED_DATE": "تاریخ پیشنهادی هر",
+        "DUE_DATE": "تاریخ شروع",
+        "REPEAT_PATTERN_END_DATE": "تاریخ پایان الگوی تکرار",
+        "CREATE_WORK_ORDER": "ایجاد دستورات کاری",
+        "DESCRIPTION": "توضیحات"
+      },
+      "PLACEHOLDERS": {
+        "HOUR": "ساعت",
+        "MINUTE": "دقیقه",
+        "MONTH": "ماه"
+      }
+    },
+    "PRIORITY": {
+      "CRITICAL": "اضطراری",
+      "HIGH": "فوری",
+      "MIDDLE": "جدی",
+      "LOW": "نرمال"
+    },
+    "REPAIR_TYPES": {
+      "INTERNAL": "درون سازمانی",
+      "EXTERNAL": "برون سازمانی"
+    },
+    "MAINTENANCE_ASSET_CONDITION": {
+      "STOPPED": "متوقف شده",
+      "IS_WORKING": "در حال اجرا"
+    },
+    "TIMEBASE_ITERATION_TYPE": {
+      "DAILY": "روزانه",
+      "WEEKLY": "هفتگی",
+      "MONTHLY": "ماهانه",
+      "YEARLY": "سالانه"
+    },
+    "TIMEBASE_ITERATION_VALUE": {
+      "DAY": "روز",
+      "WEEK": "هفته",
+      "MONTH": "ماه",
+      "YEAR": "سال"
+    },
+    "ASSET_STATUS": {
+      "CURRENT": "جاری",
+      "SOLD": "فروش رفته",
+      "SCRAP": "خراب",
+      "UNUSED": "استفاده نشده",
+      "STAGNANT": "راکد"
+    },
+    "ASSET_CONDITION": {
+      "STOPPED": "متوقف",
+      "IS_WORKING": "در حال کار"
+    },
+    "REPAIR_PLANNING_STATUS": {
+      "IS_PLANED": "برنامه ریزی شده",
+      "UNDER_EXECUTION": "در حال اجرا",
+      "FINISHED": "خاتمه یافنه"
+    },
+    "TEXTS": {
+      "DAYS_BEFORE_DUE_DATE": "روز قبل از تاریخ شروع"
+    },
+    "MESSAGES": {
+      "MESSAGE_SUCCESS": ". اطلاعات با موفقیت  ثبت شد",
+      "MESSAGE_FAIL": ". خطا در ذخیره سازی اطلاعات ",
+      "ACTION_MESSAGE_SUCCESS": ". عملیات با موفقیت انجام شد",
+      "ACTION_MESSAGE_FAIL": ". خطا در انجام عملیات ",
+      "CODE_DUPLICATE": " شماره دستور کار تکراری است .",
+      "ESTIMATED_TIME_MINUTE_MAX_ERROR": "دقیقه وارد شده بیشتر از حد مجاز است .",
+      "REPAIR_PLANNING_IS_NOT_UPDATABLE_EXCEPTION": "این برنامه ریزی تعمیرات قابل ویرایش نمی باشد.",
+      "REMOVE_SCHEDULE": "با تغییر نوع برنامه ریزی، اطلاعات وارد شده حذف می شود. ایا اطمینان دارید ؟",
+      "THIS_REPAIR_PLANNING_IS_NOT_EDITABLE": "این برنامه قابل ویرایش نمی باشد.",
+      "THIS_REPAIR_PLANNING_IS_NOT_DELETABLE": "این برنامه قابل حذف نمی باشد."
+    },
+    "TABLE": {
+      "REPAIR_PLANNING_DATE": "تاریخ",
+      "REPAIR_PLANNING_NUMBER": "شماره برنامه",
+      "REPAIR_PLANNING_TITLE": "عنوان دارایی",
+      "REPAIR_PLANNING_PLATE_NUMBER": "کد دارایی",
+      "REPAIR_PLANNING_EMPLACEMENT_LOCATION": "محل استقرار",
+      "REPAIR_PLANNING_STATUS": "وضعیت برنامه",
+      "REPAIR_PLANNING_PLANNING_TITLE": "عنوان برنامه",
+      "REPAIR_PLANNING_SERVICE_TITLE": "عنوان فعالیت",
+      "REPAIR_PLANNING_PRIORITY": "اولویت انجام",
+      "SERVICE": "فعالیت",
+      "REPAIR_PLANNING_ASSET_STATUS": "وضعیت دارایی",
+      "REPAIR_PLANNING_ASSET_STATUS_DURING_REPAIR": "وضعیت دارایی در زمان تعمیر",
+      "REPAIR_PLANNING_REPAIR_TYPE": "تعمیرکار",
+      "REPAIR_PLANNING_REPAIR_PERSONNEL": "پرسنل تعمیرات",
+      "PERSON": "نفر",
+      "REPAIR_PLANNING_EXECUTION_MANAGER": "مسئول اجرا",
+      "REPAIR_PLANNING_EXECUTION_MANAGER_CODE": "کد مسئول اجرا",
+      "REPAIR_PLANNING_PLANNING_TYPE": "نوع برنامه ریزی",
+      "REPAIR_PLANNING_SCHEDULE": "زمان بندی",
+      "REPAIR_PLANNING_ITERATION_START_DATE": "تاریخ شروع",
+      "REPAIR_PLANNING_ITERATION_END_DATE": "تاریخ پایان",
+      "REPAIR_PLANNING_CREATOR": "ایجاد کننده",
+      "REPAIR_PLANNING_CREATE_DATE": "تاریخ ایجاد",
+      "REPAIR_PLANNING_LAST_UPDATE_DATE": "تاریخ آخرین ویرایش",
+      "REPAIR_PLANNING_LAST_EDITOR": "آخرین ویرایش کننده",
+      "REPAIR_PLANNING_DESCRIPTION": "توضیحات",
+      "ACTION": "عملیات",
+      "CHECKLIST": {
+        "CODE": "کد",
+        "NAME": "عنوان"
+      }
+    }
+  },
+  "REPAIR_PLANNING_TABS": {
+    "REPAIR_PLANNING_DETAILS": "جزئیات",
+    "REPAIR_PLANNING_CALENDAR": "تقویم",
+    "REPAIR_PLANNING_WORK_ORDERS": "دستورکار های این برنامه"
+  },
+  "REPAIR_PLANNING_WORK_ORDER": {
+    "TABLE": {
+      "WORK_ORDER_NUMBER": "شماره دستورکار",
+      "WORK_ORDER_START_DATE": "تاریخ شروع",
+      "WORK_ORDER_STATUS": "وضعیت",
+      "WORK_ORDER_MAIN_DATE": "تاریخ ایجاد",
+      "WORK_ORDER_END_DATE": "تاریخ اتمام",
+      "STATUSES": {
+        "OPEN": "باز",
+        "UNDER_EXECUTION": "در حال اجرا",
+        "WORK_LOG": "ثبت عملگر",
+        "FINISHED": "خاتمه یافته"
+      }
+    }
+  }
+}

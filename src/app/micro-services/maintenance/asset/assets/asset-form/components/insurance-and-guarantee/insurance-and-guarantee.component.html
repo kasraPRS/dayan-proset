@@ -1,0 +1,191 @@
+<div class="p-2" [formGroup]="form">
+  <div class="row m-0 mt-4">
+    <div class="col-4">
+      <div class="row d-flex form-group mt-2">
+        <label
+          for="hasInsurance"
+          class="col-md-4 text-dark col-form-label text-md-end mt-1"
+          [ngClass]="{
+            required: form.controls['hasInsurance'].validator
+          }"
+          >{{
+            "ASSET.FORM.INSURANCE_AND_GUARANTEE.INSURANCE" | translate
+          }}</label
+        >
+        <div class="col-md-8">
+          <ng-select
+            id="hasInsurance"
+            [items]="hasOptions"
+            bindValue="value"
+            formControlName="hasInsurance"
+            [clearable]="false"
+            appendTo="body"
+          >
+            <ng-template ng-label-tmp ng-option-tmp let-item="item">
+              {{ "GENERAL." + item.label | translate }}
+            </ng-template>
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="row d-flex form-group mt-2">
+        <label
+          class="col-md-4 col-form-label text-dark text-md-end mt-1"
+          [ngClass]="{
+            required: form.controls['hasGuarantee'].validator
+          }"
+          >{{
+            "ASSET.FORM.INSURANCE_AND_GUARANTEE.GUARANTEE" | translate
+          }}</label
+        >
+        <div class="col-md-8">
+          <ng-select
+            [items]="hasOptions"
+            bindValue="value"
+            formControlName="hasGuarantee"
+            [clearable]="false"
+            appendTo="body"
+          >
+            <ng-template ng-label-tmp ng-option-tmp let-item="item">
+              {{ "GENERAL." + item.label | translate }}
+            </ng-template>
+          </ng-select>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="row d-flex form-group mt-2">
+        <label
+          for="insurance"
+          class="col-md-4 col-form-label text-dark text-md-end mt-1"
+          [ngClass]="{
+            required: form.get('insurance')?.validator
+          }"
+          >{{
+            "ASSET.FORM.INSURANCE_AND_GUARANTEE.INSURANCE_TYPE" | translate
+          }}</label
+        >
+        <div class="col-md-8 position-relative">
+          <div class="row">
+            <div class="d-flex flex-nowrap gap-2">
+              <div class="w-50 position-relative">
+                <input
+                  id="insurance"
+                  type="text"
+                  class="form-control"
+                  formControlName="insurance"
+                />
+              </div>
+              <div class="w-50">
+                <input
+                  id="insurer"
+                  type="text"
+                  class="form-control"
+                  formControlName="insurer"
+                  placeholder="{{
+                    'ASSET.FORM.PLACEHOLDER.INSURER' | translate
+                  }}"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row d-flex form-group mt-2">
+        <label
+          for="guaranteeStartDate"
+          class="col-md-4 col-form-label text-dark text-md-end mt-1"
+          [ngClass]="{
+            required: form.get('guaranteeStartDate')?.validator
+          }"
+          >{{
+            "ASSET.FORM.INSURANCE_AND_GUARANTEE.GUARANTEE_START_AND_END_DATE"
+              | translate
+          }}</label
+        >
+        <div class="col-md-8 position-relative">
+          <div class="row">
+            <div class="d-flex flex-nowrap gap-2">
+              <div class="w-50">
+                <proset-datepicker
+                  id="guaranteeStartDate"
+                  formControlName="guaranteeStartDate"
+                ></proset-datepicker>
+              </div>
+              <div class="w-50">
+                <proset-datepicker
+                  id="guaranteeEndDate"
+                  formControlName="guaranteeEndDate"
+                ></proset-datepicker>
+                <small
+                  class="form-text text-danger mt-2"
+                  *ngIf="
+                    form.get('guaranteeEndDate')?.hasError('dateRangeInvalid')
+                  "
+                >
+                  {{ "ASSET.MESSAGES.END_DATE_BEFORE_START_DATE" | translate }}
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="row d-flex form-group mt-2">
+        <label
+          for="insuranceStartDate"
+          class="col-md-4 col-form-label text-dark text-md-end mt-1"
+          [ngClass]="{
+            required: form.controls['insuranceStartDate'].validator
+          }"
+          >{{
+            "ASSET.FORM.INSURANCE_AND_GUARANTEE.INSURANCE_START_AND_END_DATE"
+              | translate
+          }}</label
+        >
+        <div class="col-md-8 position-relative">
+          <div class="row">
+            <div class="d-flex flex-nowrap gap-2">
+              <div class="w-50">
+                <proset-datepicker
+                  id="insuranceStartDate"
+                  formControlName="insuranceStartDate"
+                ></proset-datepicker>
+              </div>
+              <div class="w-50">
+                <proset-datepicker
+                  id="insuranceEndDate"
+                  formControlName="insuranceEndDate"
+                ></proset-datepicker>
+                <small
+                  class="form-text text-danger mt-2"
+                  *ngIf="
+                    form.get('insuranceEndDate')?.hasError('dateRangeInvalid')
+                  "
+                >
+                  {{ "ASSET.MESSAGES.END_DATE_BEFORE_START_DATE" | translate }}
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row d-flex form-group mt-2">
+        <label class="col-md-4 col-form-label text-dark text-md-end mt-1">
+          {{ "ASSET.FORM.INSURANCE_AND_GUARANTEE.DESCRIPTION" | translate }}
+        </label>
+        <div class="col-md-8">
+          <textarea
+            slot="input"
+            type="text"
+            class="form-control"
+            formControlName="description"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

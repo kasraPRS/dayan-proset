@@ -1,0 +1,121 @@
+<div [ngClass]="{ blue_scroll_box: viewOnly }">
+  <ngx-datatable
+    class="bootstrap viewOnly"
+    [rows]="tableRow"
+    [loadingIndicator]="loadingIndicator"
+    [columnMode]="'force'"
+    [headerHeight]="40"
+    [footerHeight]="0"
+    [rowHeight]="'auto'"
+    [scrollbarH]="scrollbarH"
+    [scrollbarV]="scrollbarV"
+    [selected]="selected"
+    (select)="onSelect($event)"
+    (activate)="onActivate($event)"
+    [messages]="messages"
+    #datatable
+  >
+    <ngx-datatable-row-detail [rowHeight]="110" [template]="detail">
+    </ngx-datatable-row-detail>
+    <!-- Column Templates -->
+    <ngx-datatable-column
+      [width]="50"
+      [resizeable]="false"
+      [sortable]="false"
+      [draggable]="false"
+      [canAutoResize]="false"
+    >
+      <ng-template
+        let-row="row"
+        let-expanded="expanded"
+        ngx-datatable-cell-template
+      >
+        <a
+          href="javascript:void(0)"
+          [class.datatable-icon-left]="!expanded"
+          [class.datatable-icon-down]="expanded"
+          title="Expand/Collapse Row"
+          (click)="toggleExpandRow(row)"
+        >
+        </a>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column
+      name="{{ 'DATATABLE.ROW_NUMBER' | translate }}"
+      *ngIf="showIndex"
+      [canAutoResize]="false"
+      [draggable]="false"
+      [resizeable]="false"
+      [sortable]="sortable"
+    >
+      <ng-template
+        let-rowIndex="rowIndex"
+        let-row="row"
+        ngx-datatable-cell-template
+      >
+        <strong>{{ rowIndex + 1 }}</strong>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column
+      *ngFor="let col of config.list"
+      name="{{ col.label | translate }}"
+      prop="{{ col.field }}"
+      [width]="col.width ? col.width : 50"
+      [minWidth]="col.minWidth ? col.minWidth : 50"
+      [sortable]="sortable"
+      [resizeable]="false"
+    >
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <span *ngIf="filterable" class="right-inner-addon">
+          <input type="text" class="form-control" id="{{ column.prop }}" />
+          <button><i class="fa fa-search" aria-hidden="true"></i></button>
+        </span>
+        {{ column.name | translate }}
+      </ng-template>
+
+      <ng-container>
+        <ng-template
+          let-value="value"
+          let-row="row"
+          ngx-datatable-cell-template
+        >
+          <app-datatable-field
+            [value]="value"
+            [entry]="row"
+            [column]="col"
+            [type]="col.type ? col.type : 'text'"
+          ></app-datatable-field>
+        </ng-template>
+      </ng-container>
+    </ngx-datatable-column>
+    <ngx-datatable-column
+      *ngIf="config.actions?.length"
+      [flexGrow]="0.25"
+      [sortable]="false"
+    >
+      <ng-template
+        let-column="column"
+        ngx-datatable-header-template
+      ></ng-template>
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <ng-container *ngFor="let action of config.actions">
+          <app-datatable-action
+            class="float-left"
+            [id]="action.id"
+            [row]="row"
+            [icon]="action.icon"
+            [button]="action.label!"
+            [tooltip]="action.tooltip"
+            [tooltipParams]="
+              action.tooltipParams ? action.tooltipParams(row) : undefined
+            "
+            [action]="action.action"
+            [permission]="action.permission"
+            [hidden]="action.hidden"
+          ></app-datatable-action>
+        </ng-container>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>

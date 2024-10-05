@@ -1,0 +1,159 @@
+<proset-sidebar-filter (onFilterForm)="onFilterForm($event)">
+  <ng-container header *ngTemplateOutlet="filterTemplate"></ng-container>
+  <ng-container topFooter *ngTemplateOutlet="buttonTemplate"></ng-container>
+</proset-sidebar-filter>
+
+<div class="mt-3">
+  <app-datatable
+    [filterNumber]="filterNumber"
+    [newWindowUrl]="'/maintenance/maintenance/repair-planning/form'"
+    [limit]="30"
+    [config]="config"
+    [scrollbarH]="true"
+    (onDoubleClickRow)="onViewMode($event)"
+    [tableRow]="repairPlanningSearchedList"
+    *ngIf="repairPlanningSearchedList"
+    [newEntryPermission]="[permission.REPAIR_PLANNING_CREATE]"
+  >
+  </app-datatable>
+</div>
+
+<ng-template #filterTemplate>
+  <form [formGroup]="form">
+    <div class="row d-flex form-group mb-2">
+      <div class="col-3 text-end">
+        <label class="col-form-label"
+          ><b>{{ "WORK_ORDERS.FORM.ASSET" | translate }}</b></label
+        >
+      </div>
+      <div class="col-md-9">
+        <proset-asset-select
+          [multiple]="true"
+          (assetChange)="assetChange($event)"
+          [value]="mainInfo?.asset!"
+        >
+        </proset-asset-select>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-3 text-end">
+        <label for="fromCode" class="col-form-label"
+          ><b>{{ "WORK_ORDERS.FILTER.NUMBER" | translate }}</b></label
+        >
+      </div>
+      <div class="col-9">
+        <div class="d-flex justify-content-between w-100 align-items-center">
+          <input
+            id="fromCode"
+            type="number"
+            class="form-control"
+            formControlName="fromCode"
+          />
+          <div class="px-2">
+            <b>{{ "FILTER.TO" | translate }}</b>
+          </div>
+          <input
+            id="toCode"
+            type="number"
+            class="form-control"
+            formControlName="toCode"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <small class="col-md-4"></small>
+        <small
+          class="form-text text-danger mt-2 col-md-8 d-flex justify-content-end"
+          *ngIf="
+            form.get('toCode')?.hasError('invalidToCode') &&
+            form.get('toCode')?.touched
+          "
+        >
+          {{
+            "REQUEST.MESSAGES.FROM_NUMBER_IS_BIGGER_THAN_TO_NUMBER" | translate
+          }}
+          {{ form.controls["toCode"]?.value }}
+          {{ "REQUEST.MESSAGES.BEE" | translate }}
+        </small>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-3 text-end">
+        <label for="fromDate" class="col-form-label"
+          ><b>{{ "WORK_ORDERS.FILTER.START_DATE" | translate }}</b></label
+        >
+      </div>
+      <div class="col-9">
+        <div class="d-flex justify-content-between w-100 align-items-center">
+          <proset-datepicker
+            [dateInitValue]="false"
+            id="fromDate"
+            formControlName="fromDate"
+            [max]="form.get('toDate')?.value!"
+          ></proset-datepicker>
+          <div class="px-2">
+            <b>{{ "FILTER.TO" | translate }}</b>
+          </div>
+          <proset-datepicker
+            [dateInitValue]="false"
+            id="toDate"
+            formControlName="toDate"
+            [min]="form.get('fromDate')?.value!"
+          ></proset-datepicker>
+        </div>
+      </div>
+    </div>
+    <div class="row d-flex form-group mb-2">
+      <div class="col-3 text-end">
+        <label for="priority" class="col-form-label"
+          ><b>{{ "WORK_ORDERS.FORM.PRIORITY" | translate }}</b></label
+        >
+      </div>
+      <div class="col-md-9">
+        <ng-select id="priority" [multiple]="true" formControlName="priority">
+          <ng-option *ngFor="let item of priorityItemList" [value]="item">
+            {{ "PRIORITY." + item | translate }}
+          </ng-option>
+        </ng-select>
+      </div>
+    </div>
+    <div class="row d-flex form-group mb-2">
+      <div class="col-3 text-end">
+        <label for="executionManagerId" class="col-form-label"
+          ><b>{{
+            "WORK_ORDERS.FORM.EXECUTION_RESPONSIBLE" | translate
+          }}</b></label
+        >
+      </div>
+      <div class="col-md-9">
+        <proset-person-select
+          class="col-md-8"
+          id="executionManagerId"
+          [userType]="userType.STAFF"
+          [multiple]="true"
+          (personChange)="onExecutionManagerChange($event)"
+          [value]="person"
+        ></proset-person-select>
+      </div>
+    </div>
+  </form>
+</ng-template>
+<ng-template #buttonTemplate>
+  <!--  todo: remove [hidden] when "history" will create-->
+  <div [hidden]="true">
+    <mat-button-toggle-group
+      name="fontStyle"
+      aria-label="Font Style"
+      [hideSingleSelectionIndicator]="true"
+    >
+      <mat-button-toggle
+        *ngFor="let btn of ArchiveButtonList; let i = index"
+        (click)="[btn.action(), (activeButton = i)]"
+        [class]="
+          activeButton === i ? 'btn-blue-color-light-100' : 'btn-whit-color'
+        "
+        >{{ btn.label | translate }}</mat-button-toggle
+      >
+    </mat-button-toggle-group>
+  </div>
+</ng-template>

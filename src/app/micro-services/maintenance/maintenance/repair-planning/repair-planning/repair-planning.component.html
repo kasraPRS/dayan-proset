@@ -1,0 +1,38 @@
+<mat-tab-group
+  mat-stretch-tabs="false"
+  mat-align-tabs="start"
+  class="custom-tab-label"
+  (selectedTabChange)="onTabChange($event)"
+>
+  <mat-tab
+    *ngIf="repairPlanning?.code! && viewType"
+    label="{{ 'REPAIR_PLANNING_TABS.REPAIR_PLANNING_DETAILS' | translate }}"
+  >
+    <proset-repair-planning-form
+      [repairPlanningDTO]="repairPlanning"
+      [viewType]="viewType"
+      (getRepairPlanningEvent)="getRepairPlanningById($event)"
+      [workOrders]="workOrdersThatHaveWorkOrderCode"
+    ></proset-repair-planning-form>
+  </mat-tab>
+  <mat-tab
+    *ngIf="workOrders"
+    label="{{ 'REPAIR_PLANNING_TABS.REPAIR_PLANNING_CALENDAR' | translate }}"
+  >
+    <div class="mt-4">
+      <proset-event-calendar
+        *ngIf="calendarEvents.length > 0 && workOrders && repairPlanning"
+        [calendarEventsData]="calendarEvents"
+        (onEventClick)="onCalendarEventClick($event)"
+      ></proset-event-calendar>
+    </div>
+  </mat-tab>
+  <mat-tab
+    *ngIf="workOrders"
+    label="{{ 'REPAIR_PLANNING_TABS.REPAIR_PLANNING_WORK_ORDERS' | translate }}"
+  >
+    <proset-repair-planning-work-logs
+      [workOrders]="workOrdersThatHaveWorkOrderCode"
+    ></proset-repair-planning-work-logs>
+  </mat-tab>
+</mat-tab-group>

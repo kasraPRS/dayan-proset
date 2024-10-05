@@ -1,0 +1,196 @@
+<proset-sidebar-filter (onFilterForm)="onFilterForm($event)">
+  <ng-container header *ngTemplateOutlet="filterTemplate"></ng-container>
+</proset-sidebar-filter>
+
+<ng-template #filterTemplate>
+  <form [formGroup]="searchForm">
+    <div class="row justify-content-center mt-2">
+      <label class="col-3 col-form-label text-dark text-md-end mt-1">
+        {{ "ASSET.SEARCH.FROM_CODE" | translate }}
+      </label>
+      <div class="col-9">
+        <div class="d-flex justify-content-between w-100 align-items-center">
+          <input class="form-control" formControlName="code" />
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center mt-2">
+      <label class="col-3 col-form-label text-dark text-md-end mt-1">
+        {{ "ASSET.FORM.ORIGINAL_INFO.LEVEL" | translate }}
+      </label>
+      <div class="col-9">
+        <ng-select
+          id="levels"
+          formControlName="level"
+          [dropdownPosition]="'auto'"
+          [items]="levels"
+          [multiple]="true"
+          bindLabel="name"
+          bindValue="id"
+          (search)="onSearchInList($event, levels)"
+        >
+          <ng-template ng-option-tmp let-item="item">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title-group>
+                  <mat-card-title>{{ item.name }} </mat-card-title>
+                  <mat-card-subtitle>
+                    {{ item?.id }}
+                  </mat-card-subtitle>
+                </mat-card-title-group>
+              </mat-card-header>
+            </mat-card>
+          </ng-template>
+        </ng-select>
+      </div>
+    </div>
+
+    <div class="row d-flex form-group mt-2">
+      <label class="col-3 col-form-label text-dark text-md-end mt-1">
+        {{ "ASSET.FORM.ORIGINAL_INFO.GROUP" | translate }}
+      </label>
+      <div class="col-9">
+        <ng-select
+          id="groups"
+          formControlName="group"
+          [dropdownPosition]="'auto'"
+          [items]="groups"
+          [multiple]="true"
+          bindLabel="name"
+          bindValue="id"
+          (search)="onSearchInList($event, groups)"
+        >
+          <ng-template ng-option-tmp let-item="item">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title-group>
+                  <mat-card-title>{{ item.name }} </mat-card-title>
+                  <mat-card-subtitle>
+                    {{ item?.id }}
+                  </mat-card-subtitle>
+                </mat-card-title-group>
+              </mat-card-header>
+            </mat-card>
+          </ng-template>
+        </ng-select>
+      </div>
+    </div>
+
+    <div class="row d-flex mt-2">
+      <label class="col-3 col-form-label text-dark text-md-end mt-1">
+        {{ "ASSET.FORM.ORIGINAL_INFO.EMPLACEMENT_LOCATION" | translate }}
+      </label>
+      <div class="col-9">
+        <ng-select
+          id="emplacementLocations"
+          formControlName="emplacementLocation"
+          [dropdownPosition]="'auto'"
+          [items]="emplacementLocations"
+          [multiple]="true"
+          bindLabel="name"
+          bindValue="id"
+          (search)="onSearchInList($event, groups)"
+        >
+          <ng-template ng-option-tmp let-item="item">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title-group>
+                  <mat-card-title>{{ item.name }} </mat-card-title>
+                  <mat-card-subtitle>
+                    {{ item?.id }}
+                  </mat-card-subtitle>
+                </mat-card-title-group>
+              </mat-card-header>
+            </mat-card>
+          </ng-template>
+        </ng-select>
+      </div>
+    </div>
+
+    <div class="row d-flex form-group mt-2">
+      <label class="col-3 col-form-label text-dark text-md-end mt-1">
+        {{ "ASSET.FORM.ORIGINAL_INFO.PRIORITY" | translate }}
+      </label>
+      <div class="col-9">
+        <ng-select
+          slot="input"
+          [items]="priorityList"
+          [multiple]="true"
+          formControlName="priority"
+        >
+          <ng-template ng-label-tmp ng-option-tmp let-item="item">
+            {{ "ASSET.FORM.PRIORITY." + item | translate }}
+          </ng-template>
+        </ng-select>
+      </div>
+    </div>
+
+    <div class="row d-flex form-group mt-2">
+      <label class="col-3 col-form-label text-dark text-md-end mt-1">
+        {{ "ASSET.FORM.ORIGINAL_INFO.STATUS" | translate }}
+      </label>
+      <div class="col-9">
+        <ng-select
+          slot="input"
+          [items]="statusList"
+          [multiple]="true"
+          formControlName="status"
+        >
+          <ng-template ng-label-tmp ng-option-tmp let-item="item">
+            {{ "ASSET.FORM.STATUS." + item | translate }}
+          </ng-template>
+        </ng-select>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<div class="position-relative mt-4">
+  <div class="d-flex justify-content-end mb-3 btn_square left_btns">
+    <button
+      (click)="listViewType = ASSET_LIST_VIEW_TYPE.TABLE"
+      class="d-flex justify-content-center align-items-center btn btn-sm top_action_button shadow-none text-center"
+      type="button"
+      attr.aria-label="{{ 'ASSET.FORM.BUTTONS.LIST' | translate }}"
+      [ngClass]="{
+        'button-active': listViewType == ASSET_LIST_VIEW_TYPE.TABLE
+      }"
+    >
+      <i class="isax isax-clipboard-text"></i>
+    </button>
+    <button
+      (click)="listViewType = ASSET_LIST_VIEW_TYPE.TREE"
+      class="d-flex justify-content-center align-items-center btn btn-sm top_action_button shadow-none text-center"
+      type="button"
+      attr.aria-label="{{ 'ASSET.FORM.BUTTONS.TREE' | translate }}"
+      [ngClass]="{
+        'button-active': listViewType == ASSET_LIST_VIEW_TYPE.TREE
+      }"
+    >
+      <i class="isax isax-data"></i>
+    </button>
+  </div>
+
+  <div [ngSwitch]="listViewType">
+    <div *ngSwitchCase="ASSET_LIST_VIEW_TYPE.TABLE">
+      <app-datatable
+        id="assetDataTable"
+        [filterNumber]="filterNumber"
+        [limit]="30"
+        [config]="config"
+        [tableRow]="assetList"
+        [scrollbarH]="true"
+        [showIndex]="true"
+        [scrollbarV]="false"
+        (onDoubleClickRow)="onDoubleClick($event)"
+        newWindowUrl="/maintenance/asset/asset/form"
+        [newEntryPermission]="[permission.ASSET_CREATE]"
+      ></app-datatable>
+    </div>
+
+    <div *ngSwitchCase="ASSET_LIST_VIEW_TYPE.TREE">
+      <proset-tree-column [treeData]="treeData"></proset-tree-column>
+    </div>
+  </div>
+</div>

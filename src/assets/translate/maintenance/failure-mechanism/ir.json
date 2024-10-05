@@ -1,0 +1,24 @@
+{
+  "FAILURE_MECHANISM": {
+    "TITLE": "تعریف مکانیزم خرابی",
+    "FORM": {
+      "ASSET": "دارایی",
+      "NAME": "عنوان",
+      "CODE": "کد",
+      "DESCRIPTION": "توضیحات"
+    },
+    "TABLE": {
+      "NAME": "عنوان مکانیزم خرابی",
+      "CODE": "کد",
+      "ASSET": "دارایی",
+      "DESCRIPTION": "توضیحات"
+    },
+    "MESSAGES": {
+      "CODE_INVALID": ".کد نامعتبر است",
+      "CODE_ALREADY_EXIST": "کد وارد شده تکراری است",
+      "FAILURE_MECHANISM_DELETE": "مکانیزم خرابی با موفقیت حذف شد.",
+      "FAILURE_MECHANISM_IS_NOT_DELETABLE": "مکانیزم خرابی قابل حذف نمی باشد.",
+      "FAILURE_MECHANISM_IS_NOT_UPDATABLE": "مکانیزم خرابی قابل ویرایش نمی باشد."
+    }
+  }
+}

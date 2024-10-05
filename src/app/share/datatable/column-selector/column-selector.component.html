@@ -1,0 +1,40 @@
+<div class="modal-body translated-paragraph position-relative">
+  <div class="text-center pb-5"></div>
+  <div class="row pb-3 text-center">
+    <div class="col-12">
+      <span class="text-start px-0 fs-6 fw-bold">
+        <div class="selected-column">
+          <ul>
+            <li *ngFor="let col of allColumns">
+              <input
+                type="checkbox"
+                [id]="col.label"
+                (click)="toggle(col)"
+                [checked]="isChecked(col)"
+                style="margin-left: 10px"
+              />
+              <label [attr.for]="col.label">{{ col.label | translate }}</label>
+            </li>
+          </ul>
+        </div>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="modal-footer border-top-0">
+  <button
+    data-cy="dialog-submit"
+    class="btn btn-primary py-2 px-4"
+    type="button"
+    (click)="submit()"
+  >
+    {{ "GENERAL.SAVE" | translate }}
+  </button>
+  <div
+    class="close_modal_icon pt-2 position-absolute top-0 left-0"
+    (click)="onClose()"
+    role="button"
+  >
+    <i class="fa fa-times fs-4" aria-hidden="true"></i>
+  </div>
+</div>

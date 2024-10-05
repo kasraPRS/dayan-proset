@@ -1,0 +1,59 @@
+<div class="form-continer" [class]="{ 'view-mode': viewMode }">
+  <form class="form-level mt-5" [formGroup]="formGroup">
+    <div class="row mt-2">
+      <label
+        for="code"
+        class="col-md-4 col-form-label text-dark text-md-end mt-1"
+        [ngClass]="{
+          required: formGroup.controls['code'].validator
+        }"
+        >{{ "MEASUREMENT.FORM.CODE" | translate }}</label
+      >
+      <div class="col-md-8">
+        <input
+          type="number"
+          class="form-control"
+          id="code"
+          formControlName="code"
+        />
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <label
+        for="name"
+        class="col-md-4 col-form-label text-dark text-md-end mt-1"
+        [ngClass]="{
+          required: formGroup.controls['name'].validator
+        }"
+        >{{ "MEASUREMENT.FORM.TITLE" | translate }}</label
+      >
+      <div class="col-md-8">
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          formControlName="name"
+        />
+      </div>
+    </div>
+    <div class="row mt-2">
+      <label
+        for="code"
+        class="col-md-4 col-form-label text-dark text-md-end mt-1"
+        [ngClass]="{
+          required: formGroup.controls['description'].validator
+        }"
+        >{{ "MEASUREMENT.FORM.DESCRIPTION" | translate }}</label
+      >
+      <div class="col-md-8">
+        <textarea
+          type="text"
+          class="form-control"
+          id="description"
+          formControlName="description"
+        ></textarea>
+      </div>
+    </div>
+  </form>
+</div>

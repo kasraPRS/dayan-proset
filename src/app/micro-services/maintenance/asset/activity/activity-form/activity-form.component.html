@@ -1,0 +1,123 @@
+<div
+  class="form-continer"
+  [ngClass]="{
+    'view-mode': viewMode
+  }"
+>
+  <form class="form-group mt-5" [formGroup]="formGroup">
+    <div class="row">
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="code"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+            >{{ "ACTIVITY.FORM.CODE" | translate }}</label
+          >
+          <div class="col-md-8 position-relative">
+            <input
+              type="text"
+              class="form-control"
+              id="code"
+              formControlName="code"
+            />
+            <small
+              id="code_error_duplicated"
+              class="form-text text-danger mt-2"
+              *ngIf="formGroup.get('code')?.hasError('isDuplicate')"
+            >
+              {{ "ACTIVITY.MESSAGES.CODE_ALREADY_EXIST" | translate }}
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="name"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1"
+            [ngClass]="{
+              required: formGroup.controls['name'].validator
+            }"
+            >{{ "ACTIVITY.FORM.NAME" | translate }}</label
+          >
+          <div class="col-md-8 d-flex position-relative">
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              formControlName="name"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="asset"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+            >{{ "ACTIVITY.FORM.ASSET" | translate }}</label
+          >
+          <div class="col-md-8">
+            <proset-asset-tree-select
+              placeholder="{{ 'GENERAL.ASSET_SELECT' | translate }}"
+              formControlName="asset"
+              (assetChange)="onAssetChange($event)"
+              [disabled]="viewMode"
+            ></proset-asset-tree-select>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="numberPlate"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1"
+            >{{ "ACTIVITY.FORM.NUMBER_PLATE" | translate }}</label
+          >
+          <div class="col-md-8 d-flex position-relative">
+            <input
+              type="text"
+              class="form-control"
+              id="numberPlate"
+              [disabled]="true"
+              [value]="activityDto.asset?.code"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <accordion [isAnimated]="true" class="card-shadow-less">
+        <accordion-group
+          #accordionFirst
+          [isOpen]="!!activityDto.instruction"
+          class="mb-2 accordion-shadow-less"
+          heading="{{ 'ACTIVITY.FORM.INSTRUCTIONS' | translate }}"
+        >
+          <span accordion-heading *ngIf="accordionFirst.isOpen">
+            <i Class="fas fa-angle-up fs-5 pre-down-ar"></i>
+          </span>
+          <span accordion-heading *ngIf="!accordionFirst.isOpen">
+            <i Class="fas fa-angle-down fs-5 pre-down-ar"></i>
+          </span>
+          <div class="row">
+            <ckeditor
+              [editor]="editor"
+              [disabled]="viewMode"
+              [config]="{
+                language: 'fa'
+              }"
+              (ready)="onReadyEditor($event)"
+              formControlName="instruction"
+            >
+            </ckeditor>
+          </div>
+        </accordion-group>
+      </accordion>
+    </div>
+  </form>
+</div>

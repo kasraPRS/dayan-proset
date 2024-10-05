@@ -1,0 +1,111 @@
+<div class="row mb-7">
+  <div
+    class="col-md-8 m-0 mt-5"
+    [ngClass]="{
+      disabled: disabledTree
+    }"
+  >
+    <div
+      class="d-flex flex-row justify-content-between align-items-center w-100"
+    >
+      <div class="d-flex justify-content-start align-items-center w-100">
+        <div class="w-100 d-flex justify-content-start align-items-center">
+          <div class="d-flex w-100 pointer">
+            <div class="position-relative adjust-text w-100 whole-line">
+              <p>
+                <b>{{ "EMPLACEMENT_LOCATION.FORM.PARENT" | translate }}</b>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button
+          *prosetHasPermissions="[permission.EMPLACEMENT_LOCATION_CREATE]"
+          class="btn btn-sm icon-btn"
+          (click)="createNewEmplacementLocation({})"
+          data-cy="dialog-submit"
+          type="button"
+          attr.aria-label="{{
+            'EMPLACEMENT_LOCATION.BUTTONS.NEW_EMPLACEMENT_LOCATION' | translate
+          }}"
+        >
+          <i class="isax isax-add"></i>
+        </button>
+      </div>
+    </div>
+    <div class="mt-3">
+      <fieldset [disabled]="disabledTree">
+        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+          <mat-nested-tree-node
+            class="nested-node-padding"
+            *matTreeNodeDef="let node; when: hasChild"
+            #nestedTreeNodeElement
+          >
+            <div class="mat-tree-node">
+              <button
+                mat-icon-button
+                matTreeNodeToggle
+                [attr.aria-label]="'Toggle ' + node.name"
+                [ngClass]="{
+                  invisible: !node.children?.length
+                }"
+              >
+                <i
+                  *ngIf="!treeControl.isExpanded(node)"
+                  class="isax isax-arrow-left-2"
+                ></i>
+                <i
+                  *ngIf="treeControl.isExpanded(node)"
+                  class="isax isax-arrow-down-1"
+                ></i>
+              </button>
+              <div
+                class="w-100 d-flex justify-content-start align-items-center"
+              >
+                <button
+                  class="d-flex w-100 pointer transparent-btn"
+                  (click)="updateNode(node)"
+                >
+                  <span
+                    ><b>{{ node.treeCode || "" }}</b></span
+                  >
+                  <div
+                    class="position-relative adjust-text w-100"
+                    [ngClass]="{
+                      'whole-line': node.children
+                    }"
+                  >
+                    <p>
+                      <b>{{ node.name }}</b>
+                    </p>
+                  </div>
+                </button>
+                <div>
+                  <button
+                    class="btn btn-sm icon-btn"
+                    (click)="createNewEmplacementLocation(node)"
+                    data-cy="dialog-submit"
+                    type="button"
+                    attr.aria-label="{{
+                      'EMPLACEMENT_LOCATION.BUTTONS.NEW_EMPLACEMENT_LOCATION'
+                        | translate
+                    }}"
+                  >
+                    <i class="isax isax-add"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              [class.location-tree-invisible]="!treeControl.isExpanded(node)"
+              role="group"
+            >
+              <ng-container matTreeNodeOutlet></ng-container>
+            </div>
+          </mat-nested-tree-node>
+        </mat-tree>
+      </fieldset>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,97 @@
+<div
+  class="form-continer"
+  [ngClass]="{
+    'view-mode': viewMode
+  }"
+>
+  <form class="form-group mt-5" [formGroup]="formTeam">
+    <div class="row">
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="code"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1"
+            [ngClass]="{
+              required: formTeam.controls['code'].validator
+            }"
+            >{{ "TEAM.FORM.CODE" | translate }}</label
+          >
+          <div class="col-md-8 position-relative">
+            <input
+              type="text"
+              class="form-control"
+              id="code"
+              formControlName="code"
+            />
+            <small
+              id="code_error_duplicated"
+              class="form-text text-danger mt-2"
+              *ngIf="formTeam.get('code')?.hasError('isDuplicate')"
+            >
+              {{ "TEAM.MESSAGES.CODE_ALREADY_EXIST" | translate }}
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="name"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1"
+            [ngClass]="{
+              required: formTeam.controls['name'].validator
+            }"
+            >{{ "TEAM.FORM.NAME" | translate }}</label
+          >
+          <div class="col-md-8 d-flex position-relative">
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              formControlName="name"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="personList"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1 required"
+            >{{ "TEAM.FORM.PERSONS" | translate }}</label
+          >
+          <div class="col-md-8 d-flex position-relative">
+            <div class="w-100">
+              <proset-person-select
+                [userType]="userType.STAFF"
+                class="select-h-auto"
+                [multiple]="true"
+                (personChange)="onPersonChange($event)"
+                [value]="persons"
+              ></proset-person-select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="row input-row mt-2">
+          <label
+            for="description"
+            class="col-md-4 col-form-label text-dark text-md-end mt-1"
+            >{{ "TEAM.FORM.DESCRIPTION" | translate }}</label
+          >
+          <div class="col-md-8 d-flex position-relative">
+            <input
+              type="text"
+              class="form-control"
+              id="description"
+              formControlName="description"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

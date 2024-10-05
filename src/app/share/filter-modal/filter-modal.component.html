@@ -1,0 +1,123 @@
+<div class="modal-body translated-paragraph position-relative">
+  <div class="d-flex justify-content-between">
+    <div class="text-center pb-5">
+      <img src="/assets/img/filter.png" />
+    </div>
+    <div class="row pb-3 text-center">
+      <div class="col-12">
+        <span class="text-start px-0 fs-6 fw-bold">
+          {{ title | translate }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="w-100 p-3">
+    <ng-container *ngTemplateOutlet="scopeVars.referenceContent"></ng-container>
+    <div class="w-100 mt-2">
+      <form>
+        <div class="d-flex justify-content-between align-items-center">
+          <label for="creator" class="col-form-label ml-4 w-25"
+            ><b>{{ "FILTER.CREATOR" | translate }}</b></label
+          >
+          <div class="w-100">
+            <!-- <proset-user-select
+              id="creator"
+              (userChange)="onCreatByChange($event)"
+            ></proset-user-select> -->
+          </div>
+        </div>
+        <div class="w-100 mt-2 d-flex">
+          <label for="create_from" class="col-form-label ml-4 w-25"
+            ><b>{{ "FILTER.DATE_OF_CREATE" | translate }}</b></label
+          >
+          <div class="d-flex justify-content-between w-100 align-items-center">
+            <proset-datepicker
+              [uiTodayBtnEnable]="true"
+              [dateInitValue]="true"
+              id="create_from"
+              (dateChange)="onCreatedFrom($event)"
+            ></proset-datepicker>
+            <div class="from-to px-2">
+              <b>{{ "FILTER.TO" | translate }}</b>
+            </div>
+            <proset-datepicker
+              [uiTodayBtnEnable]="true"
+              id="create_to"
+              [(ngModel)]="historySearchParameter.createdTo"
+              [min]="historySearchParameter.createdFrom!"
+              (dateChange)="onCreatedTo($event)"
+            ></proset-datepicker>
+          </div>
+        </div>
+        <div
+          class="d-flex justify-content-between align-items-center w-100 mt-2"
+        >
+          <label for="updated-by" class="col-form-label ml-4 w-25"
+            ><b>{{ "FILTER.EDITOR" | translate }}</b></label
+          >
+          <div class="w-100">
+            <!-- <proset-user-select
+              id="updated-by"
+              (userChange)="onUpdateByChange($event)"
+            ></proset-user-select> -->
+          </div>
+        </div>
+        <div class="w-100 mt-2 d-flex">
+          <label for="update_from" class="col-form-label ml-4 w-25"
+            ><b>{{ "FILTER.DATE_OF_EDIT" | translate }}</b></label
+          >
+          <div class="d-flex justify-content-between w-100 align-items-center">
+            <proset-datepicker
+              [uiTodayBtnEnable]="true"
+              id="update_from"
+              [(ngModel)]="historySearchParameter.updatedFrom"
+              (dateChange)="onUpdatedFrom($event)"
+            ></proset-datepicker>
+            <div class="px-2 from-to">
+              <b>{{ "FILTER.TO" | translate }}</b>
+            </div>
+            <proset-datepicker
+              [uiTodayBtnEnable]="true"
+              id="update_to"
+              [(ngModel)]="historySearchParameter.updatedTo"
+              [min]="historySearchParameter.updatedFrom!"
+              (dateChange)="onUpdatedTo($event)"
+            ></proset-datepicker>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer border-top-0">
+  <button
+    *ngIf="!submitHidden"
+    data-cy="dialog-submit"
+    class="btn btn-primary xs-button"
+    [disabled]="submitDisabled"
+    type="button"
+    (click)="submit()"
+  >
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+
+  <button
+    *ngIf="closeButtonText"
+    type="button"
+    name="cancelBtn"
+    class="btn btn-danger py-2 px-3"
+    (click)="onClose()"
+  >
+    <span class="px-1">
+      {{ closeButtonText | translate }}
+    </span>
+  </button>
+  <div
+    class="close_modal_icon pt-2 position-absolute top-0 left-0"
+    (click)="onClose()"
+    role="button"
+  >
+    <i class="fa fa-times fs-4" aria-hidden="true"></i>
+  </div>
+</div>
